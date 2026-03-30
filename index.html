@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Desmond Oodo — Data Analyst & AI Builder</title>
-<meta name="description" content="Portfolio of Desmond Oodo — Data Analyst & AI Builder. Power BI, DAX, MCP, Claude Skills, Finance Models, Forecasting.">
+<meta name="description" content="Desmond Oodo — Data Analyst & AI Builder. Power BI, Excel, DAX, SQL, Python, MCP, Claude Skills, Finance Models, Forecasting. Based in Ireland.">
+<meta name="keywords" content="Data Analyst, Power BI, Excel, DAX, SQL, Python, MCP, Claude, Forecasting, Finance Model">
+<meta property="og:title" content="Desmond Oodo — Data Analyst & AI Builder">
+<meta property="og:description" content="Portfolio of Desmond Oodo — Finance models, forecasting engines, BI apps and AI-powered Claude tools.">
+<meta name="theme-color" content="#080c08">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -13,171 +17,209 @@
   --bg:#080c08;--surface:#0d110d;--card:#111811;--border:#1e2e1e;
   --accent:#00ff41;--a2:#7c6ff7;--a3:#ff6b6b;--a4:#00d4ff;--a5:#ffd166;
   --text:#c8e6c8;--muted:#4a6b4a;
-  --mono:'Space Mono',monospace;--display:'Syne',sans-serif;
+  --mono:'Space Mono',monospace;--sans:'Syne',sans-serif;
 }
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--display);min-height:100vh;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
 .gbg{position:fixed;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(0,255,65,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,65,.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
 .vig{position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.75) 100%);pointer-events:none;z-index:0}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(8,12,8,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
-.logo{font-family:var(--mono);font-size:12px;color:var(--accent);display:flex;align-items:center;gap:.4rem}
+nav{position:sticky;top:0;z-index:100;background:rgba(8,12,8,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:52px;gap:1rem}
+.logo{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap;display:flex;align-items:center;gap:.3rem;flex-shrink:0}
 .blink{animation:bl .8s step-end infinite}
 @keyframes bl{50%{opacity:0}}
-.nl{display:flex;gap:1.6rem}
-.nl a{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:color .2s;background:none;border:none;text-decoration:none}
+.nl{display:flex;gap:1.25rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nl::-webkit-scrollbar{display:none}
+.nl a{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;white-space:nowrap;padding:.25rem 0}
 .nl a:hover{color:var(--accent)}
 
 /* HERO */
-.hero{position:relative;padding:5rem 2rem 3.5rem;max-width:1100px;margin:0 auto;z-index:1}
-.htag{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
-.tl{width:30px;height:1px;background:var(--accent)}
-.hero h1{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:.5rem;color:#e8ffe8}
-.ga{color:var(--accent);text-shadow:0 0 24px rgba(0,255,65,.2)}
-.hrole{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.75rem}
+.hero{position:relative;padding:4rem 1.5rem 3rem;max-width:1100px;margin:0 auto;z-index:1}
+.htag{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.tl{width:24px;height:1px;background:var(--accent);flex-shrink:0}
+.hero h1{font-size:clamp(2.4rem,8vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:.4rem;color:#e8ffe8}
+.ga{color:var(--accent);text-shadow:0 0 20px rgba(0,255,65,.2)}
+.hrole{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
 .hrole em{color:var(--a4);font-style:normal}
-.hdesc{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:2;max-width:560px;margin-bottom:2.5rem;border-left:2px solid var(--border);padding-left:1rem}
-.ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
-.btn{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:10px 22px;border:1px solid;cursor:pointer;transition:all .25s;background:transparent;text-decoration:none;display:inline-block}
+.hdesc{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:2;max-width:560px;margin-bottom:2rem;border-left:2px solid var(--border);padding-left:1rem}
+.ctas{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 18px;border:1px solid;cursor:pointer;transition:all .25s;background:transparent;display:inline-block;white-space:nowrap}
 .btn-p{color:var(--accent);border-color:var(--accent)}
-.btn-p:hover{background:var(--accent);color:#080c08}
+.btn-p:hover,.btn-p:active{background:var(--accent);color:#080c08}
 .btn-g{color:var(--muted);border-color:var(--border)}
-.btn-g:hover{color:var(--text);border-color:var(--muted)}
+.btn-g:hover,.btn-g:active{color:var(--text);border-color:var(--muted)}
 .hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.hstat{background:var(--card);padding:1.25rem;text-align:center}
-.snum{font-size:2rem;font-weight:800;color:var(--accent);letter-spacing:-1px;display:block;font-family:var(--mono)}
-.slbl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;display:block}
+.hstat{background:var(--card);padding:1rem .75rem;text-align:center}
+.snum{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--accent);letter-spacing:-1px;display:block;font-family:var(--mono)}
+.slbl{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;display:block;line-height:1.3}
+
+/* TOOLS STRIP */
+.tools-strip{max-width:1100px;margin:0 auto;padding:0 1.5rem 2rem;position:relative;z-index:1}
+.tools-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem}
+.tools-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.tool-badge{font-family:var(--mono);font-size:9px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;background:var(--card);white-space:nowrap;transition:all .2s}
+.tool-badge.primary{color:var(--accent);border-color:rgba(0,255,65,.35);background:rgba(0,255,65,.05)}
+.tool-badge.secondary{color:var(--a4);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.04)}
+.tool-badge.tertiary{color:var(--a2);border-color:rgba(124,111,247,.3);background:rgba(124,111,247,.04)}
 
 /* SECTIONS */
-section{max-width:1100px;margin:0 auto;padding:3.5rem 2rem;position:relative;z-index:1}
-.sh{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem}
-.st{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:3px;border:1px solid rgba(0,255,65,.3);padding:3px 8px}
-.stitle{font-size:1.75rem;font-weight:800;letter-spacing:-1px;color:#e8ffe8}
-.sl{flex:1;height:1px;background:var(--border)}
+section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem;position:relative;z-index:1}
+.sh{display:flex;align-items:center;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap}
+.st{font-family:var(--mono);font-size:8px;color:var(--accent);letter-spacing:3px;border:1px solid rgba(0,255,65,.3);padding:3px 8px;white-space:nowrap}
+.stitle{font-size:clamp(1.4rem,4vw,1.75rem);font-weight:800;letter-spacing:-1px;color:#e8ffe8}
+.sl{flex:1;height:1px;background:var(--border);min-width:20px}
 
-/* STANDOUT BANNER */
-.standout{background:#0d160d;border:1px solid rgba(0,255,65,.2);padding:2rem;margin-bottom:2rem;position:relative;overflow:hidden}
+/* STANDOUT */
+.standout{background:#0d160d;border:1px solid rgba(0,255,65,.2);padding:1.5rem;margin-bottom:1.5rem;position:relative}
 .standout::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--accent)}
-.so-title{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:.75rem}
-.so-list{list-style:none;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:2.2}
+.so-title{font-family:var(--mono);font-size:8px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:.6rem}
+.so-list{list-style:none;font-family:var(--mono);font-size:10px;color:var(--muted);line-height:2.1}
 .so-list li::before{content:'▸ ';color:var(--accent)}
 
 /* TABS */
-.tabs{display:flex;border:1px solid var(--border);margin-bottom:2rem;overflow-x:auto}
-.tab{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 16px;cursor:pointer;color:var(--muted);border-right:1px solid var(--border);transition:all .2s;white-space:nowrap;background:transparent;flex-shrink:0}
+.tabs{display:flex;border:1px solid var(--border);margin-bottom:1.5rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tab{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 14px;cursor:pointer;color:var(--muted);border-right:1px solid var(--border);transition:all .2s;white-space:nowrap;background:transparent;flex-shrink:0;-webkit-tap-highlight-color:transparent;user-select:none}
 .tab:last-child{border-right:none}
 .tab.active{background:rgba(0,255,65,.08);color:var(--accent)}
 .tc{display:none}.tc.active{display:block}
 
-/* PROJECT CARDS */
-.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border)}
-.pc{background:var(--card);padding:1.75rem;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+/* PROJECT GRID */
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1px;background:var(--border)}
+.pc{background:var(--card);padding:1.5rem;transition:background .2s;position:relative;overflow:hidden}
 .pc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
 .pc:hover{background:#141e14}
-.pc.p1:hover::after,.pc.p1::after{background:var(--accent)}
-.pc.p2::after{background:var(--a2)}.pc.p2:hover::after{background:var(--a2)}
-.pc.p3::after{background:var(--a3)}.pc.p3:hover::after{background:var(--a3)}
-.pc.p4::after{background:var(--a4)}.pc.p4:hover::after{background:var(--a4)}
-.pc.p5::after{background:var(--a5)}.pc.p5:hover::after{background:var(--a5)}
-.pc.wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.cmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
-.ct{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border:1px solid}
+.pc.p1::after,.pc.p1:hover::after{background:var(--accent)}
+.pc.p2::after,.pc.p2:hover::after{background:var(--a2)}
+.pc.p3::after,.pc.p3:hover::after{background:var(--a3)}
+.pc.p4::after,.pc.p4:hover::after{background:var(--a4)}
+.pc.p5::after,.pc.p5:hover::after{background:var(--a5)}
+.pc.wide{grid-column:1/-1}
+.pc-inner{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.cmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.ct{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border:1px solid}
 .ctg{color:var(--accent);border-color:rgba(0,255,65,.3);background:rgba(0,255,65,.05)}
 .ctp{color:var(--a2);border-color:rgba(124,111,247,.3);background:rgba(124,111,247,.05)}
 .ctr{color:var(--a3);border-color:rgba(255,107,107,.3);background:rgba(255,107,107,.05)}
 .ctb{color:var(--a4);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.05)}
 .cty{color:var(--a5);border-color:rgba(255,209,102,.3);background:rgba(255,209,102,.05)}
-.cnum{font-family:var(--mono);font-size:10px;color:var(--border)}
-.pc h3{font-size:1rem;font-weight:700;margin-bottom:.6rem;line-height:1.35;color:#d4f4d4}
-.pc p{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.8;margin-bottom:1.25rem}
-.ctags{display:flex;flex-wrap:wrap;gap:.4rem}
-.tag{font-family:var(--mono);font-size:8px;letter-spacing:.5px;color:var(--muted);border:1px solid var(--border);padding:2px 7px}
-.arr{position:absolute;bottom:1.25rem;right:1.25rem;font-family:var(--mono);font-size:16px;color:var(--border);transition:all .2s}
+.cnum{font-family:var(--mono);font-size:9px;color:var(--border)}
+.pc h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem;line-height:1.35;color:#d4f4d4}
+.pc p{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9;margin-bottom:1rem}
+.ctags{display:flex;flex-wrap:wrap;gap:.35rem}
+.tag{font-family:var(--mono);font-size:8px;color:var(--muted);border:1px solid var(--border);padding:2px 6px}
+.arr{position:absolute;bottom:1rem;right:1rem;font-family:var(--mono);font-size:14px;color:var(--border);transition:all .2s}
 .pc:hover .arr{color:var(--accent);transform:translate(2px,-2px)}
 
+/* SIDE PANEL */
+.side-panel{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:2;border:1px solid var(--border);padding:.85rem}
+.side-panel-title{color:var(--a4);font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem}
+.sp-row{padding-left:1rem;position:relative;margin-bottom:.1rem}
+.sp-row::before{content:'●';color:var(--accent);position:absolute;left:0;font-size:7px;top:.2rem}
+
 /* CHART BLOCKS */
-.chart-block{background:var(--surface);border:1px solid var(--border);padding:2rem;margin-top:1.5rem}
-.chart-block-label{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:3px 10px;border:1px solid;display:inline-block;margin-bottom:.75rem}
-.chart-block-title{font-size:1rem;font-weight:700;color:#e8ffe8;margin-bottom:.2rem}
-.chart-block-sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:1.25rem}
-.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:1.25rem}
-.metric{background:var(--card);padding:1rem;text-align:center}
-.m-val{font-size:1.3rem;font-weight:800;display:block;font-family:var(--mono)}
-.m-lbl{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block}
-.m-chg{font-family:var(--mono);font-size:9px;margin-top:4px;display:block}
+.chart-block{background:var(--surface);border:1px solid var(--border);padding:1.25rem;margin-top:1.25rem}
+.cb-label{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid;display:inline-block;margin-bottom:.6rem}
+.cb-title{font-size:.9rem;font-weight:700;color:#e8ffe8;margin-bottom:.15rem}
+.cb-sub{font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:.85rem}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:.85rem}
+.metric{background:var(--card);padding:.75rem .5rem;text-align:center}
+.m-val{font-size:clamp(.85rem,2.5vw,1.15rem);font-weight:800;display:block;font-family:var(--mono);line-height:1.2}
+.m-lbl{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block;line-height:1.3}
+.m-chg{font-family:var(--mono);font-size:8px;margin-top:2px;display:block}
 .up{color:var(--accent)}.dn{color:var(--a3)}.nt{color:var(--a5)}
-.chart-inner{background:#080c08;border:1px solid var(--border);padding:1.25rem}
-.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1rem;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.chart-inner{background:#080c08;border:1px solid var(--border);padding:.85rem}
+.chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:.6rem;font-family:var(--mono);font-size:9px;color:var(--muted)}
 .leg-item{display:flex;align-items:center;gap:5px}
-.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
 
 /* FEATURE BADGES */
-.fb{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid;margin-bottom:.85rem}
+.fb{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid;margin-bottom:.75rem}
 .fbg{color:var(--accent);border-color:rgba(0,255,65,.3)}
 .fbp{color:var(--a2);border-color:rgba(124,111,247,.3)}
 .fbb{color:var(--a4);border-color:rgba(0,212,255,.3)}
 .fby{color:var(--a5);border-color:rgba(255,209,102,.3)}
-.fbr{color:var(--a3);border-color:rgba(255,107,107,.3)}
 
 /* TERMINAL */
-.term{background:#050905;border:1px solid var(--border);padding:1.25rem 1.5rem;font-family:var(--mono);font-size:11px;line-height:1.9;margin-bottom:2rem}
-.tbar{display:flex;gap:6px;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);align-items:center}
-.td{width:10px;height:10px;border-radius:50%}
-.tt{font-size:9px;color:var(--muted);letter-spacing:1px;margin-left:auto}
+.term{background:#050905;border:1px solid var(--border);padding:1rem 1.25rem;font-family:var(--mono);font-size:10px;line-height:1.9;margin-bottom:1.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbar{display:flex;gap:5px;margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);align-items:center}
+.td{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tt{font-size:8px;color:var(--muted);letter-spacing:1px;margin-left:auto;white-space:nowrap}
 .tp{color:var(--accent)}.tph{color:var(--a4)}.tc2{color:#e8ffe8}.to{color:var(--muted)}.thi{color:var(--accent)}
-.tcur{display:inline-block;width:7px;height:12px;background:var(--accent);animation:bl .8s step-end infinite;vertical-align:middle}
+.tcur{display:inline-block;width:7px;height:11px;background:var(--accent);animation:bl .8s step-end infinite;vertical-align:middle}
 
 /* MCP GRID */
 .mg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.mc{background:var(--card);padding:1.75rem}
+.mc{background:var(--card);padding:1.5rem}
 .mc.feat{grid-column:1/-1;background:#0d160d;border-left:2px solid var(--accent)}
-.mtitle{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:#d4f4d4}
-.mdesc{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.8;margin-bottom:.75rem}
-.cb{background:#030703;border:1px solid var(--border);padding:1rem;font-family:var(--mono);font-size:10px;color:#7fc87f;line-height:1.7;overflow-x:auto}
+.mtitle{font-size:.9rem;font-weight:700;margin-bottom:.4rem;color:#d4f4d4}
+.mdesc{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9;margin-bottom:.6rem}
+.code-block{background:#030703;border:1px solid var(--border);padding:.85rem;font-family:var(--mono);font-size:9px;color:#7fc87f;line-height:1.7;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .cc{color:#2a4a2a}.cs{color:#d4a574}.cn{color:var(--a4)}.ck{color:var(--a2)}
 
 /* SKILLS SHOWCASE */
-.skills-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--border);margin-bottom:2rem}
-.skill-pill{background:var(--card);padding:1.25rem;position:relative;overflow:hidden}
-.skill-pill::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.skills-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:1px;background:var(--border);margin-bottom:1.5rem}
+.skill-pill{background:var(--card);padding:1.1rem}
+.skill-pill::before{content:'';display:block;height:2px;margin-bottom:.6rem}
 .skill-pill.sg::before{background:var(--accent)}
 .skill-pill.sp::before{background:var(--a2)}
 .skill-pill.sy::before{background:var(--a5)}
 .skill-pill.sb::before{background:var(--a4)}
-.sp-icon{font-size:18px;margin-bottom:.5rem;display:block}
-.sp-name{font-size:.9rem;font-weight:700;color:#d4f4d4;margin-bottom:.35rem}
+.sp-icon{font-size:16px;margin-bottom:.4rem;display:block}
+.sp-name{font-size:.85rem;font-weight:700;color:#d4f4d4;margin-bottom:.3rem}
 .sp-desc{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.7}
-.sp-source{font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;margin-top:.6rem;padding:2px 6px;border:1px solid;display:inline-block}
+.sp-source{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;margin-top:.5rem;padding:2px 6px;border:1px solid;display:inline-block}
 .src-user{color:var(--accent);border-color:rgba(0,255,65,.3)}
 .src-claude{color:var(--a4);border-color:rgba(0,212,255,.3)}
 
 /* STACK */
-.skgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1px;background:var(--border)}
-.ski{background:var(--card);padding:1.25rem;text-align:center}
-.skn{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:block}
-.skp{font-size:1.3rem;font-weight:800;margin:.2rem 0;display:block;font-family:var(--mono)}
-.sbw{height:2px;background:var(--border);overflow:hidden;margin-top:.5rem}
+.skgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,120px),1fr));gap:1px;background:var(--border)}
+.ski{background:var(--card);padding:1rem .75rem;text-align:center}
+.skn{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:block}
+.skp{font-size:1.2rem;font-weight:800;margin:.2rem 0;display:block;font-family:var(--mono)}
+.sbw{height:2px;background:var(--border);overflow:hidden;margin-top:.4rem}
 .sb{height:100%}
 .sbg{background:var(--accent)}.sbp{background:var(--a2)}.sbb{background:var(--a4)}.sbr{background:var(--a3)}.sby{background:var(--a5)}
 
 /* CONTACT */
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.ccrd{background:var(--card);padding:2rem}
+.ccrd{background:var(--card);padding:1.75rem}
 .ccrd.feat{background:#0d160d;border-left:2px solid var(--accent)}
-.clink{display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1px solid var(--border);margin-bottom:.6rem;transition:all .2s;font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none}
-.clink:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,255,65,.04)}
-.ci{width:28px;height:28px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.clink{display:flex;align-items:center;gap:.6rem;padding:.75rem .85rem;border:1px solid var(--border);margin-bottom:.5rem;transition:all .2s;font-family:var(--mono);font-size:10px;color:var(--muted);-webkit-tap-highlight-color:transparent}
+.clink:hover,.clink:active{border-color:var(--accent);color:var(--accent);background:rgba(0,255,65,.04)}
+.ci{width:26px;height:26px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
 
-footer{border-top:1px solid var(--border);padding:1.75rem 2rem;text-align:center;font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;position:relative;z-index:1}
+footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;position:relative;z-index:1}
 
-@media(max-width:700px){
-  .hstats,.metrics-row{grid-template-columns:repeat(2,1fr)}
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .hstats{grid-template-columns:repeat(2,1fr)}
+  .metrics-row{grid-template-columns:repeat(2,1fr)}
   .mg,.cgrid{grid-template-columns:1fr}
-  .mc.feat,.pc.wide{grid-column:auto;display:block}
-  nav{padding:0 1rem}.nl{gap:1rem}
-  .hero{padding:3rem 1rem 2.5rem}
-  section{padding:2.5rem 1rem}
+  .mc.feat{grid-column:auto}
+  .pc-inner{grid-template-columns:1fr}
+  .pc.wide{grid-column:auto}
+  .hero{padding:2.5rem 1.25rem 2rem}
+  section{padding:2.5rem 1.25rem}
+  .tools-strip{padding:0 1.25rem 1.5rem}
+  .chart-block{padding:1rem}
+  .chart-inner{padding:.75rem}
+  .term{font-size:9px;padding:.85rem 1rem}
+  nav{padding:0 1.25rem}
+}
+@media(max-width:380px){
+  .hstats{grid-template-columns:repeat(2,1fr)}
+  .ctas{gap:.5rem}
+  .btn{padding:8px 12px;font-size:8px}
+  .hero h1{letter-spacing:-1px}
+}
+@media(min-width:641px) and (max-width:860px){
+  .pc-inner{grid-template-columns:1fr}
+  .metrics-row{grid-template-columns:repeat(2,1fr)}
+  .mg{grid-template-columns:1fr}
+  .mc.feat{grid-column:auto}
 }
 </style>
 </head>
@@ -185,7 +227,6 @@ footer{border-top:1px solid var(--border);padding:1.75rem 2rem;text-align:center
 <div class="gbg"></div>
 <div class="vig"></div>
 
-<!-- NAV -->
 <nav>
   <div class="logo"><span style="color:var(--muted)">[</span>&nbsp;D.OODO<span class="blink">_</span>&nbsp;<span style="color:var(--muted)">]</span></div>
   <div class="nl">
@@ -196,12 +237,16 @@ footer{border-top:1px solid var(--border);padding:1.75rem 2rem;text-align:center
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="htag"><div class="tl"></div>open to collaboration<div class="tl"></div></div>
   <h1>Desmond<br><span class="ga">Oodo.</span></h1>
-  <div class="hrole"><span style="color:var(--muted)">&gt;&gt;</span> Data Analyst <span style="color:var(--muted)">&amp;</span> <em>AI Builder</em></div>
-  <p class="hdesc">I build financial models, forecasting engines, BI apps, and AI-powered Claude tools — then share what I learn with the community. From three-statement finance models to live MCP-driven insights reports, I turn data into things that actually work.</p>
+  <div class="hrole">
+    <span style="color:var(--muted)">&gt;&gt;</span>
+    <span>Data Analyst</span>
+    <span style="color:var(--muted)">&amp;</span>
+    <em>AI Builder</em>
+  </div>
+  <p class="hdesc">I turn raw data into decisions — building finance models, forecasting engines, Power BI apps, and AI-powered Claude tools. Excel to Python, DAX to MCP, I work across the full analyst stack and share everything I build with the community.</p>
   <div class="ctas">
     <a class="btn btn-p" href="#projects">[ VIEW PROJECTS ]</a>
     <a class="btn btn-g" href="#mcp">[ MCP &amp; AI ]</a>
@@ -209,87 +254,161 @@ footer{border-top:1px solid var(--border);padding:1.75rem 2rem;text-align:center
     <a class="btn btn-g" href="https://www.linkedin.com/in/desmond-oodo-1a2056182" target="_blank" rel="noopener">[ LINKEDIN ↗ ]</a>
   </div>
   <div class="hstats">
-    <div class="hstat"><span class="snum">12+</span><span class="slbl">Real Projects</span></div>
+    <div class="hstat"><span class="snum">12+</span><span class="slbl">Projects Shipped</span></div>
     <div class="hstat"><span class="snum">7</span><span class="slbl">Claude Skills</span></div>
     <div class="hstat"><span class="snum">4+</span><span class="slbl">MCP Integrations</span></div>
     <div class="hstat"><span class="snum">∞</span><span class="slbl">Lines of DAX</span></div>
   </div>
 </div>
 
-<!-- PROJECTS -->
+<div class="tools-strip">
+  <div class="tools-label">Tools &amp; Technologies</div>
+  <div class="tools-row">
+    <span class="tool-badge primary">Power BI</span>
+    <span class="tool-badge primary">Excel</span>
+    <span class="tool-badge primary">DAX</span>
+    <span class="tool-badge primary">SQL</span>
+    <span class="tool-badge primary">Python</span>
+    <span class="tool-badge secondary">Claude MCP</span>
+    <span class="tool-badge secondary">Claude Skills</span>
+    <span class="tool-badge secondary">Power Query</span>
+    <span class="tool-badge tertiary">dbt</span>
+    <span class="tool-badge tertiary">Tableau</span>
+    <span class="tool-badge tertiary">SharePoint</span>
+    <span class="tool-badge tertiary">Azure</span>
+    <span class="tool-badge tertiary">Git</span>
+  </div>
+</div>
+
 <section id="projects">
   <div class="sh"><span class="st">// 01</span><h2 class="stitle">Projects</h2><div class="sl"></div></div>
 
   <div class="standout">
     <div class="so-title">★ what makes desmond different</div>
     <ul class="so-list">
-      <li>Builds Claude Skills from scratch — not just a user, an actual contributor to the tooling ecosystem</li>
-      <li>Connects AI directly into live Power BI models via MCP — no copy-paste, no exports, no interruption</li>
-      <li>Bridges finance, forecasting, agriculture, and AI — rare cross-domain depth most analysts don't have</li>
-      <li>Ships real tools real stakeholders use — from exec cash flow narratives to context-aware sales forecasts</li>
+      <li>Full analyst stack — Excel pivot tables to Python pipelines to live Power BI apps</li>
+      <li>Builds Claude Skills from scratch — an actual contributor to the AI tooling ecosystem</li>
+      <li>Bridges finance, forecasting, agriculture, and AI — rare cross-domain depth</li>
+      <li>Ships tools real stakeholders use — from exec cash flow narratives to context-aware forecasts</li>
     </ul>
   </div>
 
   <div class="tabs">
-    <div class="tab active" onclick="sw(event,'finance')">Finance</div>
-    <div class="tab" onclick="sw(event,'forecasting')">Forecasting</div>
+    <div class="tab active" onclick="sw(event,'forecasting')">Forecasting</div>
+    <div class="tab" onclick="sw(event,'finance')">Finance</div>
     <div class="tab" onclick="sw(event,'produce')">Fresh Produce</div>
     <div class="tab" onclick="sw(event,'ai')">AI &amp; Claude</div>
     <div class="tab" onclick="sw(event,'community')">Community</div>
     <div class="tab" onclick="sw(event,'concepts')">Concepts</div>
   </div>
 
-  <!-- FINANCE TAB -->
-  <div id="tab-finance" class="tc active">
+  <!-- FORECASTING -->
+  <div id="tab-forecasting" class="tc active">
+    <div class="pg">
+      <div class="pc p5 wide">
+        <div class="pc-inner">
+          <div>
+            <div class="cmeta"><span class="ct cty">Forecasting Model</span><span class="cnum">::01</span></div>
+            <h3>Context-Aware Sales Forecasting Model</h3>
+            <p>Built entirely in Power BI using DAX — no Python, no external tools. Forecasts future sales using a rolling 6-week actuals window with full context awareness. Bank holidays, seasonal events, and special occasions are baked into the logic so the model never blindly projects off a distorted trading week. Weighted recency ensures recent performance carries more influence. Fully interactive via slicers — business users engage directly, no analyst intervention required.</p>
+            <div class="ctags" style="margin-top:.75rem">
+              <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">6-Week Rolling Window</span><span class="tag">Bank Holiday Logic</span><span class="tag">Seasonal Adjustment</span><span class="tag">Weighted Forecast</span>
+            </div>
+          </div>
+          <div>
+            <div class="side-panel">
+              <div class="side-panel-title">Forecast Logic</div>
+              <div class="sp-row">Rolling 6-week actuals as base signal</div>
+              <div class="sp-row">Bank holiday flag — excludes affected weeks</div>
+              <div class="sp-row">Special occasions — Christmas, Easter, events</div>
+              <div class="sp-row">Weighted recency — recent weeks weighted higher</div>
+              <div class="sp-row">Output: weekly projection, slicer-driven</div>
+            </div>
+            <div style="margin-top:.6rem;font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9">
+              <span style="color:var(--accent)">✓</span> Pure Power BI — no external dependencies<br>
+              <span style="color:var(--accent)">✓</span> Business users interact directly<br>
+              <span style="color:var(--accent)">✓</span> Context-aware — not a naive rolling average
+            </div>
+          </div>
+        </div>
+        <span class="arr">↗</span>
+      </div>
+    </div>
+    <div class="chart-block">
+      <span class="cb-label" style="color:var(--a5);border-color:rgba(255,209,102,.3)">Live Chart — Forecasting Model</span>
+      <div class="cb-title">6-Week Rolling Sales Forecast — holiday &amp; seasonal adjustments applied</div>
+      <div class="cb-sub">Actuals (solid amber) vs forecast (dashed blue) · bank holiday flagged · special occasion marked</div>
+      <div class="metrics-row">
+        <div class="metric"><span class="m-val" style="color:var(--a5)">€218K</span><span class="m-lbl">Forecast Wk+1</span><span class="m-chg up">▲ vs 6-wk avg</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--accent)">94.2%</span><span class="m-lbl">Forecast Accuracy</span><span class="m-chg up">▲ last 6 wks</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--a3)">-18%</span><span class="m-lbl">Bank Hol Adj</span><span class="m-chg nt">Easter wk applied</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--a4)">+22%</span><span class="m-lbl">Seasonal Uplift</span><span class="m-chg nt">Christmas period</span></div>
+      </div>
+      <div class="chart-inner">
+        <div class="chart-legend">
+          <span class="leg-item"><span class="leg-dot" style="background:#ffd166"></span>Actuals</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#00d4ff;opacity:.7"></span>Forecast</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#ff6b6b"></span>Bank holiday</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#7c6ff7"></span>Special occasion</span>
+        </div>
+        <div style="position:relative;height:240px"><canvas id="c2"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCE -->
+  <div id="tab-finance" class="tc">
     <div class="pg">
       <div class="pc p1 wide">
-        <div>
-          <div class="cmeta"><span class="ct ctg">Finance Model</span><span class="cnum">::01</span></div>
-          <h3>Three-Statement Financial Model — PnL, Balance Sheet &amp; Cash Flow</h3>
-          <p>Full three-statement model in Power BI. PnL tracks revenue, EBITDA (Net Trading Profit + Depreciation) and cost categories through a Chart of Accounts structure. The Cash Flow page generates AI narrative summaries as Card visuals — DAX-concatenated strings that auto-update on every filter interaction. Balance sheet drill-through exposes all subcodes behind every consolidated line item.</p>
-          <div class="ctags" style="margin-top:.75rem"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Chart of Accounts</span><span class="tag">EBITDA</span><span class="tag">Cash Flow</span><span class="tag">Drill-through</span><span class="tag">Star Schema</span></div>
-        </div>
-        <div>
-          <div class="cb" style="font-size:9px"><span class="cc">// Auto-narrative Cash Flow card</span>
+        <div class="pc-inner">
+          <div>
+            <div class="cmeta"><span class="ct ctg">Finance Model</span><span class="cnum">::02</span></div>
+            <h3>Three-Statement Financial Model — PnL, Balance Sheet &amp; Cash Flow</h3>
+            <p>Full three-statement model in Power BI with Excel as the data source layer. PnL tracks revenue, EBITDA and cost categories through a Chart of Accounts structure. Cash Flow generates AI narrative summaries as DAX Card visuals — auto-updating on every filter. Balance sheet drill-through exposes all subcodes behind every consolidated line item.</p>
+            <div class="ctags" style="margin-top:.75rem">
+              <span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span><span class="tag">Chart of Accounts</span><span class="tag">EBITDA</span><span class="tag">Drill-through</span>
+            </div>
+          </div>
+          <div>
+            <div class="code-block" style="font-size:9px"><span class="cc">// Auto-narrative Cash Flow card</span>
 Cash Flow Summary =
-VAR _EBITDA = <span class="cc">/* from Chart of Accounts */</span>
-VAR _CapEx  = <span class="cc">/* capital expenditure group */</span>
-VAR _Net    = Closing Balance - Opening Balance
+VAR _EBITDA = <span class="cc">/* Chart of Accounts */</span>
+VAR _CapEx  = <span class="cc">/* capital expenditure */</span>
+VAR _Net    = Closing - Opening Balance
 RETURN
-<span class="cs">"EBITDA: "</span> &amp; FORMAT(_EBITDA, <span class="cs">"#,##0"</span>)
-&amp; UNICHAR(<span class="cn">10</span>)
-&amp; <span class="cs">"CapEx: "</span> &amp; FORMAT(ABS(_CapEx), <span class="cs">"#,##0"</span>)
-&amp; UNICHAR(<span class="cn">10</span>)
-&amp; <span class="cs">"Net Cash: "</span> &amp; FORMAT(_Net, <span class="cs">"#,##0"</span>)</div>
-          <div style="margin-top:.75rem;font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9">
-            <span style="color:var(--accent)">✓</span> Narrative updates live on every slicer change<br>
-            <span style="color:var(--accent)">✓</span> Drill-through: consolidated → subcode movements<br>
-            <span style="color:var(--accent)">✓</span> Multi-entity support across business units
+<span class="cs">"EBITDA: "</span>&amp;FORMAT(_EBITDA,<span class="cs">"#,##0"</span>)
+&amp;UNICHAR(<span class="cn">10</span>)
+&amp;<span class="cs">"CapEx: "</span>&amp;FORMAT(ABS(_CapEx),<span class="cs">"#,##0"</span>)
+&amp;UNICHAR(<span class="cn">10</span>)
+&amp;<span class="cs">"Net Cash: "</span>&amp;FORMAT(_Net,<span class="cs">"#,##0"</span>)</div>
+            <div style="margin-top:.6rem;font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9">
+              <span style="color:var(--accent)">✓</span> Narrative updates live on every slicer<br>
+              <span style="color:var(--accent)">✓</span> Drill-through: consolidated → subcodes<br>
+              <span style="color:var(--accent)">✓</span> Multi-entity support across business units
+            </div>
           </div>
         </div>
         <span class="arr">↗</span>
       </div>
       <div class="pc p3">
-        <div class="cmeta"><span class="ct ctr">Sales</span><span class="cnum">::02</span></div>
+        <div class="cmeta"><span class="ct ctr">Sales</span><span class="cnum">::03</span></div>
         <h3>Sales Reporting Model</h3>
-        <p>Structured sales reporting model with a clean Base Measures folder — Weight, Net Sales, Gross Product Cost, Sales Cost, and Global Cost — consistent aggregation measures organised into display folders for clean stakeholder-facing field lists.</p>
-        <div class="ctags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Base Measures</span><span class="tag">Display Folders</span><span class="tag">Sales KPIs</span></div>
+        <p>Structured sales model with a Base Measures folder — Net Sales, Gross Product Cost, Sales Cost, Weight, and Global Cost. Clean aggregation measures in organised display folders for stakeholder-facing field lists. Excel exports transformed via Power Query.</p>
+        <div class="ctags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">Power Query</span><span class="tag">DAX</span><span class="tag">Base Measures</span></div>
         <span class="arr">↗</span>
       </div>
       <div class="pc p4">
-        <div class="cmeta"><span class="ct ctb">Alert Logic</span><span class="cnum">::03</span></div>
+        <div class="cmeta"><span class="ct ctb">Alert Logic</span><span class="cnum">::04</span></div>
         <h3>Lapsed Customer Weekly Flag</h3>
-        <p>DAX flag that identifies customers who ordered last week but not this week — surfaced at day level with weekday-equivalent comparisons. Used for proactive commercial team alerts before the week closes.</p>
-        <div class="ctags"><span class="tag">DAX</span><span class="tag">Conditional Logic</span><span class="tag">Weekly Comparison</span><span class="tag">Alert Logic</span></div>
+        <p>DAX flag identifying customers who ordered last week but not this week — surfaced at day level with weekday-equivalent comparisons. Powers a weekly commercial team alert report, replacing a manual Excel lookup process.</p>
+        <div class="ctags"><span class="tag">DAX</span><span class="tag">Power BI</span><span class="tag">Excel Replacement</span><span class="tag">Conditional Logic</span></div>
         <span class="arr">↗</span>
       </div>
     </div>
-
-    <!-- FINANCE CHART -->
     <div class="chart-block">
-      <span class="chart-block-label" style="color:var(--accent);border-color:rgba(0,255,65,.3)">Live Chart — Finance Model</span>
-      <div class="chart-block-title">PnL Performance — Revenue vs EBITDA vs Prior Year</div>
-      <div class="chart-block-sub">12-month consolidated view · multi-entity · actuals vs prior year</div>
+      <span class="cb-label" style="color:var(--accent);border-color:rgba(0,255,65,.3)">Live Chart — Finance Model</span>
+      <div class="cb-title">PnL Performance — Revenue vs EBITDA vs Prior Year</div>
+      <div class="cb-sub">12-month consolidated view · multi-entity · actuals vs prior year</div>
       <div class="metrics-row">
         <div class="metric"><span class="m-val" style="color:var(--accent)">€4.2M</span><span class="m-lbl">Total Revenue</span><span class="m-chg up">▲ 12.4% YoY</span></div>
         <div class="metric"><span class="m-val" style="color:var(--a4)">€860K</span><span class="m-lbl">EBITDA</span><span class="m-chg up">▲ 8.1% YoY</span></div>
@@ -302,84 +421,35 @@ RETURN
           <span class="leg-item"><span class="leg-dot" style="background:rgba(124,111,247,.5)"></span>Prior year revenue</span>
           <span class="leg-item"><span class="leg-dot" style="background:#00d4ff;border-radius:50%"></span>EBITDA</span>
         </div>
-        <div style="position:relative;height:280px"><canvas id="c1"></canvas></div>
+        <div style="position:relative;height:240px"><canvas id="c1"></canvas></div>
       </div>
     </div>
   </div>
 
-  <!-- FORECASTING TAB -->
-  <div id="tab-forecasting" class="tc">
-    <div class="pg">
-      <div class="pc p5 wide">
-        <div>
-          <div class="cmeta"><span class="ct cty">Forecasting Model</span><span class="cnum">::04</span></div>
-          <h3>Context-Aware Sales Forecasting Model</h3>
-          <p>Built entirely in Power BI, this forecasting model predicts future sales based on a rolling 6-week actuals window. Bank holidays, seasonal events, and special occasions are factored into the forecast logic — so the model doesn't blindly project off a week where trading was artificially suppressed or inflated. Outputs a forward-looking sales view directly inside the Power BI report, accessible to planners and commercial teams without needing a data science background.</p>
-          <div class="ctags" style="margin-top:.75rem"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Rolling 6-Week Window</span><span class="tag">Bank Holiday Logic</span><span class="tag">Seasonal Adjustment</span><span class="tag">Sales Forecast</span></div>
-        </div>
-        <div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);line-height:2.1;border:1px solid var(--border);padding:1rem">
-            <span style="color:var(--a5)">FORECAST LOGIC</span><br>
-            <span style="color:var(--accent)">●</span> Rolling 6-week actuals as base signal<br>
-            <span style="color:var(--accent)">●</span> Bank holiday flag — excludes or adjusts affected weeks<br>
-            <span style="color:var(--accent)">●</span> Special occasions — Christmas, Easter, events<br>
-            <span style="color:var(--accent)">●</span> Weighted recency — recent weeks carry more influence<br>
-            <span style="color:var(--accent)">●</span> Output: forward-looking weekly sales projection<br>
-            <span style="color:var(--accent)">●</span> Fully interactive — slicers adjust the forecast view
-          </div>
-          <div style="margin-top:.75rem;font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9">
-            <span style="color:var(--accent)">✓</span> No Python or external tools — pure Power BI<br>
-            <span style="color:var(--accent)">✓</span> Business users can interact with it directly<br>
-            <span style="color:var(--accent)">✓</span> Context-aware — not a naive rolling average
-          </div>
-        </div>
-        <span class="arr">↗</span>
-      </div>
-    </div>
-
-    <!-- FORECAST CHART -->
-    <div class="chart-block">
-      <span class="chart-block-label" style="color:var(--a5);border-color:rgba(255,209,102,.3)">Live Chart — Forecasting Model</span>
-      <div class="chart-block-title">6-Week Rolling Sales Forecast — with holiday &amp; seasonal adjustments</div>
-      <div class="chart-block-sub">Actuals (solid) vs forecast (dashed) · bank holidays flagged · special occasions adjusted</div>
-      <div class="metrics-row">
-        <div class="metric"><span class="m-val" style="color:var(--a5)">€218K</span><span class="m-lbl">Forecast Wk +1</span><span class="m-chg up">▲ vs 6-wk avg</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--accent)">94.2%</span><span class="m-lbl">Forecast Accuracy</span><span class="m-chg up">▲ last 6 wks</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a3)">-18%</span><span class="m-lbl">Bank Hol Adj</span><span class="m-chg nt">Easter wk applied</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a4)">+22%</span><span class="m-lbl">Seasonal Uplift</span><span class="m-chg nt">Christmas period</span></div>
-      </div>
-      <div class="chart-inner">
-        <div class="chart-legend">
-          <span class="leg-item"><span class="leg-dot" style="background:#ffd166"></span>Actuals</span>
-          <span class="leg-item"><span class="leg-dot" style="background:#00d4ff;opacity:.7"></span>Forecast</span>
-          <span class="leg-item"><span class="leg-dot" style="background:#ff6b6b;opacity:.6"></span>Bank holiday week</span>
-          <span class="leg-item"><span class="leg-dot" style="background:#7c6ff7;opacity:.6"></span>Special occasion</span>
-        </div>
-        <div style="position:relative;height:280px"><canvas id="c2"></canvas></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FRESH PRODUCE TAB -->
+  <!-- FRESH PRODUCE -->
   <div id="tab-produce" class="tc">
     <div class="pg">
       <div class="pc p4 wide">
-        <div>
-          <div class="cmeta"><span class="ct ctb">Power BI App</span><span class="cnum">::05</span></div>
-          <h3>Fresh Produce Operations Reporting App</h3>
-          <p>Full Power BI App for fresh produce operations. Covers picking performance, product-level traceability, weekly operational stats, and workforce metrics across farm sites. Custom filters pane with Product Code and Unique Product Code — operations teams switch between box-level and case-count views with a single slicer. Stakeholder-tested before wider rollout.</p>
-          <div class="ctags" style="margin-top:.75rem"><span class="tag">Power BI App</span><span class="tag">DAX</span><span class="tag">Filters Pane</span><span class="tag">Product Codes</span><span class="tag">Traceability</span><span class="tag">Weekly Stats</span></div>
-        </div>
-        <div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);line-height:2.1;border:1px solid var(--border);padding:1rem">
-            <span style="color:var(--a4)">REPORT PAGES</span><br>
-            <span style="color:var(--accent)">●</span> Overview — weekly KPI summary<br>
-            <span style="color:var(--accent)">●</span> Picking Performance — by worker &amp; site<br>
-            <span style="color:var(--accent)">●</span> Product Traceability — box vs case<br>
-            <span style="color:var(--accent)">●</span> Top &amp; Bottom Performers<br>
-            <span style="color:var(--accent)">●</span> Cost Analysis &amp; Labour Summary<br>
-            <span style="color:var(--accent)">●</span> Debtors report with balance resolution<br>
-            <span style="color:var(--accent)">●</span> Filters: Product Code + Unique Code
+        <div class="pc-inner">
+          <div>
+            <div class="cmeta"><span class="ct ctb">Power BI App</span><span class="cnum">::05</span></div>
+            <h3>Fresh Produce Operations Reporting App</h3>
+            <p>Full Power BI App for fresh produce operations — picking performance, product traceability, weekly stats, and workforce metrics across farm sites. Data flows from Excel exports through Power Query into the model. Custom filters pane with Product Code and Unique Product Code. Stakeholder-tested before wider rollout, replacing manual Excel reports.</p>
+            <div class="ctags" style="margin-top:.75rem">
+              <span class="tag">Power BI App</span><span class="tag">Excel</span><span class="tag">Power Query</span><span class="tag">DAX</span><span class="tag">Product Traceability</span><span class="tag">Workforce KPIs</span>
+            </div>
+          </div>
+          <div>
+            <div class="side-panel">
+              <div class="side-panel-title">Report Pages</div>
+              <div class="sp-row">Overview — weekly KPI summary</div>
+              <div class="sp-row">Picking Performance — by worker &amp; site</div>
+              <div class="sp-row">Product Traceability — box vs case</div>
+              <div class="sp-row">Top &amp; Bottom Performers</div>
+              <div class="sp-row">Cost Analysis &amp; Labour Summary</div>
+              <div class="sp-row">Debtors report with balance resolution</div>
+              <div class="sp-row">Filters: Product Code + Unique Code</div>
+            </div>
           </div>
         </div>
         <span class="arr">↗</span>
@@ -387,33 +457,31 @@ RETURN
       <div class="pc p1">
         <div class="cmeta"><span class="ct ctg">Insights Report</span><span class="cnum">::06</span></div>
         <h3>Insights Reporting — Automated Weekly PDF</h3>
-        <p>Automated PDF insights report generated from the Retail Farms Power BI model via MCP. Covers picking KPIs, daily performance, top performers, cost analysis, field pattern insights, and AI-generated recommendations. One prompt → full report.</p>
+        <p>Automated PDF insights report from the Retail Farms Power BI model via MCP. One natural language prompt generates picking KPIs, daily performance, top performers, cost analysis, field pattern insights, and AI recommendations.</p>
         <div class="ctags"><span class="tag">Power BI MCP</span><span class="tag">Claude Skill</span><span class="tag">PDF</span><span class="tag">Field Insights</span><span class="tag">Automation</span></div>
         <span class="arr">↗</span>
       </div>
       <div class="pc p2">
         <div class="cmeta"><span class="ct ctp">Category Insights</span><span class="cnum">::07</span></div>
         <h3>Category Insights Reporting</h3>
-        <p>Dedicated reporting layer breaking performance down by product category — surfacing which categories are driving volume, margin, and cost variance. Enables category managers to spot trends and compare week-on-week movement without building their own filters.</p>
-        <div class="ctags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Category Analysis</span><span class="tag">Variance</span><span class="tag">Trend Reporting</span></div>
+        <p>Dedicated reporting layer breaking performance down by product category — volume, margin, and cost variance. Category managers get week-on-week trend views without building their own Excel pivot tables.</p>
+        <div class="ctags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Category Analysis</span><span class="tag">WoW Variance</span><span class="tag">Excel Replacement</span></div>
         <span class="arr">↗</span>
       </div>
       <div class="pc p5">
         <div class="cmeta"><span class="ct cty">AgriTech Tool</span><span class="cnum">::08</span></div>
         <h3>Farmer's Weather Monitoring Dashboard</h3>
-        <p>React dashboard giving farmers actionable weather intelligence — rainfall, wind speed and gusts, soil moisture, UV index, dew point, and a 5-day forecast. Smart advice cards flag when to delay spraying, frost risk, and optimal harvest windows.</p>
+        <p>React dashboard for farmers — rainfall, wind speed, soil moisture, UV index, dew point, and 5-day forecast. Smart advice cards flag when to delay spraying, frost risk, and optimal harvest windows based on live conditions.</p>
         <div class="ctags"><span class="tag">React</span><span class="tag">Weather API</span><span class="tag">AgriTech</span><span class="tag">Farming Alerts</span></div>
         <span class="arr">↗</span>
       </div>
     </div>
-
-    <!-- CATEGORY CHART -->
     <div class="chart-block">
-      <span class="chart-block-label" style="color:var(--a2);border-color:rgba(124,111,247,.3)">Live Chart — Category Insights</span>
-      <div class="chart-block-title">Category Performance — volume, margin &amp; week-on-week variance</div>
-      <div class="chart-block-sub">Current week vs prior week · sorted by revenue contribution · margin % overlay</div>
+      <span class="cb-label" style="color:var(--a2);border-color:rgba(124,111,247,.3)">Live Chart — Category Insights</span>
+      <div class="cb-title">Category Performance — volume, margin &amp; week-on-week variance</div>
+      <div class="cb-sub">Current week vs prior week · sorted by revenue · margin % overlay</div>
       <div class="metrics-row">
-        <div class="metric"><span class="m-val" style="color:var(--a2)">8</span><span class="m-lbl">Categories Tracked</span><span class="m-chg nt">across all sites</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--a2)">8</span><span class="m-lbl">Categories</span><span class="m-chg nt">all sites</span></div>
         <div class="metric"><span class="m-val" style="color:var(--accent)">Berries</span><span class="m-lbl">Top Category</span><span class="m-chg up">▲ 14% WoW</span></div>
         <div class="metric"><span class="m-val" style="color:var(--a3)">Root Veg</span><span class="m-lbl">Needs Attention</span><span class="m-chg dn">▼ 9% WoW</span></div>
         <div class="metric"><span class="m-val" style="color:var(--a5)">31.4%</span><span class="m-lbl">Avg Margin</span><span class="m-chg up">▲ 1.2pp WoW</span></div>
@@ -424,31 +492,35 @@ RETURN
           <span class="leg-item"><span class="leg-dot" style="background:#2a2040"></span>Prior week</span>
           <span class="leg-item"><span class="leg-dot" style="background:#00ff41;border-radius:50%"></span>Margin %</span>
         </div>
-        <div style="position:relative;height:320px"><canvas id="c3"></canvas></div>
+        <div style="position:relative;height:260px"><canvas id="c3"></canvas></div>
       </div>
     </div>
   </div>
 
-  <!-- AI & CLAUDE TAB -->
+  <!-- AI & CLAUDE -->
   <div id="tab-ai" class="tc">
     <div class="pg">
       <div class="pc p2 wide">
-        <div>
-          <div class="cmeta"><span class="ct ctp">Claude Skill</span><span class="cnum">::09</span></div>
-          <h3>Power BI Documenter — Custom Claude Skill</h3>
-          <p>Built from scratch using the skill-creator workflow. Connects to any open Power BI Desktop file via MCP, introspects the entire model, and generates a professional PDF. Three documentation levels: technical (DAX and schemas), model overview, and a business-user friendly summary — all in one automated run.</p>
-          <div class="ctags" style="margin-top:.75rem"><span class="tag">Claude Skill</span><span class="tag">MCP</span><span class="tag">Power BI</span><span class="tag">PDF Generation</span><span class="tag">Python</span><span class="tag">skill-creator</span></div>
-        </div>
-        <div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);line-height:2.1;border:1px solid var(--border);padding:1rem">
-            <span style="color:var(--a2)">SKILL OUTPUTS</span><br>
-            <span style="color:var(--accent)">●</span> Table schemas + row counts<br>
-            <span style="color:var(--accent)">●</span> All DAX measures + formulas<br>
-            <span style="color:var(--accent)">●</span> Relationship diagram + cardinality<br>
-            <span style="color:var(--accent)">●</span> Calculation groups + hierarchies<br>
-            <span style="color:var(--accent)">●</span> Security roles (RLS / OLS)<br>
-            <span style="color:var(--accent)">●</span> Business glossary layer<br>
-            <span style="color:var(--accent)">●</span> Dual-audience: technical + business
+        <div class="pc-inner">
+          <div>
+            <div class="cmeta"><span class="ct ctp">Claude Skill</span><span class="cnum">::09</span></div>
+            <h3>Power BI Documenter — Custom Claude Skill</h3>
+            <p>Built from scratch using the skill-creator workflow. Connects to any open Power BI Desktop file via MCP, introspects the entire model, and generates a professional PDF. Three levels: technical (DAX + schemas), model overview, and business-user summary — one automated run. No manual documentation ever again.</p>
+            <div class="ctags" style="margin-top:.75rem">
+              <span class="tag">Claude Skill</span><span class="tag">MCP</span><span class="tag">Power BI</span><span class="tag">PDF Generation</span><span class="tag">Python</span>
+            </div>
+          </div>
+          <div>
+            <div class="side-panel">
+              <div class="side-panel-title">Skill Outputs</div>
+              <div class="sp-row">Table schemas + row counts</div>
+              <div class="sp-row">All DAX measures + formulas</div>
+              <div class="sp-row">Relationship diagram + cardinality</div>
+              <div class="sp-row">Calculation groups + hierarchies</div>
+              <div class="sp-row">Security roles (RLS / OLS)</div>
+              <div class="sp-row">Business glossary layer</div>
+              <div class="sp-row">Dual-audience: technical + business</div>
+            </div>
           </div>
         </div>
         <span class="arr">↗</span>
@@ -456,83 +528,87 @@ RETURN
       <div class="pc p4">
         <div class="cmeta"><span class="ct ctb">MCP Integration</span><span class="cnum">::10</span></div>
         <h3>Power BI Desktop Live MCP Integration</h3>
-        <p>Claude wired directly into Power BI Desktop via MCP. Create measures in bulk, run queries, organise display folders, and introspect models — all through natural language. No switching apps, no copy-paste, no interruption to flow.</p>
-        <div class="ctags"><span class="tag">Power BI MCP</span><span class="tag">Live DAX</span><span class="tag">Bulk Measures</span><span class="tag">Model Introspection</span><span class="tag">Claude</span></div>
+        <p>Claude wired into Power BI Desktop via MCP. Create measures in bulk, run DAX queries, organise display folders, and introspect models — all through natural language. No context-switching between apps.</p>
+        <div class="ctags"><span class="tag">Power BI MCP</span><span class="tag">Live DAX</span><span class="tag">Bulk Measures</span><span class="tag">Model Introspection</span></div>
         <span class="arr">↗</span>
       </div>
       <div class="pc p3">
         <div class="cmeta"><span class="ct ctr">Content AI</span><span class="cnum">::11</span></div>
         <h3>TikTok Viral Content Management System</h3>
-        <p>End-to-end content workflow for creating, managing, scheduling, and posting TikTok content. Trend research pipeline, caption generator, hashtag optimiser, and posting calendar — built as an interactive web app.</p>
+        <p>End-to-end content workflow — trend research, caption generation, hashtag optimiser, and scheduling calendar. Built as an interactive web app, demonstrating AI application beyond analytics.</p>
         <div class="ctags"><span class="tag">React</span><span class="tag">Claude API</span><span class="tag">Content AI</span><span class="tag">Scheduling</span></div>
         <span class="arr">↗</span>
       </div>
     </div>
   </div>
 
-  <!-- COMMUNITY TAB -->
+  <!-- COMMUNITY -->
   <div id="tab-community" class="tc">
     <div class="pg">
       <div class="pc p5 wide">
-        <div>
-          <div class="cmeta"><span class="ct cty">Open Source</span><span class="cnum">::12</span></div>
-          <h3>Power BI Model Layout Skill — Community Release</h3>
-          <p>Custom Claude skill shared openly with the analytics community. Automatically arranges Power BI model diagram views into clean star-schema layouts — fact tables centred, dimensions around them. Eliminates hours of manual dragging. Free to install from GitHub.</p>
-          <div class="ctags" style="margin-top:.75rem"><span class="tag">Claude Skill</span><span class="tag">Power BI MCP</span><span class="tag">Star Schema</span><span class="tag">Open Source</span></div>
-        </div>
-        <div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);line-height:2.1;border:1px solid var(--border);padding:1rem">
-            <span style="color:var(--a5)">COMMUNITY CONTRIBUTIONS</span><br>
-            <span style="color:var(--accent)">●</span> Power BI Documenter — free for all<br>
-            <span style="color:var(--accent)">●</span> Model Layout skill — open source<br>
-            <span style="color:var(--accent)">●</span> DAX patterns library — GitHub<br>
-            <span style="color:var(--accent)">●</span> MCP starter guide for BI analysts<br>
-            <span style="color:var(--accent)">●</span> Slide deck generator for BI reports<br>
-            <span style="color:var(--accent)">●</span> github.com/Dessycreative
+        <div class="pc-inner">
+          <div>
+            <div class="cmeta"><span class="ct cty">Open Source</span><span class="cnum">::12</span></div>
+            <h3>Power BI Model Layout Skill — Community Release</h3>
+            <p>Claude skill shared with the analytics community. Automatically arranges Power BI model views into clean star-schema layouts — fact tables centred, dimensions around them. Saves hours of manual dragging. Free to install from GitHub for any Power BI analyst.</p>
+            <div class="ctags" style="margin-top:.75rem">
+              <span class="tag">Claude Skill</span><span class="tag">Power BI MCP</span><span class="tag">Star Schema</span><span class="tag">Open Source</span>
+            </div>
+          </div>
+          <div>
+            <div class="side-panel">
+              <div class="side-panel-title">Community Contributions</div>
+              <div class="sp-row">Power BI Documenter — free for all analysts</div>
+              <div class="sp-row">Model Layout skill — open source on GitHub</div>
+              <div class="sp-row">DAX patterns library — real-world patterns</div>
+              <div class="sp-row">MCP starter guide for BI analysts</div>
+              <div class="sp-row">Excel → Power BI migration templates</div>
+              <div class="sp-row">github.com/Dessycreative</div>
+            </div>
           </div>
         </div>
         <span class="arr">↗</span>
       </div>
       <div class="pc p1">
-        <div class="cmeta"><span class="ct ctg">DAX Patterns</span><span class="cnum">::13</span></div>
+        <div class="cmeta"><span class="ct ctg">DAX &amp; Excel Patterns</span><span class="cnum">::13</span></div>
         <h3>DAX Patterns &amp; Measures Library</h3>
-        <p>Curated library of reusable DAX patterns from real projects — lapsed customer flags, cash flow narratives, category variance logic, forecasting adjustments, and Base Measure folder conventions. A free GitHub resource for the BI community.</p>
-        <div class="ctags"><span class="tag">DAX</span><span class="tag">Open Source</span><span class="tag">GitHub</span><span class="tag">Templates</span></div>
+        <p>Curated library of reusable DAX patterns from real projects — lapsed customer flags, cash flow narratives, category variance, forecasting adjustments, and Base Measure conventions. Companion Excel templates also shared for analysts not yet on Power BI.</p>
+        <div class="ctags"><span class="tag">DAX</span><span class="tag">Excel Templates</span><span class="tag">Open Source</span><span class="tag">GitHub</span></div>
         <span class="arr">↗</span>
       </div>
     </div>
   </div>
 
-  <!-- CONCEPTS TAB -->
+  <!-- CONCEPTS -->
   <div id="tab-concepts" class="tc">
-    <div style="font-family:var(--mono);font-size:9px;color:var(--a5);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;border:1px solid rgba(255,209,102,.2);padding:.5rem 1rem;display:inline-block">⚡ showcase concepts — ideas worth building</div>
+    <div style="font-family:var(--mono);font-size:8px;color:var(--a5);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.25rem;border:1px solid rgba(255,209,102,.2);padding:.5rem 1rem;display:inline-block">⚡ ideas worth building</div>
     <div class="pg">
       <div class="pc p5">
         <div class="cmeta"><span class="ct cty">Concept</span><span class="cnum">::A</span></div>
         <h3>Conversational BI Agent</h3>
-        <p>Claude-powered agent connected to your Power BI semantic model via MCP. Any business user asks "What drove the margin drop last Tuesday?" and gets a narrative answer instantly. Zero SQL, zero Power BI knowledge required.</p>
+        <p>Claude connected to your Power BI semantic model via MCP. Any business user asks "What drove the margin drop last Tuesday?" and gets a narrative answer — no SQL, no Power BI, no Excel pivot required.</p>
         <div class="ctags"><span class="tag">Claude Agent</span><span class="tag">MCP</span><span class="tag">Power BI</span><span class="tag">NL Interface</span></div>
         <span class="arr">→</span>
       </div>
       <div class="pc p2">
         <div class="cmeta"><span class="ct ctp">Concept</span><span class="cnum">::B</span></div>
         <h3>Automated Finance Commentary Engine</h3>
-        <p>Month-end automation — Claude connects to the finance model via MCP, reads PnL and Balance Sheet actuals vs budget, and drafts the full board-pack narrative commentary. Saves 4–6 hours per close cycle.</p>
+        <p>Month-end automation — Claude reads PnL and Balance Sheet actuals vs budget from the finance model and drafts the full board-pack narrative. Eliminates 4–6 hours of analyst time per close cycle.</p>
         <div class="ctags"><span class="tag">Claude API</span><span class="tag">Finance Model</span><span class="tag">MCP</span><span class="tag">Word / PDF</span></div>
         <span class="arr">→</span>
       </div>
       <div class="pc p4">
         <div class="cmeta"><span class="ct ctb">Concept</span><span class="cnum">::C</span></div>
         <h3>Smart Produce Yield Forecaster</h3>
-        <p>Extends the sales forecasting model into yield prediction — combining weather data, field history, and picking patterns. Claude generates a Monday morning narrative for farm managers automatically.</p>
+        <p>Extends the sales forecasting model to predict weekly yield per crop and site — combining weather data, field history, and picking patterns. Monday morning narrative delivered automatically to farm managers.</p>
         <div class="ctags"><span class="tag">Forecasting</span><span class="tag">Weather API</span><span class="tag">Power BI</span><span class="tag">Claude</span></div>
         <span class="arr">→</span>
       </div>
       <div class="pc p3">
         <div class="cmeta"><span class="ct ctr">Concept</span><span class="cnum">::D</span></div>
-        <h3>Data Quality Sentinel MCP</h3>
-        <p>An MCP server watching for schema drift, null spikes, and outliers across a live data warehouse. Sends a Slack digest every morning and lets analysts ask "what's wrong with today's data?" for a prioritised plain-English answer.</p>
-        <div class="ctags"><span class="tag">MCP Server</span><span class="tag">Data Quality</span><span class="tag">Slack</span><span class="tag">Automation</span></div>
+        <h3>Excel → Power BI Migration Copilot</h3>
+        <p>An MCP-powered tool that reads legacy Excel workbooks — formulas, pivot tables, named ranges — and generates the equivalent Power Query steps, data model, and DAX measures in Power BI automatically.</p>
+        <div class="ctags"><span class="tag">Excel</span><span class="tag">Power BI</span><span class="tag">MCP</span><span class="tag">Claude</span></div>
         <span class="arr">→</span>
       </div>
     </div>
@@ -550,99 +626,96 @@ RETURN
       <div class="td" style="background:#28ca41"></div>
       <span class="tt">desmond@claude-skills ~ zsh</span>
     </div>
-    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/claude-skills</span><span style="color:var(--muted)"> $ </span><span class="tc2">ls --user-skills</span></div>
+    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/skills</span><span style="color:var(--muted)"> $ </span><span class="tc2">ls --user-skills</span></div>
     <div class="to">&nbsp;</div>
-    <div><span class="thi">●</span> <span class="tc2">powerbi-documenter/</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// full PDF docs from any live PBI model</span></div>
-    <div><span class="thi">●</span> <span class="tc2">pbi-model-layout/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// auto star-schema layout in model view</span></div>
-    <div><span class="thi">●</span> <span class="tc2">strawberry-weekly-report/</span><span class="to">// NL → structured weekly insights PDF</span></div>
+    <div><span class="thi">●</span> <span class="tc2">powerbi-documenter/</span>&nbsp;&nbsp;&nbsp;<span class="to">// full PDF docs from any live PBI model</span></div>
+    <div><span class="thi">●</span> <span class="tc2">pbi-model-layout/</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// auto star-schema layout in model view</span></div>
+    <div><span class="thi">●</span> <span class="tc2">insights-reporting/</span>&nbsp;&nbsp;&nbsp;<span class="to">// NL → structured weekly insights PDF</span></div>
     <div class="to">&nbsp;</div>
-    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/claude-skills</span><span style="color:var(--muted)"> $ </span><span class="tc2">ls --claude-default-skills</span></div>
+    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/skills</span><span style="color:var(--muted)"> $ </span><span class="tc2">ls --claude-default-skills</span></div>
     <div class="to">&nbsp;</div>
-    <div><span style="color:var(--a4)">●</span> <span class="tc2">docx/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// professional Word documents from any output</span></div>
-    <div><span style="color:var(--a4)">●</span> <span class="tc2">pptx/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// polished slide decks from data or analysis</span></div>
-    <div><span style="color:var(--a4)">●</span> <span class="tc2">xlsx/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// structured spreadsheets and data exports</span></div>
-    <div><span style="color:var(--a4)">●</span> <span class="tc2">pdf/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// report generation, merging, form filling</span></div>
+    <div><span style="color:var(--a4)">●</span> <span class="tc2">docx/ pptx/ xlsx/ pdf/</span>&nbsp;<span class="to">// Word · Slides · Excel · PDF</span></div>
     <div class="to">&nbsp;</div>
-    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/claude-skills</span><span style="color:var(--muted)"> $ </span><span class="tcur"></span></div>
+    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/skills</span><span style="color:var(--muted)"> $ </span><span class="tcur"></span></div>
   </div>
 
-  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem">User-built skills</div>
+  <div style="font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem">Built by Desmond</div>
   <div class="skills-showcase">
     <div class="skill-pill sg">
       <span class="sp-icon">📊</span>
       <div class="sp-name">Power BI Documenter</div>
-      <div class="sp-desc">Auto-generates full technical + business PDF documentation for any live Power BI model via MCP. One command, entire model documented.</div>
+      <div class="sp-desc">Auto-generates full technical + business PDF documentation for any Power BI model via MCP. One command, entire model documented.</div>
       <span class="sp-source src-user">Built by Desmond</span>
     </div>
     <div class="skill-pill sp">
       <span class="sp-icon">🔷</span>
       <div class="sp-name">PBI Model Layout</div>
-      <div class="sp-desc">Automatically arranges the Power BI model diagram into a clean star-schema — fact tables centred, dimensions around them. Open sourced.</div>
+      <div class="sp-desc">Automatically arranges the Power BI model diagram into a clean star-schema. Fact tables centred, dimensions around them. Open sourced.</div>
       <span class="sp-source src-user">Built by Desmond</span>
     </div>
     <div class="skill-pill sy">
       <span class="sp-icon">🌿</span>
       <div class="sp-name">Insights Reporting</div>
-      <div class="sp-desc">Natural language trigger → structured weekly PDF report from live Power BI data via MCP Desktop. KPIs, patterns, and AI recommendations.</div>
+      <div class="sp-desc">Natural language trigger → structured weekly PDF report from live Power BI data via MCP Desktop. KPIs, patterns, AI recommendations.</div>
       <span class="sp-source src-user">Built by Desmond</span>
     </div>
   </div>
 
-  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;margin-top:1.5rem">Claude default skills in use</div>
+  <div style="font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem;margin-top:1.25rem">Claude default skills in use</div>
   <div class="skills-showcase">
     <div class="skill-pill sb">
       <span class="sp-icon">📝</span>
       <div class="sp-name">DOCX Skill</div>
-      <div class="sp-desc">Generates professional Word documents — used to produce stakeholder reports, model documentation, and finance commentaries.</div>
+      <div class="sp-desc">Generates professional Word documents — stakeholder reports, model documentation, and finance commentaries.</div>
       <span class="sp-source src-claude">Claude Default</span>
     </div>
     <div class="skill-pill sb">
       <span class="sp-icon">📑</span>
       <div class="sp-name">PPTX Skill</div>
-      <div class="sp-desc">Builds polished PowerPoint slide decks from data or analysis — turns BI insights into exec-ready presentations automatically.</div>
+      <div class="sp-desc">Builds polished PowerPoint decks from data or analysis — BI insights turned into exec-ready presentations automatically.</div>
       <span class="sp-source src-claude">Claude Default</span>
     </div>
     <div class="skill-pill sb">
       <span class="sp-icon">📋</span>
       <div class="sp-name">XLSX Skill</div>
-      <div class="sp-desc">Creates structured Excel workbooks from analysis outputs — for exporting cleaned datasets, measure lists, and financial schedules.</div>
+      <div class="sp-desc">Creates structured Excel workbooks from analysis outputs — cleaned datasets, measure lists, and financial schedules.</div>
       <span class="sp-source src-claude">Claude Default</span>
     </div>
     <div class="skill-pill sb">
       <span class="sp-icon">📄</span>
       <div class="sp-name">PDF Skill</div>
-      <div class="sp-desc">Generates, merges, and formats PDF reports — the backbone of the Power BI Documenter and Insights Reporting outputs.</div>
+      <div class="sp-desc">Generates, merges, and formats PDF reports — backbone of the Power BI Documenter and Insights Reporting outputs.</div>
       <span class="sp-source src-claude">Claude Default</span>
     </div>
   </div>
 
-  <div class="mg" style="margin-top:1.5rem">
+  <div class="mg" style="margin-top:1.25rem">
     <div class="mc feat">
       <div class="fb fbg">★ Flagship Skill — Open Source</div>
       <div class="mtitle">Power BI Documenter</div>
-      <p class="mdesc">Built from scratch using the skill-creator workflow. Connect Claude to any open Power BI Desktop file — the skill reads every table, measure, relationship, and hierarchy via MCP and assembles a professional PDF. One trigger phrase, full model documented. Shared freely with the analytics community.</p>
-      <div class="cb"><span class="cc">// Trigger → full PDF in one command</span>
+      <p class="mdesc">Connect Claude to any open Power BI Desktop file — reads every table, measure, relationship and hierarchy via MCP and assembles a professional PDF. One trigger phrase, entire model documented. Shared freely with the analytics community.</p>
+      <div class="code-block"><span class="cc">// One prompt → full PDF</span>
 User: <span class="cs">"document the Finance model open in Desktop"</span>
 
 Claude:
   <span class="ck">1.</span> Connect via Power BI Desktop MCP
-  <span class="ck">2.</span> List all tables + analyse full structure
+  <span class="ck">2.</span> List all tables + analyse structure
   <span class="ck">3.</span> Extract relationships + hierarchies
   <span class="ck">4.</span> Collect all DAX measures + expressions
-  <span class="ck">5.</span> Assemble structured PDF (pdf skill)
+  <span class="ck">5.</span> Assemble structured PDF
   <span class="ck">6.</span> Return download link ✓</div>
     </div>
     <div class="mc">
-      <div class="fb fbp">PBI Model Layout Skill</div>
+      <div class="fb fbp">PBI Model Layout</div>
       <div class="mtitle">Auto Star-Schema Arranger</div>
-      <p class="mdesc">Automatically positions Power BI tables into a clean star-schema layout in the model diagram view. Fact tables centred, dimensions around them. Saves hours of manual dragging. Released open source on GitHub.</p>
-      <div class="ctags" style="margin-top:.75rem"><span class="tag">Power BI MCP</span><span class="tag">Star Schema</span><span class="tag">Auto-Layout</span><span class="tag">Open Source</span></div>
+      <p class="mdesc">Automatically positions Power BI tables into a clean star-schema layout. Fact tables centred, dimensions around them. Released open source on GitHub.</p>
+      <div class="ctags" style="margin-top:.6rem"><span class="tag">Power BI MCP</span><span class="tag">Star Schema</span><span class="tag">Auto-Layout</span><span class="tag">Open Source</span></div>
     </div>
     <div class="mc">
       <div class="fb fbb">Live MCP Integration</div>
       <div class="mtitle">Power BI Desktop + Claude</div>
-      <p class="mdesc">Claude wired directly into Power BI Desktop. Create measures, run queries, organise folders, and introspect models — all through natural language. No switching apps, no copy-paste, no interruption to flow.</p>
-      <div class="ctags" style="margin-top:.75rem"><span class="tag">Power BI MCP</span><span class="tag">Live DAX</span><span class="tag">Bulk Measures</span><span class="tag">Claude</span></div>
+      <p class="mdesc">Claude wired into Power BI Desktop. Create measures, run queries, organise folders, introspect models — all through natural language. No switching apps.</p>
+      <div class="ctags" style="margin-top:.6rem"><span class="tag">Power BI MCP</span><span class="tag">Live DAX</span><span class="tag">Bulk Measures</span><span class="tag">Claude</span></div>
     </div>
   </div>
 </section>
@@ -653,16 +726,16 @@ Claude:
   <div class="skgrid">
     <div class="ski"><span class="skn">DAX</span><span class="skp" style="color:var(--accent)">96%</span><div class="sbw"><div class="sb sbg" style="width:96%"></div></div></div>
     <div class="ski"><span class="skn">Power BI</span><span class="skp" style="color:var(--accent)">94%</span><div class="sbw"><div class="sb sbg" style="width:94%"></div></div></div>
+    <div class="ski"><span class="skn">Excel</span><span class="skp" style="color:var(--accent)">92%</span><div class="sbw"><div class="sb sbg" style="width:92%"></div></div></div>
     <div class="ski"><span class="skn">SQL</span><span class="skp" style="color:var(--accent)">90%</span><div class="sbw"><div class="sb sbg" style="width:90%"></div></div></div>
+    <div class="ski"><span class="skn">Power Query</span><span class="skp" style="color:var(--a2)">88%</span><div class="sbw"><div class="sb sbp" style="width:88%"></div></div></div>
     <div class="ski"><span class="skn">Python</span><span class="skp" style="color:var(--a2)">85%</span><div class="sbw"><div class="sb sbp" style="width:85%"></div></div></div>
     <div class="ski"><span class="skn">Claude MCP</span><span class="skp" style="color:var(--a4)">90%</span><div class="sbw"><div class="sb sbb" style="width:90%"></div></div></div>
     <div class="ski"><span class="skn">Claude Skills</span><span class="skp" style="color:var(--a4)">88%</span><div class="sbw"><div class="sb sbb" style="width:88%"></div></div></div>
     <div class="ski"><span class="skn">Forecasting</span><span class="skp" style="color:var(--a5)">82%</span><div class="sbw"><div class="sb sby" style="width:82%"></div></div></div>
     <div class="ski"><span class="skn">Finance Model</span><span class="skp" style="color:var(--a2)">88%</span><div class="sbw"><div class="sb sbp" style="width:88%"></div></div></div>
     <div class="ski"><span class="skn">dbt</span><span class="skp" style="color:var(--a3)">75%</span><div class="sbw"><div class="sb sbr" style="width:75%"></div></div></div>
-    <div class="ski"><span class="skn">React / JS</span><span class="skp" style="color:var(--a5)">72%</span><div class="sbw"><div class="sb sby" style="width:72%"></div></div></div>
-    <div class="ski"><span class="skn">PDF / Docs</span><span class="skp" style="color:var(--a3)">80%</span><div class="sbw"><div class="sb sbr" style="width:80%"></div></div></div>
-    <div class="ski"><span class="skn">PPTX / XLSX</span><span class="skp" style="color:var(--a4)">85%</span><div class="sbw"><div class="sb sbb" style="width:85%"></div></div></div>
+    <div class="ski"><span class="skn">PPTX / PDF</span><span class="skp" style="color:var(--a4)">85%</span><div class="sbw"><div class="sb sbb" style="width:85%"></div></div></div>
   </div>
 </section>
 
@@ -671,20 +744,20 @@ Claude:
   <div class="sh"><span class="st">// 04</span><h2 class="stitle">Contact</h2><div class="sl"></div></div>
   <div class="cgrid">
     <div class="ccrd">
-      <p style="font-family:var(--mono);font-size:11px;color:var(--muted);line-height:2;margin-bottom:1.5rem;border-left:2px solid var(--border);padding-left:1rem">Open to collaborations, consulting, and community work. Especially keen on data + AI intersections — finance modelling, forecasting, BI automation, and Claude skill development.</p>
+      <p style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:2;margin-bottom:1.25rem;border-left:2px solid var(--border);padding-left:1rem">Open to collaborations, consulting, and community work. Especially keen on data + AI intersections — finance modelling, forecasting, BI automation, and Claude skill development.</p>
       <a class="clink" href="mailto:connectdesmondoodo@gmail.com"><div class="ci">✉</div>connectdesmondoodo@gmail.com</a>
       <a class="clink" href="https://github.com/Dessycreative" target="_blank" rel="noopener"><div class="ci">GH</div>github.com/Dessycreative</a>
       <a class="clink" href="https://www.linkedin.com/in/desmond-oodo-1a2056182" target="_blank" rel="noopener"><div class="ci">in</div>linkedin.com/in/desmond-oodo-1a2056182</a>
     </div>
     <div class="ccrd feat">
       <div class="fb fbg">Community First</div>
-      <p class="mdesc" style="margin-top:.75rem">I build Claude skills and MCP integrations and share them openly. If something I built helped your workflow — I'd genuinely love to hear about it. Always open to collaborating on community tools.</p>
-      <div class="cb" style="margin-top:1rem;font-size:10px"><span class="cc">// Let's work together</span>
+      <p class="mdesc" style="margin-top:.6rem">I build Claude skills and MCP integrations and share them openly. If something I built helped your workflow — I'd love to hear about it. Always open to collaborating on community tools.</p>
+      <div class="code-block" style="margin-top:.85rem;font-size:9px"><span class="cc">// Let's work together</span>
 <span class="ck">email</span>:    <span class="cs">"connectdesmondoodo@gmail.com"</span>,
 <span class="ck">github</span>:   <span class="cs">"github.com/Dessycreative"</span>,
 <span class="ck">linkedin</span>: <span class="cs">"desmond-oodo-1a2056182"</span>,
-<span class="ck">interests</span>: [<span class="cs">"BI+AI"</span>, <span class="cs">"forecasting"</span>, <span class="cs">"finance"</span>],
-<span class="ck">open_to</span>:  [<span class="cs">"collab"</span>, <span class="cs">"consulting"</span>, <span class="cs">"OSS"</span>]</div>
+<span class="ck">tools</span>:    [<span class="cs">"Power BI"</span>,<span class="cs">"Excel"</span>,<span class="cs">"DAX"</span>,<span class="cs">"Python"</span>],
+<span class="ck">open_to</span>:  [<span class="cs">"collab"</span>,<span class="cs">"consulting"</span>,<span class="cs">"OSS"</span>]</div>
     </div>
   </div>
 </section>
@@ -702,7 +775,8 @@ function sw(e,name){
   document.getElementById('tab-'+name).classList.add('active');
 }
 
-/* CHART 1 — Finance PnL */
+const cd={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+
 new Chart(document.getElementById('c1'),{
   type:'bar',
   data:{
@@ -713,56 +787,50 @@ new Chart(document.getElementById('c1'),{
       {label:'EBITDA',data:[62,55,72,60,80,74,82,88,74,90,95,88],type:'line',borderColor:'#00d4ff',backgroundColor:'rgba(0,212,255,.07)',borderWidth:2,pointBackgroundColor:'#00d4ff',pointRadius:3,tension:.4,fill:true,order:1,yAxisID:'y2'}
     ]
   },
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`€${ctx.parsed.y}K`}}},
+  options:{...cd,
+    plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>`€${ctx.parsed.y}K`}}},
     scales:{
-      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:10}},border:{color:'#1e2e1e'}},
-      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:10},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}},
-      y2:{position:'right',grid:{display:false},ticks:{color:'#00d4ff',font:{size:10},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}}
+      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},maxRotation:0},border:{color:'#1e2e1e'}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}},
+      y2:{position:'right',grid:{display:false},ticks:{color:'#00d4ff',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}}
     }
   }
 });
 
-/* CHART 2 — Forecasting */
-const weeks=['Wk-6','Wk-5','Wk-4','Wk-3','Wk-2','Wk-1','Now','Wk+1','Wk+2','Wk+3','Wk+4'];
 new Chart(document.getElementById('c2'),{
   type:'line',
   data:{
-    labels:weeks,
+    labels:['Wk-6','Wk-5','Wk-4','Wk-3','Wk-2','Wk-1','Now','Wk+1','Wk+2','Wk+3','Wk+4'],
     datasets:[
-      {label:'Actuals',data:[185,192,null,178,204,210,214,null,null,null,null],borderColor:'#ffd166',backgroundColor:'rgba(255,209,102,.1)',borderWidth:2.5,pointBackgroundColor:weeks.map((_,i)=>i===2?'#ff6b6b':'#ffd166'),pointRadius:5,tension:.35,fill:true,spanGaps:false},
+      {label:'Actuals',data:[185,192,null,178,204,210,214,null,null,null,null],borderColor:'#ffd166',backgroundColor:'rgba(255,209,102,.1)',borderWidth:2.5,pointBackgroundColor:['#ffd166','#ffd166','#ff6b6b','#ffd166','#ffd166','#ffd166','#ffd166','#ffd166','#ffd166','#7c6ff7','#ffd166'],pointRadius:5,tension:.35,fill:true,spanGaps:false},
       {label:'Forecast',data:[null,null,null,null,null,null,214,218,212,225,220],borderColor:'#00d4ff',backgroundColor:'rgba(0,212,255,.06)',borderWidth:2,borderDash:[6,4],pointBackgroundColor:'#00d4ff',pointRadius:4,tension:.35,fill:true,spanGaps:false}
     ]
   },
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y!=null?`€${ctx.parsed.y}K`:null}}},
+  options:{...cd,
+    plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>ctx.parsed.y!=null?`€${ctx.parsed.y}K`:null}}},
     scales:{
-      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:10}},border:{color:'#1e2e1e'}},
-      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:10},callback:v=>`€${v}K`},border:{color:'#1e2e1e'},min:160,max:240}
+      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},maxRotation:0},border:{color:'#1e2e1e'}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'},min:160,max:240}
     }
   }
 });
 
-/* CHART 3 — Category Insights */
 new Chart(document.getElementById('c3'),{
   type:'bar',
   data:{
-    labels:['Berries','Leafy Greens','Stone Fruit','Citrus','Brassicas','Herbs','Root Veg','Exotics'],
+    labels:['Berries','Leafy','Stone Fruit','Citrus','Brassicas','Herbs','Root Veg','Exotics'],
     datasets:[
-      {label:'Current week',data:[142,98,87,76,65,54,48,38],backgroundColor:['rgba(124,111,247,.9)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(255,107,107,.7)','rgba(124,111,247,.65)'],borderRadius:3,order:2},
+      {label:'Current week',data:[142,98,87,76,65,54,48,38],backgroundColor:['rgba(124,111,247,.9)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(255,107,107,.75)','rgba(124,111,247,.65)'],borderRadius:3,order:2},
       {label:'Prior week',data:[124,95,88,80,62,51,53,35],backgroundColor:'rgba(42,32,64,.8)',borderRadius:3,order:3},
       {label:'Margin %',data:[38,29,33,27,31,42,24,35],type:'line',borderColor:'#00ff41',backgroundColor:'rgba(0,255,65,0)',borderWidth:2,pointBackgroundColor:'#00ff41',pointRadius:4,tension:.3,order:1,yAxisID:'ym'}
     ]
   },
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label==='Margin %'?`${ctx.parsed.y}%`:`€${ctx.parsed.y}K`}}},
+  options:{...cd,
+    plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>ctx.dataset.label==='Margin %'?`${ctx.parsed.y}%`:`€${ctx.parsed.y}K`}}},
     scales:{
-      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:10},maxRotation:30},border:{color:'#1e2e1e'}},
-      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:10},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}},
-      ym:{position:'right',grid:{display:false},ticks:{color:'#00ff41',font:{size:10},callback:v=>`${v}%`},border:{color:'#1e2e1e'},min:0,max:60}
+      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},maxRotation:30},border:{color:'#1e2e1e'}},
+      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}},
+      ym:{position:'right',grid:{display:false},ticks:{color:'#00ff41',font:{size:9},callback:v=>`${v}%`},border:{color:'#1e2e1e'},min:0,max:60}
     }
   }
 });
