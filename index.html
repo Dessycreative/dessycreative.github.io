@@ -191,6 +191,27 @@ section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem;position:relative;z-i
 .clink:hover,.clink:active{border-color:var(--accent);color:var(--accent);background:rgba(0,255,65,.04)}
 .ci{width:26px;height:26px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
 
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.about-col{background:var(--card);padding:1.5rem}
+.about-col.feat{background:#0d160d;border-left:2px solid var(--accent)}
+.about-sub{font-family:var(--mono);font-size:8px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.edu-item{padding:.85rem 0;border-bottom:1px solid var(--border);position:relative;padding-left:.85rem}
+.edu-item:last-child{border-bottom:none;padding-bottom:0}
+.edu-item::before{content:'';position:absolute;left:0;top:.85rem;width:2px;height:calc(100% - .85rem);background:var(--a2)}
+.edu-deg{font-size:.85rem;font-weight:700;color:#d4f4d4;margin-bottom:.2rem;line-height:1.35}
+.edu-inst{font-family:var(--mono);font-size:9px;color:var(--a2);margin-bottom:.25rem}
+.edu-meta{font-family:var(--mono);font-size:8px;color:var(--muted)}
+.edu-grade{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:1px;padding:2px 7px;border:1px solid rgba(0,255,65,.4);color:var(--accent);margin-top:.4rem}
+.cert-item{padding:.85rem 0;border-bottom:1px solid var(--border);position:relative;padding-left:.85rem}
+.cert-item:last-child{border-bottom:none;padding-bottom:0}
+.cert-item::before{content:'';position:absolute;left:0;top:.85rem;width:2px;height:calc(100% - .85rem);background:var(--a4)}
+.cert-name{font-size:.85rem;font-weight:700;color:#d4f4d4;margin-bottom:.2rem;line-height:1.35}
+.cert-issuer{font-family:var(--mono);font-size:9px;color:var(--a4);margin-bottom:.2rem}
+.cert-meta{font-family:var(--mono);font-size:8px;color:var(--muted)}
+.cert-badge{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:1px;padding:2px 7px;border:1px solid rgba(0,212,255,.4);color:var(--a4);margin-top:.4rem}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+
 footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;position:relative;z-index:1}
 
 /* ── RESPONSIVE ── */
@@ -233,6 +254,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-
     <a href="#projects">Projects</a>
     <a href="#mcp">MCP &amp; AI</a>
     <a href="#skills">Stack</a>
+    <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -758,6 +780,66 @@ Claude:
 <span class="ck">linkedin</span>: <span class="cs">"desmond-oodo-1a2056182"</span>,
 <span class="ck">tools</span>:    [<span class="cs">"Power BI"</span>,<span class="cs">"Excel"</span>,<span class="cs">"DAX"</span>,<span class="cs">"Python"</span>],
 <span class="ck">open_to</span>:  [<span class="cs">"collab"</span>,<span class="cs">"consulting"</span>,<span class="cs">"OSS"</span>]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sh"><span class="st">// 05</span><h2 class="stitle">About</h2><div class="sl"></div></div>
+
+  <div class="standout">
+    <div class="so-title">// bio</div>
+    <p style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:2">Data Analyst specialising in Power BI &amp; MS Fabric, PostgreSQL, DAX, and dimensional modelling — delivering BI solutions across financial reporting, agri-analytics, and operational intelligence. I also build AI-powered tools and Claude MCP integrations, putting me in a small group of analysts working at the intersection of BI and AI. I don't just analyse — I automate the unglamorous stuff so decisions happen faster and teams stop waiting on reports.<br><span style="color:var(--accent)">▸</span> Most analysts read data. I build the systems that generate it.</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-col feat">
+      <div class="about-sub">Education</div>
+
+      <div class="edu-item">
+        <div class="edu-deg">MSc Data Analytics</div>
+        <div class="edu-inst">Dublin Business School</div>
+        <div class="edu-meta">Aug 2022 – Sep 2023</div>
+        <span class="edu-grade">First Class Honours</span>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-deg">CPD Diploma — Professional Competence</div>
+        <div class="edu-inst">Technological University Dublin</div>
+        <div class="edu-meta">Jan 2025 – Jun 2025 &nbsp;·&nbsp; Conflict Management · Communication</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-deg">BSc Mathematics</div>
+        <div class="edu-inst">Benue State University</div>
+        <div class="edu-meta">2014 – 2019</div>
+      </div>
+    </div>
+
+    <div class="about-col">
+      <div class="about-sub">Certifications</div>
+
+      <div class="cert-item">
+        <div class="cert-name">Microsoft Power BI Data Analyst</div>
+        <div class="cert-issuer">Microsoft — PL-300</div>
+        <div class="cert-meta">Power BI · DAX · Data Modelling</div>
+        <span class="cert-badge">VERIFIED</span>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-name">Microsoft Azure Data Fundamentals</div>
+        <div class="cert-issuer">Microsoft — DP-900</div>
+        <div class="cert-meta">Azure · Cloud Data · Storage</div>
+        <span class="cert-badge">VERIFIED</span>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-name">Google Data Analytics</div>
+        <div class="cert-issuer">Google / Coursera</div>
+        <div class="cert-meta">Analytics · SQL · Visualisation</div>
+        <span class="cert-badge">VERIFIED</span>
+      </div>
     </div>
   </div>
 </section>
