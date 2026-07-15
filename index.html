@@ -8,248 +8,374 @@
 <meta name="keywords" content="Data Analyst, Power BI, Excel, DAX, SQL, Python, MCP, Claude, Forecasting, Finance Model">
 <meta property="og:title" content="Desmond Oodo — Data Analyst & AI Builder">
 <meta property="og:description" content="Portfolio of Desmond Oodo — Finance models, forecasting engines, BI apps and AI-powered Claude tools.">
-<meta name="theme-color" content="#080c08">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#05080a">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080c08;--surface:#0d110d;--card:#111811;--border:#1e2e1e;
-  --accent:#00ff41;--a2:#7c6ff7;--a3:#ff6b6b;--a4:#00d4ff;--a5:#ffd166;
-  --text:#c8e6c8;--muted:#4a6b4a;
-  --mono:'Space Mono',monospace;--sans:'Syne',sans-serif;
+  --bg:#05080a;--ink:#eaf6f0;--muted:#8aa79b;--soft:#5f7a70;
+  --line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);
+  --glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.075);
+  --green:#00ff41;--cyan:#00d4ff;--violet:#7c6ff7;--amber:#ffd166;--red:#ff6b6b;
+  --grad:linear-gradient(120deg,#00ff41 0%,#00d4ff 100%);
+  --glow-g:rgba(0,255,65,.28);--glow-c:rgba(0,212,255,.24);--glow-v:rgba(124,111,247,.22);
+  --mono:'Space Mono',monospace;--disp:'Syne',sans-serif;--body:'Outfit',sans-serif;
+  --r-lg:32px;--r-md:22px;--r-sm:14px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html[data-theme="light"]{
+  --bg:#eef3f0;--ink:#0c1d15;--muted:#51695f;--soft:#71887d;
+  --line:rgba(8,40,28,.12);--line2:rgba(8,40,28,.2);
+  --glass:rgba(255,255,255,.62);--glass2:rgba(255,255,255,.82);
+  --green:#0a9e46;--cyan:#0087ab;--violet:#6752df;--amber:#a97c14;--red:#cf4640;
+  --grad:linear-gradient(120deg,#0a9e46 0%,#0087ab 100%);
+  --glow-g:rgba(10,158,70,.2);--glow-c:rgba(0,135,171,.16);--glow-v:rgba(103,82,223,.14);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;overflow-x:hidden;line-height:1.5}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;min-height:100vh;overflow-x:hidden;line-height:1.65;transition:background .5s,color .5s}
 a{color:inherit;text-decoration:none}
-.gbg{position:fixed;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(0,255,65,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,65,.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
-.vig{position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.75) 100%);pointer-events:none;z-index:0}
+::selection{background:rgba(0,212,255,.25)}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(8,12,8,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:52px;gap:1rem}
-.logo{font-family:var(--mono);font-size:11px;color:var(--accent);white-space:nowrap;display:flex;align-items:center;gap:.3rem;flex-shrink:0}
-.blink{animation:bl .8s step-end infinite}
+/* ── AMBIENT LAYERS ── */
+.scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;filter:blur(70px);opacity:.55;will-change:transform,border-radius;mix-blend-mode:screen}
+html[data-theme="light"] .blob{mix-blend-mode:multiply;opacity:.3}
+.blob-a{width:min(62vw,760px);height:min(62vw,760px);top:-14%;left:52%;
+  background:radial-gradient(circle at 35% 35%,var(--glow-g),transparent 62%),radial-gradient(circle at 70% 65%,var(--glow-c),transparent 60%);
+  animation:morphA 26s var(--ease) infinite alternate,driftA 38s ease-in-out infinite alternate}
+.blob-b{width:min(46vw,540px);height:min(46vw,540px);top:52%;left:-12%;
+  background:radial-gradient(circle at 60% 40%,var(--glow-v),transparent 64%),radial-gradient(circle at 30% 70%,var(--glow-c),transparent 62%);
+  animation:morphB 30s var(--ease) infinite alternate,driftB 44s ease-in-out infinite alternate}
+.blob-c{width:min(34vw,420px);height:min(34vw,420px);top:82%;left:60%;
+  background:radial-gradient(circle at 50% 50%,var(--glow-g),transparent 65%);
+  animation:morphA 22s var(--ease) infinite alternate-reverse,driftC 36s ease-in-out infinite alternate}
+@keyframes morphA{0%{border-radius:58% 42% 38% 62%/55% 48% 52% 45%}50%{border-radius:42% 58% 62% 38%/48% 60% 40% 52%}100%{border-radius:62% 38% 46% 54%/42% 55% 45% 58%}}
+@keyframes morphB{0%{border-radius:45% 55% 60% 40%/50% 42% 58% 50%}50%{border-radius:60% 40% 42% 58%/40% 58% 42% 60%}100%{border-radius:38% 62% 55% 45%/58% 45% 55% 42%}}
+@keyframes driftA{from{transform:translate3d(-4%,0,0) rotate(-4deg) scale(1)}to{transform:translate3d(5%,7%,0) rotate(6deg) scale(1.08)}}
+@keyframes driftB{from{transform:translate3d(0,-3%,0) rotate(3deg)}to{transform:translate3d(8%,6%,0) rotate(-5deg) scale(1.06)}}
+@keyframes driftC{from{transform:translate3d(0,0,0)}to{transform:translate3d(-9%,-8%,0) scale(1.1)}}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.7}
+html[data-theme="light"] #fx{opacity:.4}
+.halo{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(0,212,255,.07),rgba(0,255,65,.05) 40%,transparent 70%);
+  transform:translate(-50%,-50%);transition:opacity .4s;opacity:0}
+html[data-theme="light"] .halo{background:radial-gradient(circle,rgba(0,135,171,.08),transparent 70%)}
+body.has-cursor .halo{opacity:1}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+
+/* ── LOADER ── */
+.loader{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.4rem;transition:opacity .7s var(--ease),visibility .7s}
+.loader.done{opacity:0;visibility:hidden}
+.loader-blob{width:110px;height:110px;background:var(--grad);filter:blur(2px);opacity:.9;
+  animation:morphA 3.2s var(--ease) infinite alternate,spinPulse 3.2s ease-in-out infinite}
+@keyframes spinPulse{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(24deg) scale(1.12)}}
+.loader-tag{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--muted)}
+
+/* ── NAV ── */
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;width:min(96%,1160px);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  background:var(--glass);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);
+  border:1px solid var(--line);border-radius:100px;padding:.55rem 1.1rem;
+  box-shadow:0 12px 40px rgba(0,0,0,.28)}
+html[data-theme="light"] nav{box-shadow:0 12px 34px rgba(20,60,45,.12)}
+.logo{font-family:var(--mono);font-size:11px;color:var(--green);white-space:nowrap;display:flex;align-items:center;gap:.3rem;flex-shrink:0;padding-left:.35rem}
+.blink{animation:bl .9s step-end infinite}
 @keyframes bl{50%{opacity:0}}
-.nl{display:flex;gap:1.25rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nl{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none}
 .nl::-webkit-scrollbar{display:none}
-.nl a{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;white-space:nowrap;padding:.25rem 0}
-.nl a:hover{color:var(--accent)}
+.nl a{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;padding:.5rem .85rem;border-radius:100px;transition:color .3s,background .3s}
+.nl a:hover{color:var(--ink);background:var(--glass2)}
+.theme-toggle{font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:.42rem .8rem;display:flex;align-items:center;gap:6px;flex-shrink:0;transition:all .3s var(--ease)}
+.theme-toggle:hover{color:var(--ink);border-color:var(--line2);transform:scale(1.05)}
 
-/* HERO */
-.hero{position:relative;padding:4rem 1.5rem 3rem;max-width:1100px;margin:0 auto;z-index:1}
-.htag{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
-.tl{width:24px;height:1px;background:var(--accent);flex-shrink:0}
-.hero h1{font-size:clamp(2.4rem,8vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:.4rem;color:#e8ffe8}
-.ga{color:var(--accent);text-shadow:0 0 20px rgba(0,255,65,.2)}
-.hrole{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.4rem}
-.hrole em{color:var(--a4);font-style:normal}
-.hdesc{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:2;max-width:560px;margin-bottom:2rem;border-left:2px solid var(--border);padding-left:1rem}
-.ctas{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.btn{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 18px;border:1px solid;cursor:pointer;transition:all .25s;background:transparent;display:inline-block;white-space:nowrap}
-.btn-p{color:var(--accent);border-color:var(--accent)}
-.btn-p:hover,.btn-p:active{background:var(--accent);color:#080c08}
-.btn-g{color:var(--muted);border-color:var(--border)}
-.btn-g:hover,.btn-g:active{color:var(--text);border-color:var(--muted)}
-.hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.hstat{background:var(--card);padding:1rem .75rem;text-align:center}
-.snum{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--accent);letter-spacing:-1px;display:block;font-family:var(--mono)}
-.slbl{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:3px;display:block;line-height:1.3}
+/* ── STATUS CHIPS ── */
+.statusbar{position:relative;z-index:2;max-width:1160px;margin:104px auto 0;padding:0 1.4rem;
+  display:flex;gap:.5rem;flex-wrap:wrap;font-family:var(--mono);font-size:8px;letter-spacing:1.2px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:100px;padding:5px 12px;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.chip strong{color:var(--green);font-weight:400}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* TOOLS STRIP */
-.tools-strip{max-width:1100px;margin:0 auto;padding:0 1.5rem 2rem;position:relative;z-index:1}
-.tools-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem}
+/* ── HERO ── */
+.hero{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:3.6rem 1.4rem 4rem;min-height:78vh;display:flex;flex-direction:column;justify-content:center}
+.htag{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:3.5px;text-transform:uppercase;margin-bottom:1.4rem;display:flex;align-items:center;gap:.7rem}
+.tl{width:30px;height:1px;background:var(--grad)}
+.hero h1{font-family:var(--disp);font-size:clamp(2.9rem,9.5vw,6.6rem);font-weight:800;line-height:.98;letter-spacing:-.03em;margin-bottom:1.1rem}
+.hero h1 .row{display:block;overflow:hidden}
+.hero h1 .row span{display:inline-block;transform:translateY(110%);animation:riseIn 1s var(--ease) forwards}
+.hero h1 .row:nth-child(2) span{animation-delay:.12s}
+@keyframes riseIn{to{transform:translateY(0)}}
+.ga{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 26px var(--glow-g))}
+.hrole{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:1.6rem;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+.hrole em{color:var(--cyan);font-style:normal}
+.hdesc{font-size:clamp(.95rem,1.6vw,1.08rem);font-weight:300;color:var(--muted);line-height:1.9;max-width:600px;margin-bottom:2.2rem}
+.ctas{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn{font-family:var(--mono);font-size:9px;letter-spacing:1.8px;text-transform:uppercase;padding:14px 26px;border-radius:100px;border:1px solid var(--line);cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s,color .35s,box-shadow .35s;will-change:transform;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--muted)}
+.btn:hover{transform:translateY(-2px) scale(1.03);color:var(--ink);border-color:var(--line2)}
+.btn:active{transform:scale(.97)}
+.btn-p{color:#04120a;background:var(--grad);border:none;font-weight:700;box-shadow:0 8px 30px var(--glow-g)}
+html[data-theme="light"] .btn-p{color:#fff}
+.btn-p:hover{color:#04120a;box-shadow:0 14px 44px var(--glow-g)}
+html[data-theme="light"] .btn-p:hover{color:#fff}
+.hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:760px}
+.hstat{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:var(--r-md);padding:1.2rem 1rem;text-align:center;transition:transform .45s var(--ease),border-color .45s;position:relative;overflow:hidden}
+.hstat::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% -30%,var(--glow-g),transparent 60%);opacity:0;transition:opacity .45s}
+.hstat:hover{transform:translateY(-5px);border-color:var(--line2)}
+.hstat:hover::before{opacity:1}
+.snum{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;letter-spacing:-1px;display:block;font-family:var(--disp);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+.slbl{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:5px;display:block;line-height:1.4;position:relative}
+
+/* ── TOOLS STRIP ── */
+.tools-strip{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:0 1.4rem 2.5rem}
+.tools-label{font-family:var(--mono);font-size:8px;color:var(--soft);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:.9rem}
 .tools-row{display:flex;flex-wrap:wrap;gap:.5rem}
-.tool-badge{font-family:var(--mono);font-size:9px;color:var(--muted);border:1px solid var(--border);padding:4px 10px;background:var(--card);white-space:nowrap;transition:all .2s}
-.tool-badge.primary{color:var(--accent);border-color:rgba(0,255,65,.35);background:rgba(0,255,65,.05)}
-.tool-badge.secondary{color:var(--a4);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.04)}
-.tool-badge.tertiary{color:var(--a2);border-color:rgba(124,111,247,.3);background:rgba(124,111,247,.04)}
+.tool-badge{font-family:var(--mono);font-size:9px;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:6px 15px;background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap;transition:transform .35s var(--ease),border-color .35s,color .35s}
+.tool-badge:hover{transform:translateY(-3px);color:var(--ink);border-color:var(--line2)}
+.tool-badge.primary{color:var(--green);border-color:color-mix(in srgb,var(--green) 32%,transparent)}
+.tool-badge.secondary{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 30%,transparent)}
+.tool-badge.tertiary{color:var(--violet);border-color:color-mix(in srgb,var(--violet) 30%,transparent)}
 
-/* SECTIONS */
-section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem;position:relative;z-index:1}
-.sh{display:flex;align-items:center;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap}
-.st{font-family:var(--mono);font-size:8px;color:var(--accent);letter-spacing:3px;border:1px solid rgba(0,255,65,.3);padding:3px 8px;white-space:nowrap}
-.stitle{font-size:clamp(1.4rem,4vw,1.75rem);font-weight:800;letter-spacing:-1px;color:#e8ffe8}
-.sl{flex:1;height:1px;background:var(--border);min-width:20px}
+/* ── SECTIONS ── */
+section{position:relative;z-index:2;max-width:1160px;margin:0 auto;padding:4.5rem 1.4rem}
+.sh{display:flex;align-items:center;gap:.9rem;margin-bottom:2.4rem;flex-wrap:wrap}
+.st{font-family:var(--mono);font-size:8px;color:var(--green);letter-spacing:3px;border:1px solid color-mix(in srgb,var(--green) 30%,transparent);border-radius:100px;padding:5px 13px;white-space:nowrap;background:var(--glass)}
+.stitle{font-family:var(--disp);font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:800;letter-spacing:-.02em}
+.sl{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent);min-width:20px}
 
-/* STANDOUT */
-.standout{background:#0d160d;border:1px solid rgba(0,255,65,.2);padding:1.5rem;margin-bottom:1.5rem;position:relative}
-.standout::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--accent)}
-.so-title{font-family:var(--mono);font-size:8px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:.6rem}
-.so-list{list-style:none;font-family:var(--mono);font-size:10px;color:var(--muted);line-height:2.1}
-.so-list li::before{content:'▸ ';color:var(--accent)}
+/* ── SCROLL REVEALS ── */
+.rev{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rev.in{opacity:1;transform:none}
 
-/* TABS */
-.tabs{display:flex;border:1px solid var(--border);margin-bottom:1.5rem;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+/* ── STANDOUT ── */
+.standout{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.8rem 2rem;margin-bottom:1.8rem;position:relative;overflow:hidden}
+.standout::before{content:'';position:absolute;top:-60%;right:-20%;width:60%;height:160%;background:radial-gradient(circle,var(--glow-g),transparent 65%);opacity:.5;pointer-events:none}
+.so-title{font-family:var(--mono);font-size:8px;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:.9rem}
+.so-list{list-style:none;font-size:.92rem;font-weight:300;color:var(--muted);line-height:2.15}
+.so-list li::before{content:'◆ ';color:var(--green);font-size:.6rem;vertical-align:2px;margin-right:6px}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:.3rem;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:100px;padding:.35rem;margin-bottom:1.8rem;overflow-x:auto;scrollbar-width:none;width:max-content;max-width:100%}
 .tabs::-webkit-scrollbar{display:none}
-.tab{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 14px;cursor:pointer;color:var(--muted);border-right:1px solid var(--border);transition:all .2s;white-space:nowrap;background:transparent;flex-shrink:0;-webkit-tap-highlight-color:transparent;user-select:none}
-.tab:last-child{border-right:none}
-.tab.active{background:rgba(0,255,65,.08);color:var(--accent)}
-.tc{display:none}.tc.active{display:block}
+.tab{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 17px;border-radius:100px;color:var(--muted);white-space:nowrap;flex-shrink:0;transition:color .35s,background .35s,box-shadow .35s;-webkit-tap-highlight-color:transparent}
+.tab:hover{color:var(--ink)}
+.tab.active{background:var(--grad);color:#04120a;font-weight:700;box-shadow:0 6px 22px var(--glow-g)}
+html[data-theme="light"] .tab.active{color:#fff}
+.tc{display:none}
+.tc.active{display:block;animation:tabIn .65s var(--ease)}
+@keyframes tabIn{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
 
-/* PROJECT GRID */
-.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1px;background:var(--border)}
-.pc{background:var(--card);padding:1.5rem;transition:background .2s;position:relative;overflow:hidden}
-.pc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
-.pc:hover{background:#141e14}
-.pc.p1::after,.pc.p1:hover::after{background:var(--accent)}
-.pc.p2::after,.pc.p2:hover::after{background:var(--a2)}
-.pc.p3::after,.pc.p3:hover::after{background:var(--a3)}
-.pc.p4::after,.pc.p4:hover::after{background:var(--a4)}
-.pc.p5::after,.pc.p5:hover::after{background:var(--a5)}
+/* ── PROJECT GRID ── */
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,310px),1fr));gap:1rem}
+.pc{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.7rem;position:relative;overflow:hidden;transition:border-color .5s,box-shadow .5s;transform-style:preserve-3d;will-change:transform}
+.pc::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(600px circle at var(--mx,50%) var(--my,-20%),rgba(255,255,255,.07),transparent 45%);opacity:0;transition:opacity .5s;pointer-events:none}
+.pc:hover::before{opacity:1}
+.pc:hover{border-color:var(--line2);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+html[data-theme="light"] .pc:hover{box-shadow:0 24px 50px rgba(20,60,45,.14)}
 .pc.wide{grid-column:1/-1}
-.pc-inner{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.pc-inner{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
 .cmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-.ct{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border:1px solid}
-.ctg{color:var(--accent);border-color:rgba(0,255,65,.3);background:rgba(0,255,65,.05)}
-.ctp{color:var(--a2);border-color:rgba(124,111,247,.3);background:rgba(124,111,247,.05)}
-.ctr{color:var(--a3);border-color:rgba(255,107,107,.3);background:rgba(255,107,107,.05)}
-.ctb{color:var(--a4);border-color:rgba(0,212,255,.3);background:rgba(0,212,255,.05)}
-.cty{color:var(--a5);border-color:rgba(255,209,102,.3);background:rgba(255,209,102,.05)}
-.cnum{font-family:var(--mono);font-size:9px;color:var(--border)}
-.pc h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem;line-height:1.35;color:#d4f4d4}
-.pc p{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9;margin-bottom:1rem}
-.ctags{display:flex;flex-wrap:wrap;gap:.35rem}
-.tag{font-family:var(--mono);font-size:8px;color:var(--muted);border:1px solid var(--border);padding:2px 6px}
-.arr{position:absolute;bottom:1rem;right:1rem;font-family:var(--mono);font-size:14px;color:var(--border);transition:all .2s}
-.pc:hover .arr{color:var(--accent);transform:translate(2px,-2px)}
+.ct{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border:1px solid;border-radius:100px}
+.ctg{color:var(--green);border-color:color-mix(in srgb,var(--green) 32%,transparent)}
+.ctp{color:var(--violet);border-color:color-mix(in srgb,var(--violet) 34%,transparent)}
+.ctr{color:var(--red);border-color:color-mix(in srgb,var(--red) 34%,transparent)}
+.ctb{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 32%,transparent)}
+.cty{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 34%,transparent)}
+.cnum{font-family:var(--mono);font-size:9px;color:var(--soft);opacity:.6}
+.pc h3{font-family:var(--disp);font-size:1.05rem;font-weight:700;margin-bottom:.55rem;line-height:1.35;letter-spacing:-.01em}
+.pc p{font-size:.86rem;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:1rem}
+.ctags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-family:var(--mono);font-size:8px;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:3px 10px;transition:border-color .3s,color .3s}
+.pc:hover .tag{border-color:var(--line2)}
+.arr{position:absolute;bottom:1.2rem;right:1.3rem;font-family:var(--mono);font-size:15px;color:var(--soft);opacity:.5;transition:all .4s var(--ease)}
+.pc:hover .arr{color:var(--green);opacity:1;transform:translate(3px,-3px)}
 
-/* SIDE PANEL */
-.side-panel{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:2;border:1px solid var(--border);padding:.85rem}
-.side-panel-title{color:var(--a4);font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem}
-.sp-row{padding-left:1rem;position:relative;margin-bottom:.1rem}
-.sp-row::before{content:'●';color:var(--accent);position:absolute;left:0;font-size:7px;top:.2rem}
+/* ── SIDE PANEL ── */
+.side-panel{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:2.1;border:1px solid var(--line);border-radius:var(--r-md);padding:1rem 1.1rem;background:rgba(0,0,0,.15)}
+html[data-theme="light"] .side-panel{background:rgba(255,255,255,.5)}
+.side-panel-title{color:var(--cyan);font-size:8px;letter-spacing:2px;text-transform:uppercase;margin-bottom:.55rem}
+.sp-row{padding-left:1.1rem;position:relative;margin-bottom:.1rem}
+.sp-row::before{content:'●';color:var(--green);position:absolute;left:0;font-size:7px;top:.15rem}
+.checks{margin-top:.7rem;font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.95}
+.checks b{color:var(--green);font-weight:400}
 
-/* CHART BLOCKS */
-.chart-block{background:var(--surface);border:1px solid var(--border);padding:1.25rem;margin-top:1.25rem}
-.cb-label{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid;display:inline-block;margin-bottom:.6rem}
-.cb-title{font-size:.9rem;font-weight:700;color:#e8ffe8;margin-bottom:.15rem}
-.cb-sub{font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:.85rem}
-.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:.85rem}
-.metric{background:var(--card);padding:.75rem .5rem;text-align:center}
-.m-val{font-size:clamp(.85rem,2.5vw,1.15rem);font-weight:800;display:block;font-family:var(--mono);line-height:1.2}
-.m-lbl{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block;line-height:1.3}
+/* ── CHART BLOCKS ── */
+.chart-block{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.5rem;margin-top:1.2rem}
+.cb-label{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border:1px solid;border-radius:100px;display:inline-block;margin-bottom:.8rem}
+.cb-title{font-family:var(--disp);font-size:1rem;font-weight:700;margin-bottom:.2rem}
+.cb-sub{font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:1rem}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1rem}
+.metric{background:rgba(0,0,0,.16);border:1px solid var(--line);border-radius:var(--r-sm);padding:.8rem .5rem;text-align:center;transition:transform .35s var(--ease)}
+html[data-theme="light"] .metric{background:rgba(255,255,255,.55)}
+.metric:hover{transform:translateY(-3px)}
+.m-val{font-size:clamp(.9rem,2.5vw,1.2rem);font-weight:700;display:block;font-family:var(--disp);line-height:1.25}
+.m-lbl{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block;line-height:1.4}
 .m-chg{font-family:var(--mono);font-size:8px;margin-top:2px;display:block}
-.up{color:var(--accent)}.dn{color:var(--a3)}.nt{color:var(--a5)}
-.chart-inner{background:#080c08;border:1px solid var(--border);padding:.85rem}
-.chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:.6rem;font-family:var(--mono);font-size:9px;color:var(--muted)}
+.up{color:var(--green)}.dn{color:var(--red)}.nt{color:var(--amber)}
+.chart-inner{background:#070b0d;border:1px solid var(--line);border-radius:var(--r-md);padding:1rem}
+.chart-legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:.7rem;font-family:var(--mono);font-size:9px;color:var(--muted)}
 .leg-item{display:flex;align-items:center;gap:5px}
-.leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
-/* FEATURE BADGES */
-.fb{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid;margin-bottom:.75rem}
-.fbg{color:var(--accent);border-color:rgba(0,255,65,.3)}
-.fbp{color:var(--a2);border-color:rgba(124,111,247,.3)}
-.fbb{color:var(--a4);border-color:rgba(0,212,255,.3)}
-.fby{color:var(--a5);border-color:rgba(255,209,102,.3)}
+/* ── FEATURE BADGES ── */
+.fb{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:4px 13px;border:1px solid;border-radius:100px;margin-bottom:.8rem}
+.fbg{color:var(--green);border-color:color-mix(in srgb,var(--green) 32%,transparent)}
+.fbp{color:var(--violet);border-color:color-mix(in srgb,var(--violet) 34%,transparent)}
+.fbb{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 32%,transparent)}
 
-/* TERMINAL */
-.term{background:#050905;border:1px solid var(--border);padding:1rem 1.25rem;font-family:var(--mono);font-size:10px;line-height:1.9;margin-bottom:1.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tbar{display:flex;gap:5px;margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);align-items:center}
-.td{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.tt{font-size:8px;color:var(--muted);letter-spacing:1px;margin-left:auto;white-space:nowrap}
-.tp{color:var(--accent)}.tph{color:var(--a4)}.tc2{color:#e8ffe8}.to{color:var(--muted)}.thi{color:var(--accent)}
-.tcur{display:inline-block;width:7px;height:11px;background:var(--accent);animation:bl .8s step-end infinite;vertical-align:middle}
+/* ── TERMINAL (always dark — a window onto the machine) ── */
+.term{background:rgba(4,8,6,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r-md);padding:1.1rem 1.35rem;font-family:var(--mono);font-size:10px;line-height:1.95;margin-bottom:1.6rem;overflow-x:auto;color:#8aa79b;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.tbar{display:flex;gap:6px;margin-bottom:.8rem;padding-bottom:.65rem;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
+.td{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.tt{font-size:8px;color:#5f7a70;letter-spacing:1px;margin-left:auto;white-space:nowrap}
+.tp{color:#00ff41}.tph{color:#00d4ff}.tc2{color:#eaf6f0}.to{color:#5f7a70}.thi{color:#00ff41}
+.tcur{display:inline-block;width:7px;height:11px;background:#00ff41;animation:bl .9s step-end infinite;vertical-align:middle}
+.code-block{background:rgba(3,7,5,.88);border:1px solid var(--line);border-radius:var(--r-sm);padding:1rem;font-family:var(--mono);font-size:9px;color:#7fc87f;line-height:1.75;overflow-x:auto}
+.cc{color:#3d5c46}.cs{color:#d4a574}.cn{color:#00d4ff}.ck{color:#9d92f9}
 
-/* MCP GRID */
-.mg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.mc{background:var(--card);padding:1.5rem}
-.mc.feat{grid-column:1/-1;background:#0d160d;border-left:2px solid var(--accent)}
-.mtitle{font-size:.9rem;font-weight:700;margin-bottom:.4rem;color:#d4f4d4}
-.mdesc{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9;margin-bottom:.6rem}
-.code-block{background:#030703;border:1px solid var(--border);padding:.85rem;font-family:var(--mono);font-size:9px;color:#7fc87f;line-height:1.7;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.cc{color:#2a4a2a}.cs{color:#d4a574}.cn{color:var(--a4)}.ck{color:var(--a2)}
+/* ── MCP GRID ── */
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.mc{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.7rem;transition:border-color .4s,transform .5s var(--ease)}
+.mc:hover{border-color:var(--line2);transform:translateY(-4px)}
+.mc.feat{grid-column:1/-1;position:relative;overflow:hidden}
+.mc.feat::before{content:'';position:absolute;top:-50%;left:-15%;width:55%;height:150%;background:radial-gradient(circle,var(--glow-g),transparent 62%);opacity:.45;pointer-events:none}
+.mtitle{font-family:var(--disp);font-size:1rem;font-weight:700;margin-bottom:.45rem}
+.mdesc{font-size:.86rem;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:.7rem}
 
-/* SKILLS SHOWCASE */
-.skills-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:1px;background:var(--border);margin-bottom:1.5rem}
-.skill-pill{background:var(--card);padding:1.1rem}
-.skill-pill::before{content:'';display:block;height:2px;margin-bottom:.6rem}
-.skill-pill.sg::before{background:var(--accent)}
-.skill-pill.sp::before{background:var(--a2)}
-.skill-pill.sy::before{background:var(--a5)}
-.skill-pill.sb::before{background:var(--a4)}
-.sp-icon{font-size:16px;margin-bottom:.4rem;display:block}
-.sp-name{font-size:.85rem;font-weight:700;color:#d4f4d4;margin-bottom:.3rem}
-.sp-desc{font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.7}
-.sp-source{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;margin-top:.5rem;padding:2px 6px;border:1px solid;display:inline-block}
-.src-user{color:var(--accent);border-color:rgba(0,255,65,.3)}
-.src-claude{color:var(--a4);border-color:rgba(0,212,255,.3)}
+/* ── SKILLS SHOWCASE ── */
+.mini-label{font-family:var(--mono);font-size:8px;color:var(--soft);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:.9rem}
+.skills-showcase{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,215px),1fr));gap:.9rem;margin-bottom:1.6rem}
+.skill-pill{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r-md);padding:1.25rem;transition:transform .5s var(--ease),border-color .4s;will-change:transform;transform-style:preserve-3d}
+.skill-pill:hover{border-color:var(--line2)}
+.skill-pill::before{content:'';display:block;height:3px;border-radius:3px;margin-bottom:.75rem;width:34px}
+.skill-pill.sg::before{background:var(--grad)}
+.skill-pill.sp::before{background:linear-gradient(90deg,var(--violet),var(--cyan))}
+.skill-pill.sy::before{background:linear-gradient(90deg,var(--amber),var(--green))}
+.skill-pill.sb::before{background:linear-gradient(90deg,var(--cyan),var(--violet))}
+.sp-icon{font-size:17px;margin-bottom:.45rem;display:block}
+.sp-name{font-family:var(--disp);font-size:.9rem;font-weight:700;margin-bottom:.35rem}
+.sp-desc{font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.75}
+.sp-source{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;margin-top:.6rem;padding:3px 9px;border:1px solid;border-radius:100px;display:inline-block}
+.src-user{color:var(--green);border-color:color-mix(in srgb,var(--green) 32%,transparent)}
+.src-claude{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 30%,transparent)}
 
-/* STACK */
-.skgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,120px),1fr));gap:1px;background:var(--border)}
-.ski{background:var(--card);padding:1rem .75rem;text-align:center}
-.skn{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;display:block}
-.skp{font-size:1.2rem;font-weight:800;margin:.2rem 0;display:block;font-family:var(--mono)}
-.sbw{height:2px;background:var(--border);overflow:hidden;margin-top:.4rem}
-.sb{height:100%}
-.sbg{background:var(--accent)}.sbp{background:var(--a2)}.sbb{background:var(--a4)}.sbr{background:var(--a3)}.sby{background:var(--a5)}
+/* ── STACK RINGS ── */
+.skgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,148px),1fr));gap:.9rem}
+.ring-card{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r-md);padding:1.15rem .8rem;text-align:center;transition:transform .5s var(--ease),border-color .4s}
+.ring-card:hover{transform:translateY(-5px);border-color:var(--line2)}
+.ring-wrap{position:relative;width:84px;height:84px;margin:0 auto .6rem}
+.ring-wrap svg{transform:rotate(-90deg);width:84px;height:84px}
+.ring-bg{fill:none;stroke:var(--line);stroke-width:5}
+.ring-fg{fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:213.6;stroke-dashoffset:213.6;transition:stroke-dashoffset 1.4s var(--ease)}
+.ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:1rem;font-weight:800}
+.skn{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;display:block}
 
-/* CONTACT */
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.ccrd{background:var(--card);padding:1.75rem}
-.ccrd.feat{background:#0d160d;border-left:2px solid var(--accent)}
-.clink{display:flex;align-items:center;gap:.6rem;padding:.75rem .85rem;border:1px solid var(--border);margin-bottom:.5rem;transition:all .2s;font-family:var(--mono);font-size:10px;color:var(--muted);-webkit-tap-highlight-color:transparent}
-.clink:hover,.clink:active{border-color:var(--accent);color:var(--accent);background:rgba(0,255,65,.04)}
-.ci{width:26px;height:26px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+/* ── CONTACT ── */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.ccrd{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.9rem}
+.ccrd.feat{position:relative;overflow:hidden}
+.ccrd.feat::before{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:140%;background:radial-gradient(circle,var(--glow-c),transparent 62%);opacity:.5;pointer-events:none}
+.contact-intro{font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:1.3rem}
+.clink{display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem;border:1px solid var(--line);border-radius:var(--r-sm);margin-bottom:.55rem;transition:all .35s var(--ease);font-family:var(--mono);font-size:10px;color:var(--muted)}
+.clink:hover{border-color:color-mix(in srgb,var(--green) 40%,transparent);color:var(--green);transform:translateX(4px)}
+.ci{width:30px;height:30px;background:var(--glass2);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.cform{margin-top:1.1rem;display:grid;gap:.6rem;position:relative}
+.cfield{position:relative}
+.cfield input,.cfield textarea{width:100%;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:var(--r-sm);padding:.95rem 1rem .55rem;font-family:var(--body);font-weight:300;font-size:.88rem;color:var(--ink);resize:vertical;transition:border-color .35s,box-shadow .35s}
+html[data-theme="light"] .cfield input,html[data-theme="light"] .cfield textarea{background:rgba(255,255,255,.6)}
+.cfield label{position:absolute;left:1rem;top:.78rem;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);pointer-events:none;transition:all .3s var(--ease)}
+.cfield input:focus,.cfield textarea:focus{outline:none;border-color:color-mix(in srgb,var(--cyan) 50%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--cyan) 14%,transparent)}
+.cfield input:focus+label,.cfield input:not(:placeholder-shown)+label,
+.cfield textarea:focus+label,.cfield textarea:not(:placeholder-shown)+label{top:.32rem;font-size:7px;color:var(--cyan)}
+.form-note{font-family:var(--mono);font-size:8px;color:var(--soft);letter-spacing:1px}
+.sent-msg{display:none;font-family:var(--mono);font-size:10px;color:var(--green);padding:.7rem 0 0;animation:tabIn .5s var(--ease)}
+.sent-msg.show{display:block}
 
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.about-col{background:var(--card);padding:1.5rem}
-.about-col.feat{background:#0d160d;border-left:2px solid var(--accent)}
-.about-sub{font-family:var(--mono);font-size:8px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
-.edu-item{padding:.85rem 0;border-bottom:1px solid var(--border);position:relative;padding-left:.85rem}
-.edu-item:last-child{border-bottom:none;padding-bottom:0}
-.edu-item::before{content:'';position:absolute;left:0;top:.85rem;width:2px;height:calc(100% - .85rem);background:var(--a2)}
-.edu-deg{font-size:.85rem;font-weight:700;color:#d4f4d4;margin-bottom:.2rem;line-height:1.35}
-.edu-inst{font-family:var(--mono);font-size:9px;color:var(--a2);margin-bottom:.25rem}
-.edu-meta{font-family:var(--mono);font-size:8px;color:var(--muted)}
-.edu-grade{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:1px;padding:2px 7px;border:1px solid rgba(0,255,65,.4);color:var(--accent);margin-top:.4rem}
-.cert-item{padding:.85rem 0;border-bottom:1px solid var(--border);position:relative;padding-left:.85rem}
-.cert-item:last-child{border-bottom:none;padding-bottom:0}
-.cert-item::before{content:'';position:absolute;left:0;top:.85rem;width:2px;height:calc(100% - .85rem);background:var(--a4)}
-.cert-name{font-size:.85rem;font-weight:700;color:#d4f4d4;margin-bottom:.2rem;line-height:1.35}
-.cert-issuer{font-family:var(--mono);font-size:9px;color:var(--a4);margin-bottom:.2rem}
-.cert-meta{font-family:var(--mono);font-size:8px;color:var(--muted)}
-.cert-badge{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:1px;padding:2px 7px;border:1px solid rgba(0,212,255,.4);color:var(--a4);margin-top:.4rem}
-@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.about-col{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.7rem}
+.about-sub{font-family:var(--mono);font-size:8px;color:var(--green);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--line)}
+.tline{position:relative;padding-left:1.3rem}
+.tline::before{content:'';position:absolute;left:4px;top:.5rem;bottom:.5rem;width:1px;background:linear-gradient(180deg,var(--green),var(--cyan),transparent)}
+.edu-item,.cert-item{padding:.9rem 0;position:relative}
+.edu-item::before,.cert-item::before{content:'';position:absolute;left:-1.3rem;top:1.28rem;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--green);box-shadow:0 0 10px var(--glow-g)}
+.cert-item::before{border-color:var(--cyan);box-shadow:0 0 10px var(--glow-c)}
+.edu-deg,.cert-name{font-family:var(--disp);font-size:.9rem;font-weight:700;margin-bottom:.2rem;line-height:1.35}
+.edu-inst{font-family:var(--mono);font-size:9px;color:var(--violet);margin-bottom:.25rem}
+.cert-issuer{font-family:var(--mono);font-size:9px;color:var(--cyan);margin-bottom:.2rem}
+.edu-meta,.cert-meta{font-family:var(--mono);font-size:8px;color:var(--soft)}
+.edu-grade{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:1px;padding:3px 9px;border:1px solid color-mix(in srgb,var(--green) 42%,transparent);border-radius:100px;color:var(--green);margin-top:.45rem}
+.cert-badge{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:1px;padding:3px 9px;border:1px solid color-mix(in srgb,var(--cyan) 42%,transparent);border-radius:100px;color:var(--cyan);margin-top:.45rem}
+.bio-text{font-size:.92rem;font-weight:300;color:var(--muted);line-height:1.95}
+.bio-text b{color:var(--ink);font-weight:500}
+.bio-sig{display:block;margin-top:.6rem;color:var(--green);font-family:var(--mono);font-size:.8rem}
 
-footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;position:relative;z-index:1}
+footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:2.2rem 1.4rem;text-align:center;font-family:var(--mono);font-size:8px;color:var(--soft);letter-spacing:2px}
+footer .fg{color:var(--green)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:640px){
-  .hstats{grid-template-columns:repeat(2,1fr)}
-  .metrics-row{grid-template-columns:repeat(2,1fr)}
-  .mg,.cgrid{grid-template-columns:1fr}
-  .mc.feat{grid-column:auto}
+@media(max-width:900px){
   .pc-inner{grid-template-columns:1fr}
-  .pc.wide{grid-column:auto}
-  .hero{padding:2.5rem 1.25rem 2rem}
-  section{padding:2.5rem 1.25rem}
-  .tools-strip{padding:0 1.25rem 1.5rem}
-  .chart-block{padding:1rem}
-  .chart-inner{padding:.75rem}
-  .term{font-size:9px;padding:.85rem 1rem}
-  nav{padding:0 1.25rem}
-}
-@media(max-width:380px){
-  .hstats{grid-template-columns:repeat(2,1fr)}
-  .ctas{gap:.5rem}
-  .btn{padding:8px 12px;font-size:8px}
-  .hero h1{letter-spacing:-1px}
-}
-@media(min-width:641px) and (max-width:860px){
-  .pc-inner{grid-template-columns:1fr}
-  .metrics-row{grid-template-columns:repeat(2,1fr)}
   .mg{grid-template-columns:1fr}
   .mc.feat{grid-column:auto}
+  .cgrid,.about-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  nav{top:10px;padding:.45rem .7rem}
+  .nl a{padding:.45rem .55rem;font-size:8px}
+  .statusbar{margin-top:92px}
+  .hero{padding:2.6rem 1.25rem 3rem;min-height:auto}
+  .hstats{grid-template-columns:repeat(2,1fr)}
+  .metrics-row{grid-template-columns:repeat(2,1fr)}
+  .pc.wide{grid-column:auto}
+  section{padding:3rem 1.25rem}
+  .tools-strip{padding:0 1.25rem 2rem}
+  .term{font-size:9px;padding:.9rem 1rem}
+  .standout{padding:1.4rem 1.3rem}
+}
+@media(max-width:400px){
+  .ctas{gap:.5rem}
+  .btn{padding:12px 18px;font-size:8px}
+  .nl{display:none}
+}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rev{opacity:1;transform:none}
+  .hero h1 .row span{transform:none;animation:none}
+  .blob{animation:none}
+  .halo{display:none}
 }
 </style>
+<script>
+(function(){
+  var saved=localStorage.getItem('theme');
+  var prefersLight=window.matchMedia('(prefers-color-scheme: light)').matches;
+  document.documentElement.setAttribute('data-theme',saved||(prefersLight?'light':'dark'));
+})();
+</script>
 </head>
 <body>
-<div class="gbg"></div>
-<div class="vig"></div>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-blob"></div>
+  <div class="loader-tag">D.OODO_</div>
+</div>
+
+<div class="scene" aria-hidden="true">
+  <div class="blob blob-a" data-depth="26"></div>
+  <div class="blob blob-b" data-depth="16"></div>
+  <div class="blob blob-c" data-depth="34"></div>
+</div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="halo" id="halo" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <nav>
-  <div class="logo"><span style="color:var(--muted)">[</span>&nbsp;D.OODO<span class="blink">_</span>&nbsp;<span style="color:var(--muted)">]</span></div>
+  <div class="logo"><span style="color:var(--soft)">[</span>&nbsp;D.OODO<span class="blink">_</span>&nbsp;<span style="color:var(--soft)">]</span></div>
   <div class="nl">
     <a href="#projects">Projects</a>
     <a href="#mcp">MCP &amp; AI</a>
@@ -257,33 +383,47 @@ footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" type="button">
+    <span id="themeIcon">◐</span><span id="themeLabel">DARK</span>
+  </button>
 </nav>
 
-<div class="hero">
-  <div class="htag"><div class="tl"></div>open to collaboration<div class="tl"></div></div>
-  <h1>Desmond<br><span class="ga">Oodo.</span></h1>
+<div class="statusbar" aria-label="Site status">
+  <span class="chip"><span class="sdot"></span><strong>STATUS: OPEN_TO_WORK</strong></span>
+  <span class="chip">BUILD_015</span>
+  <span class="chip">UPTIME: <span id="uptime">00:00:00</span></span>
+  <span class="chip">LAST_DEPLOY: 2026.07</span>
+  <span class="chip">LOC: DUBLIN_IE</span>
+</div>
+
+<header class="hero">
+  <div class="htag"><div class="tl"></div>open to collaboration</div>
+  <h1>
+    <span class="row"><span>Desmond</span></span>
+    <span class="row"><span class="ga">Oodo.</span></span>
+  </h1>
   <div class="hrole">
-    <span style="color:var(--muted)">&gt;&gt;</span>
+    <span style="color:var(--soft)">&gt;&gt;</span>
     <span>Data Analyst</span>
-    <span style="color:var(--muted)">&amp;</span>
+    <span style="color:var(--soft)">&amp;</span>
     <em>AI Builder</em>
   </div>
   <p class="hdesc">I turn raw data into decisions — building finance models, forecasting engines, Power BI apps, and AI-powered Claude tools. Excel to Python, DAX to MCP, I work across the full analyst stack and share everything I build with the community.</p>
   <div class="ctas">
-    <a class="btn btn-p" href="#projects">[ VIEW PROJECTS ]</a>
-    <a class="btn btn-g" href="#mcp">[ MCP &amp; AI ]</a>
-    <a class="btn btn-g" href="https://github.com/Dessycreative" target="_blank" rel="noopener">[ GITHUB ↗ ]</a>
-    <a class="btn btn-g" href="https://www.linkedin.com/in/desmond-oodo-1a2056182" target="_blank" rel="noopener">[ LINKEDIN ↗ ]</a>
+    <a class="btn btn-p magnet" href="#projects">View projects</a>
+    <a class="btn magnet" href="#mcp">MCP &amp; AI</a>
+    <a class="btn magnet" href="https://github.com/Dessycreative" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn magnet" href="https://www.linkedin.com/in/desmond-oodo-1a2056182" target="_blank" rel="noopener">LinkedIn ↗</a>
   </div>
   <div class="hstats">
-    <div class="hstat"><span class="snum">12+</span><span class="slbl">Projects Shipped</span></div>
-    <div class="hstat"><span class="snum">7</span><span class="slbl">Claude Skills</span></div>
-    <div class="hstat"><span class="snum">4+</span><span class="slbl">MCP Integrations</span></div>
-    <div class="hstat"><span class="snum">∞</span><span class="slbl">Lines of DAX</span></div>
+    <div class="hstat rev"><span class="snum">12+</span><span class="slbl">Projects Shipped</span></div>
+    <div class="hstat rev" style="transition-delay:.08s"><span class="snum">7</span><span class="slbl">Claude Skills</span></div>
+    <div class="hstat rev" style="transition-delay:.16s"><span class="snum">4+</span><span class="slbl">MCP Integrations</span></div>
+    <div class="hstat rev" style="transition-delay:.24s"><span class="snum">∞</span><span class="slbl">Lines of DAX</span></div>
   </div>
-</div>
+</header>
 
-<div class="tools-strip">
+<div class="tools-strip rev">
   <div class="tools-label">Tools &amp; Technologies</div>
   <div class="tools-row">
     <span class="tool-badge primary">Power BI</span>
@@ -303,9 +443,9 @@ footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-
 </div>
 
 <section id="projects">
-  <div class="sh"><span class="st">// 01</span><h2 class="stitle">Projects</h2><div class="sl"></div></div>
+  <div class="sh rev"><span class="st">// 01</span><h2 class="stitle">Projects</h2><div class="sl"></div></div>
 
-  <div class="standout">
+  <div class="standout rev">
     <div class="so-title">★ what makes desmond different</div>
     <ul class="so-list">
       <li>Full analyst stack — Excel pivot tables to Python pipelines to live Power BI apps</li>
@@ -315,19 +455,19 @@ footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-
     </ul>
   </div>
 
-  <div class="tabs">
-    <div class="tab active" onclick="sw(event,'forecasting')">Forecasting</div>
-    <div class="tab" onclick="sw(event,'finance')">Finance</div>
-    <div class="tab" onclick="sw(event,'produce')">Fresh Produce</div>
-    <div class="tab" onclick="sw(event,'ai')">AI &amp; Claude</div>
-    <div class="tab" onclick="sw(event,'community')">Community</div>
-    <div class="tab" onclick="sw(event,'concepts')">Concepts</div>
+  <div class="tabs rev" role="tablist" aria-label="Project categories">
+    <button class="tab active" role="tab" aria-selected="true" onclick="sw(event,'forecasting')">Forecasting</button>
+    <button class="tab" role="tab" aria-selected="false" onclick="sw(event,'finance')">Finance</button>
+    <button class="tab" role="tab" aria-selected="false" onclick="sw(event,'produce')">Fresh Produce</button>
+    <button class="tab" role="tab" aria-selected="false" onclick="sw(event,'ai')">AI &amp; Claude</button>
+    <button class="tab" role="tab" aria-selected="false" onclick="sw(event,'community')">Community</button>
+    <button class="tab" role="tab" aria-selected="false" onclick="sw(event,'concepts')">Concepts</button>
   </div>
 
   <!-- FORECASTING -->
-  <div id="tab-forecasting" class="tc active">
+  <div id="tab-forecasting" class="tc active" role="tabpanel">
     <div class="pg">
-      <div class="pc p5 wide">
+      <div class="pc wide tilt">
         <div class="pc-inner">
           <div>
             <div class="cmeta"><span class="ct cty">Forecasting Model</span><span class="cnum">::01</span></div>
@@ -346,25 +486,25 @@ footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-
               <div class="sp-row">Weighted recency — recent weeks weighted higher</div>
               <div class="sp-row">Output: weekly projection, slicer-driven</div>
             </div>
-            <div style="margin-top:.6rem;font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9">
-              <span style="color:var(--accent)">✓</span> Pure Power BI — no external dependencies<br>
-              <span style="color:var(--accent)">✓</span> Business users interact directly<br>
-              <span style="color:var(--accent)">✓</span> Context-aware — not a naive rolling average
+            <div class="checks">
+              <b>✓</b> Pure Power BI — no external dependencies<br>
+              <b>✓</b> Business users interact directly<br>
+              <b>✓</b> Context-aware — not a naive rolling average
             </div>
           </div>
         </div>
         <span class="arr">↗</span>
       </div>
     </div>
-    <div class="chart-block">
-      <span class="cb-label" style="color:var(--a5);border-color:rgba(255,209,102,.3)">Live Chart — Forecasting Model</span>
+    <div class="chart-block rev">
+      <span class="cb-label" style="color:var(--amber);border-color:color-mix(in srgb,var(--amber) 32%,transparent)">Live Chart — Forecasting Model</span>
       <div class="cb-title">6-Week Rolling Sales Forecast — holiday &amp; seasonal adjustments applied</div>
       <div class="cb-sub">Actuals (solid amber) vs forecast (dashed blue) · bank holiday flagged · special occasion marked</div>
       <div class="metrics-row">
-        <div class="metric"><span class="m-val" style="color:var(--a5)">€218K</span><span class="m-lbl">Forecast Wk+1</span><span class="m-chg up">▲ vs 6-wk avg</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--accent)">94.2%</span><span class="m-lbl">Forecast Accuracy</span><span class="m-chg up">▲ last 6 wks</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a3)">-18%</span><span class="m-lbl">Bank Hol Adj</span><span class="m-chg nt">Easter wk applied</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a4)">+22%</span><span class="m-lbl">Seasonal Uplift</span><span class="m-chg nt">Christmas period</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--amber)">€218K</span><span class="m-lbl">Forecast Wk+1</span><span class="m-chg up">▲ vs 6-wk avg</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--green)">94.2%</span><span class="m-lbl">Forecast Accuracy</span><span class="m-chg up">▲ last 6 wks</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--red)">-18%</span><span class="m-lbl">Bank Hol Adj</span><span class="m-chg nt">Easter wk applied</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--cyan)">+22%</span><span class="m-lbl">Seasonal Uplift</span><span class="m-chg nt">Christmas period</span></div>
       </div>
       <div class="chart-inner">
         <div class="chart-legend">
@@ -379,9 +519,9 @@ footer{border-top:1px solid var(--border);padding:1.5rem;text-align:center;font-
   </div>
 
   <!-- FINANCE -->
-  <div id="tab-finance" class="tc">
+  <div id="tab-finance" class="tc" role="tabpanel">
     <div class="pg">
-      <div class="pc p1 wide">
+      <div class="pc wide tilt">
         <div class="pc-inner">
           <div>
             <div class="cmeta"><span class="ct ctg">Finance Model</span><span class="cnum">::02</span></div>
@@ -403,23 +543,23 @@ RETURN
 &amp;<span class="cs">"CapEx: "</span>&amp;FORMAT(ABS(_CapEx),<span class="cs">"#,##0"</span>)
 &amp;UNICHAR(<span class="cn">10</span>)
 &amp;<span class="cs">"Net Cash: "</span>&amp;FORMAT(_Net,<span class="cs">"#,##0"</span>)</div>
-            <div style="margin-top:.6rem;font-family:var(--mono);font-size:9px;color:var(--muted);line-height:1.9">
-              <span style="color:var(--accent)">✓</span> Narrative updates live on every slicer<br>
-              <span style="color:var(--accent)">✓</span> Drill-through: consolidated → subcodes<br>
-              <span style="color:var(--accent)">✓</span> Multi-entity support across business units
+            <div class="checks">
+              <b>✓</b> Narrative updates live on every slicer<br>
+              <b>✓</b> Drill-through: consolidated → subcodes<br>
+              <b>✓</b> Multi-entity support across business units
             </div>
           </div>
         </div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p3">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctr">Sales</span><span class="cnum">::03</span></div>
         <h3>Sales Reporting Model</h3>
         <p>Structured sales model with a Base Measures folder — Net Sales, Gross Product Cost, Sales Cost, Weight, and Global Cost. Clean aggregation measures in organised display folders for stakeholder-facing field lists. Excel exports transformed via Power Query.</p>
         <div class="ctags"><span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">Power Query</span><span class="tag">DAX</span><span class="tag">Base Measures</span></div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p4">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctb">Alert Logic</span><span class="cnum">::04</span></div>
         <h3>Lapsed Customer Weekly Flag</h3>
         <p>DAX flag identifying customers who ordered last week but not this week — surfaced at day level with weekday-equivalent comparisons. Powers a weekly commercial team alert report, replacing a manual Excel lookup process.</p>
@@ -428,20 +568,20 @@ RETURN
       </div>
     </div>
     <div class="chart-block">
-      <span class="cb-label" style="color:var(--accent);border-color:rgba(0,255,65,.3)">Live Chart — Finance Model</span>
+      <span class="cb-label" style="color:var(--green);border-color:color-mix(in srgb,var(--green) 32%,transparent)">Live Chart — Finance Model</span>
       <div class="cb-title">PnL Performance — Revenue vs EBITDA vs Prior Year</div>
       <div class="cb-sub">12-month consolidated view · multi-entity · actuals vs prior year</div>
       <div class="metrics-row">
-        <div class="metric"><span class="m-val" style="color:var(--accent)">€4.2M</span><span class="m-lbl">Total Revenue</span><span class="m-chg up">▲ 12.4% YoY</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a4)">€860K</span><span class="m-lbl">EBITDA</span><span class="m-chg up">▲ 8.1% YoY</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a5)">€340K</span><span class="m-lbl">Net Cash</span><span class="m-chg nt">▲ 3.2% YoY</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a2)">20.5%</span><span class="m-lbl">EBITDA Margin</span><span class="m-chg dn">▼ 0.8pp</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--green)">€4.2M</span><span class="m-lbl">Total Revenue</span><span class="m-chg up">▲ 12.4% YoY</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--cyan)">€860K</span><span class="m-lbl">EBITDA</span><span class="m-chg up">▲ 8.1% YoY</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--amber)">€340K</span><span class="m-lbl">Net Cash</span><span class="m-chg nt">▲ 3.2% YoY</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--violet)">20.5%</span><span class="m-lbl">EBITDA Margin</span><span class="m-chg dn">▼ 0.8pp</span></div>
       </div>
       <div class="chart-inner">
         <div class="chart-legend">
           <span class="leg-item"><span class="leg-dot" style="background:#00ff41"></span>Revenue (current year)</span>
           <span class="leg-item"><span class="leg-dot" style="background:rgba(124,111,247,.5)"></span>Prior year revenue</span>
-          <span class="leg-item"><span class="leg-dot" style="background:#00d4ff;border-radius:50%"></span>EBITDA</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#00d4ff"></span>EBITDA</span>
         </div>
         <div style="position:relative;height:240px"><canvas id="c1"></canvas></div>
       </div>
@@ -449,48 +589,51 @@ RETURN
   </div>
 
   <!-- FRESH PRODUCE -->
-  <div id="tab-produce" class="tc">
+  <div id="tab-produce" class="tc" role="tabpanel">
     <div class="pg">
-      <div class="pc p4 wide">
+      <div class="pc wide tilt">
         <div class="pc-inner">
           <div>
             <div class="cmeta"><span class="ct ctb">Power BI App</span><span class="cnum">::05</span></div>
             <h3>Fresh Produce Operations Reporting App</h3>
             <p>Full Power BI App for fresh produce operations — picking performance, product traceability, weekly stats, and workforce metrics across farm sites. Data flows from Excel exports through Power Query into the model. Custom filters pane with Product Code and Unique Product Code. Stakeholder-tested before wider rollout, replacing manual Excel reports.</p>
             <div class="ctags" style="margin-top:.75rem">
-              <span class="tag">Power BI App</span><span class="tag">Excel</span><span class="tag">Power Query</span><span class="tag">DAX</span><span class="tag">Product Traceability</span><span class="tag">Workforce KPIs</span>
+              <span class="tag">Power BI App</span><span class="tag">Power Query</span><span class="tag">Traceability</span><span class="tag">Workforce Metrics</span><span class="tag">Excel Replacement</span>
             </div>
           </div>
           <div>
             <div class="side-panel">
-              <div class="side-panel-title">Report Pages</div>
-              <div class="sp-row">Overview — weekly KPI summary</div>
-              <div class="sp-row">Picking Performance — by worker &amp; site</div>
-              <div class="sp-row">Product Traceability — box vs case</div>
-              <div class="sp-row">Top &amp; Bottom Performers</div>
-              <div class="sp-row">Cost Analysis &amp; Labour Summary</div>
-              <div class="sp-row">Debtors report with balance resolution</div>
-              <div class="sp-row">Filters: Product Code + Unique Code</div>
+              <div class="side-panel-title">App Coverage</div>
+              <div class="sp-row">Picking performance by site &amp; worker</div>
+              <div class="sp-row">Product traceability end-to-end</div>
+              <div class="sp-row">Weekly stats — volume, cost, quality</div>
+              <div class="sp-row">Workforce metrics &amp; productivity</div>
+              <div class="sp-row">Custom filters — Product / Unique Code</div>
+            </div>
+            <div class="checks">
+              <b>✓</b> Stakeholder-tested before rollout<br>
+              <b>✓</b> Replaced manual Excel reporting<br>
+              <b>✓</b> Multi-site farm coverage
             </div>
           </div>
         </div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p1">
-        <div class="cmeta"><span class="ct ctg">Insights Report</span><span class="cnum">::06</span></div>
-        <h3>Insights Reporting — Automated Weekly PDF</h3>
+      <div class="pc tilt">
+        <div class="cmeta"><span class="ct ctg">MCP Automation</span><span class="cnum">::06</span></div>
+        <h3>Weekly Insights Reporting Skill</h3>
         <p>Automated PDF insights report from the Retail Farms Power BI model via MCP. One natural language prompt generates picking KPIs, daily performance, top performers, cost analysis, field pattern insights, and AI recommendations.</p>
         <div class="ctags"><span class="tag">Power BI MCP</span><span class="tag">Claude Skill</span><span class="tag">PDF</span><span class="tag">Field Insights</span><span class="tag">Automation</span></div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p2">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctp">Category Insights</span><span class="cnum">::07</span></div>
         <h3>Category Insights Reporting</h3>
         <p>Dedicated reporting layer breaking performance down by product category — volume, margin, and cost variance. Category managers get week-on-week trend views without building their own Excel pivot tables.</p>
         <div class="ctags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Category Analysis</span><span class="tag">WoW Variance</span><span class="tag">Excel Replacement</span></div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p5">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct cty">AgriTech Tool</span><span class="cnum">::08</span></div>
         <h3>Farmer's Weather Monitoring Dashboard</h3>
         <p>React dashboard for farmers — rainfall, wind speed, soil moisture, UV index, dew point, and 5-day forecast. Smart advice cards flag when to delay spraying, frost risk, and optimal harvest windows based on live conditions.</p>
@@ -499,20 +642,20 @@ RETURN
       </div>
     </div>
     <div class="chart-block">
-      <span class="cb-label" style="color:var(--a2);border-color:rgba(124,111,247,.3)">Live Chart — Category Insights</span>
+      <span class="cb-label" style="color:var(--violet);border-color:color-mix(in srgb,var(--violet) 34%,transparent)">Live Chart — Category Insights</span>
       <div class="cb-title">Category Performance — volume, margin &amp; week-on-week variance</div>
       <div class="cb-sub">Current week vs prior week · sorted by revenue · margin % overlay</div>
       <div class="metrics-row">
-        <div class="metric"><span class="m-val" style="color:var(--a2)">8</span><span class="m-lbl">Categories</span><span class="m-chg nt">all sites</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--accent)">Berries</span><span class="m-lbl">Top Category</span><span class="m-chg up">▲ 14% WoW</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a3)">Root Veg</span><span class="m-lbl">Needs Attention</span><span class="m-chg dn">▼ 9% WoW</span></div>
-        <div class="metric"><span class="m-val" style="color:var(--a5)">31.4%</span><span class="m-lbl">Avg Margin</span><span class="m-chg up">▲ 1.2pp WoW</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--violet)">8</span><span class="m-lbl">Categories</span><span class="m-chg nt">all sites</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--green)">Berries</span><span class="m-lbl">Top Category</span><span class="m-chg up">▲ 14% WoW</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--red)">Root Veg</span><span class="m-lbl">Needs Attention</span><span class="m-chg dn">▼ 9% WoW</span></div>
+        <div class="metric"><span class="m-val" style="color:var(--amber)">31.4%</span><span class="m-lbl">Avg Margin</span><span class="m-chg up">▲ 1.2pp WoW</span></div>
       </div>
       <div class="chart-inner">
         <div class="chart-legend">
           <span class="leg-item"><span class="leg-dot" style="background:#7c6ff7"></span>Current week</span>
           <span class="leg-item"><span class="leg-dot" style="background:#2a2040"></span>Prior week</span>
-          <span class="leg-item"><span class="leg-dot" style="background:#00ff41;border-radius:50%"></span>Margin %</span>
+          <span class="leg-item"><span class="leg-dot" style="background:#00ff41"></span>Margin %</span>
         </div>
         <div style="position:relative;height:260px"><canvas id="c3"></canvas></div>
       </div>
@@ -520,9 +663,9 @@ RETURN
   </div>
 
   <!-- AI & CLAUDE -->
-  <div id="tab-ai" class="tc">
+  <div id="tab-ai" class="tc" role="tabpanel">
     <div class="pg">
-      <div class="pc p2 wide">
+      <div class="pc wide tilt">
         <div class="pc-inner">
           <div>
             <div class="cmeta"><span class="ct ctp">Claude Skill</span><span class="cnum">::09</span></div>
@@ -547,14 +690,14 @@ RETURN
         </div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p4">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctb">MCP Integration</span><span class="cnum">::10</span></div>
         <h3>Power BI Desktop Live MCP Integration</h3>
         <p>Claude wired into Power BI Desktop via MCP. Create measures in bulk, run DAX queries, organise display folders, and introspect models — all through natural language. No context-switching between apps.</p>
         <div class="ctags"><span class="tag">Power BI MCP</span><span class="tag">Live DAX</span><span class="tag">Bulk Measures</span><span class="tag">Model Introspection</span></div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p3">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctr">Content AI</span><span class="cnum">::11</span></div>
         <h3>TikTok Viral Content Management System</h3>
         <p>End-to-end content workflow — trend research, caption generation, hashtag optimiser, and scheduling calendar. Built as an interactive web app, demonstrating AI application beyond analytics.</p>
@@ -565,9 +708,9 @@ RETURN
   </div>
 
   <!-- COMMUNITY -->
-  <div id="tab-community" class="tc">
+  <div id="tab-community" class="tc" role="tabpanel">
     <div class="pg">
-      <div class="pc p5 wide">
+      <div class="pc wide tilt">
         <div class="pc-inner">
           <div>
             <div class="cmeta"><span class="ct cty">Open Source</span><span class="cnum">::12</span></div>
@@ -591,7 +734,7 @@ RETURN
         </div>
         <span class="arr">↗</span>
       </div>
-      <div class="pc p1">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctg">DAX &amp; Excel Patterns</span><span class="cnum">::13</span></div>
         <h3>DAX Patterns &amp; Measures Library</h3>
         <p>Curated library of reusable DAX patterns from real projects — lapsed customer flags, cash flow narratives, category variance, forecasting adjustments, and Base Measure conventions. Companion Excel templates also shared for analysts not yet on Power BI.</p>
@@ -602,31 +745,31 @@ RETURN
   </div>
 
   <!-- CONCEPTS -->
-  <div id="tab-concepts" class="tc">
-    <div style="font-family:var(--mono);font-size:8px;color:var(--a5);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.25rem;border:1px solid rgba(255,209,102,.2);padding:.5rem 1rem;display:inline-block">⚡ ideas worth building</div>
+  <div id="tab-concepts" class="tc" role="tabpanel">
+    <div class="fb" style="color:var(--amber);border-color:color-mix(in srgb,var(--amber) 30%,transparent);margin-bottom:1.25rem">⚡ ideas worth building</div>
     <div class="pg">
-      <div class="pc p5">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct cty">Concept</span><span class="cnum">::A</span></div>
         <h3>Conversational BI Agent</h3>
         <p>Claude connected to your Power BI semantic model via MCP. Any business user asks "What drove the margin drop last Tuesday?" and gets a narrative answer — no SQL, no Power BI, no Excel pivot required.</p>
         <div class="ctags"><span class="tag">Claude Agent</span><span class="tag">MCP</span><span class="tag">Power BI</span><span class="tag">NL Interface</span></div>
         <span class="arr">→</span>
       </div>
-      <div class="pc p2">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctp">Concept</span><span class="cnum">::B</span></div>
         <h3>Automated Finance Commentary Engine</h3>
         <p>Month-end automation — Claude reads PnL and Balance Sheet actuals vs budget from the finance model and drafts the full board-pack narrative. Eliminates 4–6 hours of analyst time per close cycle.</p>
         <div class="ctags"><span class="tag">Claude API</span><span class="tag">Finance Model</span><span class="tag">MCP</span><span class="tag">Word / PDF</span></div>
         <span class="arr">→</span>
       </div>
-      <div class="pc p4">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctb">Concept</span><span class="cnum">::C</span></div>
         <h3>Smart Produce Yield Forecaster</h3>
         <p>Extends the sales forecasting model to predict weekly yield per crop and site — combining weather data, field history, and picking patterns. Monday morning narrative delivered automatically to farm managers.</p>
         <div class="ctags"><span class="tag">Forecasting</span><span class="tag">Weather API</span><span class="tag">Power BI</span><span class="tag">Claude</span></div>
         <span class="arr">→</span>
       </div>
-      <div class="pc p3">
+      <div class="pc tilt">
         <div class="cmeta"><span class="ct ctr">Concept</span><span class="cnum">::D</span></div>
         <h3>Excel → Power BI Migration Copilot</h3>
         <p>An MCP-powered tool that reads legacy Excel workbooks — formulas, pivot tables, named ranges — and generates the equivalent Power Query steps, data model, and DAX measures in Power BI automatically.</p>
@@ -639,43 +782,43 @@ RETURN
 
 <!-- MCP & SKILLS -->
 <section id="mcp">
-  <div class="sh"><span class="st">// 02</span><h2 class="stitle">MCP &amp; Claude Skills</h2><div class="sl"></div></div>
+  <div class="sh rev"><span class="st">// 02</span><h2 class="stitle">MCP &amp; Claude Skills</h2><div class="sl"></div></div>
 
-  <div class="term">
+  <div class="term rev">
     <div class="tbar">
       <div class="td" style="background:#ff5f57"></div>
       <div class="td" style="background:#ffbd2e"></div>
       <div class="td" style="background:#28ca41"></div>
       <span class="tt">desmond@claude-skills ~ zsh</span>
     </div>
-    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/skills</span><span style="color:var(--muted)"> $ </span><span class="tc2">ls --user-skills</span></div>
+    <div><span class="tp">desmond</span><span class="to">@</span><span class="tph">~/skills</span><span class="to"> $ </span><span class="tc2">ls --user-skills</span></div>
     <div class="to">&nbsp;</div>
     <div><span class="thi">●</span> <span class="tc2">powerbi-documenter/</span>&nbsp;&nbsp;&nbsp;<span class="to">// full PDF docs from any live PBI model</span></div>
     <div><span class="thi">●</span> <span class="tc2">pbi-model-layout/</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="to">// auto star-schema layout in model view</span></div>
     <div><span class="thi">●</span> <span class="tc2">insights-reporting/</span>&nbsp;&nbsp;&nbsp;<span class="to">// NL → structured weekly insights PDF</span></div>
     <div class="to">&nbsp;</div>
-    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/skills</span><span style="color:var(--muted)"> $ </span><span class="tc2">ls --claude-default-skills</span></div>
+    <div><span class="tp">desmond</span><span class="to">@</span><span class="tph">~/skills</span><span class="to"> $ </span><span class="tc2">ls --claude-default-skills</span></div>
     <div class="to">&nbsp;</div>
-    <div><span style="color:var(--a4)">●</span> <span class="tc2">docx/ pptx/ xlsx/ pdf/</span>&nbsp;<span class="to">// Word · Slides · Excel · PDF</span></div>
+    <div><span style="color:#00d4ff">●</span> <span class="tc2">docx/ pptx/ xlsx/ pdf/</span>&nbsp;<span class="to">// Word · Slides · Excel · PDF</span></div>
     <div class="to">&nbsp;</div>
-    <div><span class="tp">desmond</span><span style="color:var(--muted)">@</span><span class="tph">~/skills</span><span style="color:var(--muted)"> $ </span><span class="tcur"></span></div>
+    <div><span class="tp">desmond</span><span class="to">@</span><span class="tph">~/skills</span><span class="to"> $ </span><span class="tcur"></span></div>
   </div>
 
-  <div style="font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem">Built by Desmond</div>
+  <div class="mini-label rev">Built by Desmond</div>
   <div class="skills-showcase">
-    <div class="skill-pill sg">
+    <div class="skill-pill sg tilt">
       <span class="sp-icon">📊</span>
       <div class="sp-name">Power BI Documenter</div>
       <div class="sp-desc">Auto-generates full technical + business PDF documentation for any Power BI model via MCP. One command, entire model documented.</div>
       <span class="sp-source src-user">Built by Desmond</span>
     </div>
-    <div class="skill-pill sp">
+    <div class="skill-pill sp tilt">
       <span class="sp-icon">🔷</span>
       <div class="sp-name">PBI Model Layout</div>
       <div class="sp-desc">Automatically arranges the Power BI model diagram into a clean star-schema. Fact tables centred, dimensions around them. Open sourced.</div>
       <span class="sp-source src-user">Built by Desmond</span>
     </div>
-    <div class="skill-pill sy">
+    <div class="skill-pill sy tilt">
       <span class="sp-icon">🌿</span>
       <div class="sp-name">Insights Reporting</div>
       <div class="sp-desc">Natural language trigger → structured weekly PDF report from live Power BI data via MCP Desktop. KPIs, patterns, AI recommendations.</div>
@@ -683,27 +826,27 @@ RETURN
     </div>
   </div>
 
-  <div style="font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:.75rem;margin-top:1.25rem">Claude default skills in use</div>
+  <div class="mini-label rev">Claude default skills in use</div>
   <div class="skills-showcase">
-    <div class="skill-pill sb">
+    <div class="skill-pill sb tilt">
       <span class="sp-icon">📝</span>
       <div class="sp-name">DOCX Skill</div>
       <div class="sp-desc">Generates professional Word documents — stakeholder reports, model documentation, and finance commentaries.</div>
       <span class="sp-source src-claude">Claude Default</span>
     </div>
-    <div class="skill-pill sb">
+    <div class="skill-pill sb tilt">
       <span class="sp-icon">📑</span>
       <div class="sp-name">PPTX Skill</div>
       <div class="sp-desc">Builds polished PowerPoint decks from data or analysis — BI insights turned into exec-ready presentations automatically.</div>
       <span class="sp-source src-claude">Claude Default</span>
     </div>
-    <div class="skill-pill sb">
+    <div class="skill-pill sb tilt">
       <span class="sp-icon">📋</span>
       <div class="sp-name">XLSX Skill</div>
       <div class="sp-desc">Creates structured Excel workbooks from analysis outputs — cleaned datasets, measure lists, and financial schedules.</div>
       <span class="sp-source src-claude">Claude Default</span>
     </div>
-    <div class="skill-pill sb">
+    <div class="skill-pill sb tilt">
       <span class="sp-icon">📄</span>
       <div class="sp-name">PDF Skill</div>
       <div class="sp-desc">Generates, merges, and formats PDF reports — backbone of the Power BI Documenter and Insights Reporting outputs.</div>
@@ -712,7 +855,7 @@ RETURN
   </div>
 
   <div class="mg" style="margin-top:1.25rem">
-    <div class="mc feat">
+    <div class="mc feat rev">
       <div class="fb fbg">★ Flagship Skill — Open Source</div>
       <div class="mtitle">Power BI Documenter</div>
       <p class="mdesc">Connect Claude to any open Power BI Desktop file — reads every table, measure, relationship and hierarchy via MCP and assembles a professional PDF. One trigger phrase, entire model documented. Shared freely with the analytics community.</p>
@@ -727,13 +870,13 @@ Claude:
   <span class="ck">5.</span> Assemble structured PDF
   <span class="ck">6.</span> Return download link ✓</div>
     </div>
-    <div class="mc">
+    <div class="mc rev">
       <div class="fb fbp">PBI Model Layout</div>
       <div class="mtitle">Auto Star-Schema Arranger</div>
       <p class="mdesc">Automatically positions Power BI tables into a clean star-schema layout. Fact tables centred, dimensions around them. Released open source on GitHub.</p>
       <div class="ctags" style="margin-top:.6rem"><span class="tag">Power BI MCP</span><span class="tag">Star Schema</span><span class="tag">Auto-Layout</span><span class="tag">Open Source</span></div>
     </div>
-    <div class="mc">
+    <div class="mc rev">
       <div class="fb fbb">Live MCP Integration</div>
       <div class="mtitle">Power BI Desktop + Claude</div>
       <p class="mdesc">Claude wired into Power BI Desktop. Create measures, run queries, organise folders, introspect models — all through natural language. No switching apps.</p>
@@ -744,34 +887,36 @@ Claude:
 
 <!-- STACK -->
 <section id="skills">
-  <div class="sh"><span class="st">// 03</span><h2 class="stitle">Stack</h2><div class="sl"></div></div>
-  <div class="skgrid">
-    <div class="ski"><span class="skn">DAX</span><span class="skp" style="color:var(--accent)">96%</span><div class="sbw"><div class="sb sbg" style="width:96%"></div></div></div>
-    <div class="ski"><span class="skn">Power BI</span><span class="skp" style="color:var(--accent)">94%</span><div class="sbw"><div class="sb sbg" style="width:94%"></div></div></div>
-    <div class="ski"><span class="skn">Excel</span><span class="skp" style="color:var(--accent)">92%</span><div class="sbw"><div class="sb sbg" style="width:92%"></div></div></div>
-    <div class="ski"><span class="skn">SQL</span><span class="skp" style="color:var(--accent)">90%</span><div class="sbw"><div class="sb sbg" style="width:90%"></div></div></div>
-    <div class="ski"><span class="skn">Power Query</span><span class="skp" style="color:var(--a2)">88%</span><div class="sbw"><div class="sb sbp" style="width:88%"></div></div></div>
-    <div class="ski"><span class="skn">Python</span><span class="skp" style="color:var(--a2)">85%</span><div class="sbw"><div class="sb sbp" style="width:85%"></div></div></div>
-    <div class="ski"><span class="skn">Claude MCP</span><span class="skp" style="color:var(--a4)">90%</span><div class="sbw"><div class="sb sbb" style="width:90%"></div></div></div>
-    <div class="ski"><span class="skn">Claude Skills</span><span class="skp" style="color:var(--a4)">88%</span><div class="sbw"><div class="sb sbb" style="width:88%"></div></div></div>
-    <div class="ski"><span class="skn">Forecasting</span><span class="skp" style="color:var(--a5)">82%</span><div class="sbw"><div class="sb sby" style="width:82%"></div></div></div>
-    <div class="ski"><span class="skn">Finance Model</span><span class="skp" style="color:var(--a2)">88%</span><div class="sbw"><div class="sb sbp" style="width:88%"></div></div></div>
-    <div class="ski"><span class="skn">dbt</span><span class="skp" style="color:var(--a3)">75%</span><div class="sbw"><div class="sb sbr" style="width:75%"></div></div></div>
-    <div class="ski"><span class="skn">PPTX / PDF</span><span class="skp" style="color:var(--a4)">85%</span><div class="sbw"><div class="sb sbb" style="width:85%"></div></div></div>
+  <div class="sh rev"><span class="st">// 03</span><h2 class="stitle">Stack</h2><div class="sl"></div></div>
+  <div class="skgrid" id="ringGrid">
+    <!-- rings injected by JS from this data to keep markup light -->
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="sh"><span class="st">// 04</span><h2 class="stitle">Contact</h2><div class="sl"></div></div>
+  <div class="sh rev"><span class="st">// 04</span><h2 class="stitle">Contact</h2><div class="sl"></div></div>
   <div class="cgrid">
-    <div class="ccrd">
-      <p style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:2;margin-bottom:1.25rem;border-left:2px solid var(--border);padding-left:1rem">Open to collaborations, consulting, and community work. Especially keen on data + AI intersections — finance modelling, forecasting, BI automation, and Claude skill development.</p>
+    <div class="ccrd rev">
+      <p class="contact-intro">Open to collaborations, consulting, and community work. Especially keen on data + AI intersections — finance modelling, forecasting, BI automation, and Claude skill development.</p>
       <a class="clink" href="mailto:connectdesmondoodo@gmail.com"><div class="ci">✉</div>connectdesmondoodo@gmail.com</a>
       <a class="clink" href="https://github.com/Dessycreative" target="_blank" rel="noopener"><div class="ci">GH</div>github.com/Dessycreative</a>
       <a class="clink" href="https://www.linkedin.com/in/desmond-oodo-1a2056182" target="_blank" rel="noopener"><div class="ci">in</div>linkedin.com/in/desmond-oodo-1a2056182</a>
+      <div class="cform">
+        <div class="cfield">
+          <input type="text" id="cf-name" placeholder=" " autocomplete="name">
+          <label for="cf-name">Your name</label>
+        </div>
+        <div class="cfield">
+          <textarea id="cf-msg" rows="3" placeholder=" "></textarea>
+          <label for="cf-msg">Message</label>
+        </div>
+        <button class="btn btn-p magnet" type="button" id="cf-send" style="justify-content:center">Compose email</button>
+        <span class="form-note">Opens your mail app with the message pre-filled — nothing is sent from this page.</span>
+        <span class="sent-msg" id="cf-done">✓ Draft opened in your mail app — hit send when ready.</span>
+      </div>
     </div>
-    <div class="ccrd feat">
+    <div class="ccrd feat rev">
       <div class="fb fbg">Community First</div>
       <p class="mdesc" style="margin-top:.6rem">I build Claude skills and MCP integrations and share them openly. If something I built helped your workflow — I'd love to hear about it. Always open to collaborating on community tools.</p>
       <div class="code-block" style="margin-top:.85rem;font-size:9px"><span class="cc">// Let's work together</span>
@@ -786,136 +931,306 @@ Claude:
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="sh"><span class="st">// 05</span><h2 class="stitle">About</h2><div class="sl"></div></div>
+  <div class="sh rev"><span class="st">// 05</span><h2 class="stitle">About</h2><div class="sl"></div></div>
 
-  <div class="standout">
+  <div class="standout rev">
     <div class="so-title">// bio</div>
-    <p style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:2">Data Analyst specialising in Power BI &amp; MS Fabric, PostgreSQL, DAX, and dimensional modelling — delivering BI solutions across financial reporting, agri-analytics, and operational intelligence. I also build AI-powered tools and Claude MCP integrations, putting me in a small group of analysts working at the intersection of BI and AI. I don't just analyse — I automate the unglamorous stuff so decisions happen faster and teams stop waiting on reports.<br><span style="color:var(--accent)">▸</span> Most analysts read data. I build the systems that generate it.</p>
+    <p class="bio-text">Data Analyst specialising in <b>Power BI &amp; MS Fabric, PostgreSQL, DAX, and dimensional modelling</b> — delivering BI solutions across financial reporting, agri-analytics, and operational intelligence. I also build AI-powered tools and Claude MCP integrations, putting me in a small group of analysts working at the intersection of BI and AI. I don't just analyse — I automate the unglamorous stuff so decisions happen faster and teams stop waiting on reports.
+    <span class="bio-sig">▸ Most analysts read data. I build the systems that generate it.</span></p>
   </div>
 
   <div class="about-grid">
-    <div class="about-col feat">
+    <div class="about-col rev">
       <div class="about-sub">Education</div>
-
-      <div class="edu-item">
-        <div class="edu-deg">MSc Data Analytics</div>
-        <div class="edu-inst">Dublin Business School</div>
-        <div class="edu-meta">Aug 2022 – Sep 2023</div>
-        <span class="edu-grade">First Class Honours</span>
-      </div>
-
-      <div class="edu-item">
-        <div class="edu-deg">CPD Diploma — Professional Competence</div>
-        <div class="edu-inst">Technological University Dublin</div>
-        <div class="edu-meta">Jan 2025 – Jun 2025 &nbsp;·&nbsp; Conflict Management · Communication</div>
-      </div>
-
-      <div class="edu-item">
-        <div class="edu-deg">BSc Mathematics</div>
-        <div class="edu-inst">Benue State University</div>
-        <div class="edu-meta">2014 – 2019</div>
+      <div class="tline">
+        <div class="edu-item">
+          <div class="edu-deg">MSc Data Analytics</div>
+          <div class="edu-inst">Dublin Business School</div>
+          <div class="edu-meta">Aug 2022 – Sep 2023</div>
+          <span class="edu-grade">First Class Honours</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-deg">CPD Diploma — Professional Competence</div>
+          <div class="edu-inst">Technological University Dublin</div>
+          <div class="edu-meta">Jan 2025 – Jun 2025 &nbsp;·&nbsp; Conflict Management · Communication</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-deg">BSc Mathematics</div>
+          <div class="edu-inst">Benue State University</div>
+          <div class="edu-meta">2014 – 2019</div>
+        </div>
       </div>
     </div>
 
-    <div class="about-col">
+    <div class="about-col rev">
       <div class="about-sub">Certifications</div>
-
-      <div class="cert-item">
-        <div class="cert-name">Microsoft Power BI Data Analyst</div>
-        <div class="cert-issuer">Microsoft — PL-300</div>
-        <div class="cert-meta">Power BI · DAX · Data Modelling</div>
-        <span class="cert-badge">VERIFIED</span>
-      </div>
-
-      <div class="cert-item">
-        <div class="cert-name">Microsoft Azure Data Fundamentals</div>
-        <div class="cert-issuer">Microsoft — DP-900</div>
-        <div class="cert-meta">Azure · Cloud Data · Storage</div>
-        <span class="cert-badge">VERIFIED</span>
-      </div>
-
-      <div class="cert-item">
-        <div class="cert-name">Google Data Analytics</div>
-        <div class="cert-issuer">Google / Coursera</div>
-        <div class="cert-meta">Analytics · SQL · Visualisation</div>
-        <span class="cert-badge">VERIFIED</span>
+      <div class="tline">
+        <div class="cert-item">
+          <div class="cert-name">Microsoft Power BI Data Analyst</div>
+          <div class="cert-issuer">Microsoft — PL-300</div>
+          <div class="cert-meta">Power BI · DAX · Data Modelling</div>
+          <span class="cert-badge">VERIFIED</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Microsoft Azure Data Fundamentals</div>
+          <div class="cert-issuer">Microsoft — DP-900</div>
+          <div class="cert-meta">Azure · Cloud Data · Storage</div>
+          <span class="cert-badge">VERIFIED</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Google Data Analytics</div>
+          <div class="cert-issuer">Google / Coursera</div>
+          <div class="cert-meta">Analytics · SQL · Visualisation</div>
+          <span class="cert-badge">VERIFIED</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span style="color:var(--accent)">&gt;</span>&nbsp; Desmond Oodo — Data Analyst &amp; AI Builder &nbsp;<span style="color:var(--accent)">&lt;</span>
-  &nbsp;&nbsp; Ireland · 2026 &nbsp;&nbsp;<span style="color:var(--border)">// github.com/Dessycreative</span>
+  <span class="fg">&gt;</span>&nbsp; Desmond Oodo — Data Analyst &amp; AI Builder &nbsp;<span class="fg">&lt;</span>
+  &nbsp;&nbsp; Ireland · 2026 &nbsp;&nbsp;<span style="opacity:.55">// github.com/Dessycreative</span>
 </footer>
 
 <script>
+/* ═══ CORE HELPERS ═══ */
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch='ontouchstart' in window;
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+
+/* ═══ LOADER ═══ */
+window.addEventListener('load',()=>{
+  setTimeout(()=>$('#loader').classList.add('done'),reduceMotion?0:450);
+});
+setTimeout(()=>$('#loader').classList.add('done'),2600); // failsafe
+
+/* ═══ TABS ═══ */
+const charts={};
 function sw(e,name){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  $$('.tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false')});
+  $$('.tc').forEach(c=>c.classList.remove('active'));
   e.target.classList.add('active');
+  e.target.setAttribute('aria-selected','true');
   document.getElementById('tab-'+name).classList.add('active');
+  ensureCharts();
 }
 
-const cd={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+/* ═══ SCROLL REVEALS ═══ */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+$$('.rev').forEach(el=>io.observe(el));
 
-new Chart(document.getElementById('c1'),{
-  type:'bar',
-  data:{
-    labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    datasets:[
-      {label:'Revenue',data:[310,295,340,320,380,365,390,410,375,420,445,430],backgroundColor:'rgba(0,255,65,.7)',borderRadius:2,order:2},
-      {label:'Prior Year',data:[275,268,295,280,330,315,340,355,330,370,395,385],backgroundColor:'rgba(124,111,247,.3)',borderRadius:2,order:3},
-      {label:'EBITDA',data:[62,55,72,60,80,74,82,88,74,90,95,88],type:'line',borderColor:'#00d4ff',backgroundColor:'rgba(0,212,255,.07)',borderWidth:2,pointBackgroundColor:'#00d4ff',pointRadius:3,tension:.4,fill:true,order:1,yAxisID:'y2'}
-    ]
-  },
-  options:{...cd,
-    plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>`€${ctx.parsed.y}K`}}},
-    scales:{
-      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},maxRotation:0},border:{color:'#1e2e1e'}},
-      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}},
-      y2:{position:'right',grid:{display:false},ticks:{color:'#00d4ff',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}}
-    }
-  }
-});
+/* ═══ CURSOR HALO + BLOB PARALLAX ═══ */
+if(!isTouch&&!reduceMotion){
+  const halo=$('#halo');
+  let hx=innerWidth/2,hy=innerHeight/2,tx=hx,ty=hy;
+  document.body.classList.add('has-cursor');
+  window.addEventListener('mousemove',e=>{
+    tx=e.clientX;ty=e.clientY;
+    const nx=e.clientX/innerWidth-.5, ny=e.clientY/innerHeight-.5;
+    $$('.blob').forEach(b=>{
+      const d=+b.dataset.depth||20;
+      b.style.translate=`${nx*d}px ${ny*d}px`;
+    });
+  },{passive:true});
+  (function lerp(){
+    hx+=(tx-hx)*.07;hy+=(ty-hy)*.07;
+    halo.style.left=hx+'px';halo.style.top=hy+'px';
+    requestAnimationFrame(lerp);
+  })();
+}
 
-new Chart(document.getElementById('c2'),{
-  type:'line',
-  data:{
-    labels:['Wk-6','Wk-5','Wk-4','Wk-3','Wk-2','Wk-1','Now','Wk+1','Wk+2','Wk+3','Wk+4'],
-    datasets:[
-      {label:'Actuals',data:[185,192,null,178,204,210,214,null,null,null,null],borderColor:'#ffd166',backgroundColor:'rgba(255,209,102,.1)',borderWidth:2.5,pointBackgroundColor:['#ffd166','#ffd166','#ff6b6b','#ffd166','#ffd166','#ffd166','#ffd166','#ffd166','#ffd166','#7c6ff7','#ffd166'],pointRadius:5,tension:.35,fill:true,spanGaps:false},
-      {label:'Forecast',data:[null,null,null,null,null,null,214,218,212,225,220],borderColor:'#00d4ff',backgroundColor:'rgba(0,212,255,.06)',borderWidth:2,borderDash:[6,4],pointBackgroundColor:'#00d4ff',pointRadius:4,tension:.35,fill:true,spanGaps:false}
-    ]
-  },
-  options:{...cd,
-    plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>ctx.parsed.y!=null?`€${ctx.parsed.y}K`:null}}},
-    scales:{
-      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},maxRotation:0},border:{color:'#1e2e1e'}},
-      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'},min:160,max:240}
-    }
-  }
-});
+/* ═══ 3D TILT CARDS ═══ */
+if(!isTouch&&!reduceMotion){
+  $$('.tilt').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+      card.style.setProperty('--mx',(px*100)+'%');
+      card.style.setProperty('--my',(py*100)+'%');
+      card.style.transform=`perspective(900px) rotateX(${(py-.5)*-4.5}deg) rotateY(${(px-.5)*4.5}deg) translateY(-3px)`;
+    });
+    card.addEventListener('mouseleave',()=>{card.style.transform='';});
+  });
+}
 
-new Chart(document.getElementById('c3'),{
-  type:'bar',
-  data:{
-    labels:['Berries','Leafy','Stone Fruit','Citrus','Brassicas','Herbs','Root Veg','Exotics'],
-    datasets:[
-      {label:'Current week',data:[142,98,87,76,65,54,48,38],backgroundColor:['rgba(124,111,247,.9)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(255,107,107,.75)','rgba(124,111,247,.65)'],borderRadius:3,order:2},
-      {label:'Prior week',data:[124,95,88,80,62,51,53,35],backgroundColor:'rgba(42,32,64,.8)',borderRadius:3,order:3},
-      {label:'Margin %',data:[38,29,33,27,31,42,24,35],type:'line',borderColor:'#00ff41',backgroundColor:'rgba(0,255,65,0)',borderWidth:2,pointBackgroundColor:'#00ff41',pointRadius:4,tension:.3,order:1,yAxisID:'ym'}
-    ]
-  },
-  options:{...cd,
-    plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>ctx.dataset.label==='Margin %'?`${ctx.parsed.y}%`:`€${ctx.parsed.y}K`}}},
-    scales:{
-      x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},maxRotation:30},border:{color:'#1e2e1e'}},
-      y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#4a6b4a',font:{size:9},callback:v=>`€${v}K`},border:{color:'#1e2e1e'}},
-      ym:{position:'right',grid:{display:false},ticks:{color:'#00ff41',font:{size:9},callback:v=>`${v}%`},border:{color:'#1e2e1e'},min:0,max:60}
-    }
+/* ═══ MAGNETIC BUTTONS ═══ */
+if(!isTouch&&!reduceMotion){
+  $$('.magnet').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+      btn.style.transform=`translate(${dx*.18}px,${dy*.28}px) scale(1.04)`;
+    });
+    btn.addEventListener('mouseleave',()=>{btn.style.transform='';});
+  });
+}
+
+/* ═══ PARTICLE FIELD ═══ */
+(function(){
+  const canvas=$('#fx'),ctx=canvas.getContext('2d');
+  let w,h,dpr=Math.min(devicePixelRatio||1,2);
+  function resize(){w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;
+    canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
+  resize();addEventListener('resize',resize);
+  const COUNT=isTouch?36:64;
+  const P=Array.from({length:COUNT},()=>({x:Math.random()*w,y:Math.random()*h,
+    vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12,
+    r:Math.random()*1.5+.5,a:Math.random()*.45+.1,k:Math.random()<.8?'g':'c'}));
+  function hue(k){const l=document.documentElement.getAttribute('data-theme')==='light';
+    return k==='g'?(l?'10,158,70':'0,255,65'):(l?'0,135,171':'0,212,255')}
+  let mx=-9e3,my=-9e3;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+  addEventListener('mouseleave',()=>{mx=-9e3;my=-9e3});
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    P.forEach(p=>{
+      if(!reduceMotion){
+        const dx=p.x-mx,dy=p.y-my,d2=dx*dx+dy*dy;
+        if(d2<16900){const d=Math.sqrt(d2)||1,f=(130-d)/130*.05;p.vx+=dx/d*f;p.vy+=dy/d*f}
+        p.vx*=.986;p.vy*=.986;p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;
+      }
+      ctx.beginPath();ctx.fillStyle=`rgba(${hue(p.k)},${p.a})`;
+      ctx.shadowColor=`rgba(${hue(p.k)},.5)`;ctx.shadowBlur=6;
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    });
+    if(!reduceMotion)requestAnimationFrame(draw);
   }
+  draw();
+})();
+
+/* ═══ SKILL RINGS ═══ */
+const RING_DATA=[
+  ['DAX',96,'green'],['Power BI',94,'green'],['Excel',92,'green'],['SQL',90,'green'],
+  ['Power Query',88,'violet'],['Python',85,'violet'],
+  ['Claude MCP',90,'cyan'],['Claude Skills',88,'cyan'],
+  ['Forecasting',82,'amber'],['Finance Model',88,'violet'],
+  ['dbt',75,'red'],['PPTX / PDF',85,'cyan']
+];
+const CIRC=213.6;
+const grid=$('#ringGrid');
+RING_DATA.forEach(([name,pct,col],i)=>{
+  const d=document.createElement('div');
+  d.className='ring-card rev';
+  d.style.transitionDelay=(i%6*.06)+'s';
+  d.innerHTML=`<div class="ring-wrap">
+    <svg viewBox="0 0 84 84" aria-hidden="true">
+      <circle class="ring-bg" cx="42" cy="42" r="34"/>
+      <circle class="ring-fg" cx="42" cy="42" r="34" stroke="var(--${col})" data-pct="${pct}"/>
+    </svg>
+    <span class="ring-pct" style="color:var(--${col})">${pct}<span style="font-size:.55em">%</span></span>
+  </div><span class="skn">${name}</span>`;
+  grid.appendChild(d);
+  io.observe(d);
 });
+const ringIO=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const fg=en.target.querySelector('.ring-fg');
+      fg.style.strokeDashoffset=CIRC*(1-(+fg.dataset.pct)/100);
+      ringIO.unobserve(en.target);
+    }
+  });
+},{threshold:.4});
+$$('.ring-card').forEach(c=>ringIO.observe(c));
+
+/* ═══ THEME TOGGLE ═══ */
+(function(){
+  const btn=$('#themeToggle'),icon=$('#themeIcon'),label=$('#themeLabel');
+  function sync(){const t=document.documentElement.getAttribute('data-theme');
+    icon.textContent=t==='light'?'◑':'◐';label.textContent=t==='light'?'LIGHT':'DARK'}
+  sync();
+  btn.addEventListener('click',()=>{
+    const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('theme',next);sync();
+  });
+})();
+
+/* ═══ UPTIME ═══ */
+(function(){
+  const el=$('#uptime');if(!el)return;
+  const start=Date.now();
+  setInterval(()=>{
+    const s=Math.floor((Date.now()-start)/1000);
+    el.textContent=`${String(Math.floor(s/3600)).padStart(2,'0')}:${String(Math.floor(s%3600/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+  },1000);
+})();
+
+/* ═══ CONTACT COMPOSE ═══ */
+(function(){
+  const send=$('#cf-send');if(!send)return;
+  send.addEventListener('click',()=>{
+    const name=$('#cf-name').value.trim(),msg=$('#cf-msg').value.trim();
+    const body=encodeURIComponent((msg||'Hi Desmond,')+'\n\n'+(name?('— '+name):''));
+    location.href='mailto:connectdesmondoodo@gmail.com?subject='+encodeURIComponent('Portfolio contact'+(name?(' — '+name):''))+'&body='+body;
+    $('#cf-done').classList.add('show');
+  });
+})();
+
+/* ═══ CHARTS (lazy) ═══ */
+const cd={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  animation:reduceMotion?false:{duration:900,easing:'easeOutQuart'}};
+const gridCol='rgba(255,255,255,.05)',tickCol='#5f7a70',borderCol='rgba(255,255,255,.1)';
+
+function makeC1(){
+  charts.c1=new Chart($('#c1'),{type:'bar',
+    data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+      datasets:[
+        {label:'Revenue',data:[310,295,340,320,380,365,390,410,375,420,445,430],backgroundColor:'rgba(0,255,65,.65)',borderRadius:6,order:2},
+        {label:'Prior Year',data:[275,268,295,280,330,315,340,355,330,370,395,385],backgroundColor:'rgba(124,111,247,.3)',borderRadius:6,order:3},
+        {label:'EBITDA',data:[62,55,72,60,80,74,82,88,74,90,95,88],type:'line',borderColor:'#00d4ff',backgroundColor:'rgba(0,212,255,.07)',borderWidth:2,pointBackgroundColor:'#00d4ff',pointRadius:3,tension:.4,fill:true,order:1,yAxisID:'y2'}
+      ]},
+    options:{...cd,
+      plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>`€${ctx.parsed.y}K`}}},
+      scales:{
+        x:{grid:{color:gridCol},ticks:{color:tickCol,font:{size:9}},border:{color:borderCol}},
+        y:{grid:{color:gridCol},ticks:{color:tickCol,font:{size:9},callback:v=>`€${v}K`},border:{color:borderCol}},
+        y2:{position:'right',grid:{display:false},ticks:{color:'#00d4ff',font:{size:9},callback:v=>`€${v}K`},border:{color:borderCol}}
+      }}});
+}
+function makeC2(){
+  charts.c2=new Chart($('#c2'),{type:'line',
+    data:{labels:['Wk-6','Wk-5','Wk-4','Wk-3','Wk-2','Wk-1','Now','Wk+1','Wk+2','Wk+3','Wk+4'],
+      datasets:[
+        {label:'Actuals',data:[185,192,null,178,204,210,214,null,null,null,null],borderColor:'#ffd166',backgroundColor:'rgba(255,209,102,.1)',borderWidth:2.5,pointBackgroundColor:['#ffd166','#ffd166','#ff6b6b','#ffd166','#ffd166','#ffd166','#ffd166','#ffd166','#ffd166','#7c6ff7','#ffd166'],pointRadius:5,tension:.35,fill:true,spanGaps:false},
+        {label:'Forecast',data:[null,null,null,null,null,null,214,218,212,225,220],borderColor:'#00d4ff',backgroundColor:'rgba(0,212,255,.06)',borderWidth:2,borderDash:[6,4],pointBackgroundColor:'#00d4ff',pointRadius:4,tension:.35,fill:true,spanGaps:false}
+      ]},
+    options:{...cd,
+      plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>ctx.parsed.y!=null?`€${ctx.parsed.y}K`:null}}},
+      scales:{
+        x:{grid:{color:gridCol},ticks:{color:tickCol,font:{size:9}},border:{color:borderCol}},
+        y:{grid:{color:gridCol},ticks:{color:tickCol,font:{size:9},callback:v=>`€${v}K`},border:{color:borderCol},min:160,max:240}
+      }}});
+}
+function makeC3(){
+  charts.c3=new Chart($('#c3'),{type:'bar',
+    data:{labels:['Berries','Leafy','Stone Fruit','Citrus','Brassicas','Herbs','Root Veg','Exotics'],
+      datasets:[
+        {label:'Current week',data:[142,98,87,76,65,54,48,38],backgroundColor:['rgba(124,111,247,.9)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(124,111,247,.65)','rgba(255,107,107,.75)','rgba(124,111,247,.65)'],borderRadius:6,order:2},
+        {label:'Prior week',data:[124,95,88,80,62,51,53,35],backgroundColor:'rgba(42,32,64,.8)',borderRadius:6,order:3},
+        {label:'Margin %',data:[38,29,33,27,31,42,24,35],type:'line',borderColor:'#00ff41',backgroundColor:'rgba(0,255,65,0)',borderWidth:2,pointBackgroundColor:'#00ff41',pointRadius:4,tension:.3,order:1,yAxisID:'ym'}
+      ]},
+    options:{...cd,
+      plugins:{...cd.plugins,tooltip:{callbacks:{label:ctx=>ctx.dataset.label==='Margin %'?`${ctx.parsed.y}%`:`€${ctx.parsed.y}K`}}},
+      scales:{
+        x:{grid:{color:gridCol},ticks:{color:tickCol,font:{size:9},maxRotation:30},border:{color:borderCol}},
+        y:{grid:{color:gridCol},ticks:{color:tickCol,font:{size:9},callback:v=>`€${v}K`},border:{color:borderCol}},
+        ym:{position:'right',grid:{display:false},ticks:{color:'#00ff41',font:{size:9},callback:v=>`${v}%`},border:{color:borderCol},min:0,max:60}
+      }}});
+}
+function visible(el){return el&&el.offsetParent!==null}
+function ensureCharts(){
+  if(!charts.c1&&visible($('#c1')))makeC1();
+  if(!charts.c2&&visible($('#c2')))makeC2();
+  if(!charts.c3&&visible($('#c3')))makeC3();
+}
+const chartIO=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){ensureCharts()}})},{threshold:.05});
+$$('.chart-inner').forEach(c=>chartIO.observe(c));
 </script>
 </body>
 </html>
