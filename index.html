@@ -78,7 +78,7 @@
         <div class="pipe-steps">
           <section class="step" id="step-source" aria-labelledby="h-source">
             <div class="step-text">
-              <p class="step-label">01 Source</p>
+              <p class="step-label"><span class="n">01</span> Source</p>
               <h3 id="h-source">Messy systems in</h3>
               <p class="chips"><span class="team-chip">Operations</span></p>
               <p>ERP transactions and physical stock counts land every morning at 07:00, a day ahead, ready to model. Before that, site managers rebuilt the same picking, traceability and workforce reports in Excel every week. A Power BI app replaced them.</p>
@@ -87,7 +87,7 @@
 
           <section class="step" id="step-model" aria-labelledby="h-model">
             <div class="step-text">
-              <p class="step-label">02 Model</p>
+              <p class="step-label"><span class="n">02</span> Model</p>
               <h3 id="h-model">One star schema per business unit</h3>
               <p class="chips"><span class="team-chip">Finance</span></p>
               <p>dbt in a Microsoft Fabric Warehouse takes SQL Server sources through <code>stg_</code> staging into conformed <code>dim_</code>/<code>fact_</code> marts per business unit, then a thin <code>sem_</code> layer built for Direct Lake. For finance that became an 11-table P&amp;L star schema. Every change goes through branches and pull requests.</p>
@@ -96,7 +96,7 @@
 
           <section class="step" id="step-test" aria-labelledby="h-test">
             <div class="step-text">
-              <p class="step-label">03 Test</p>
+              <p class="step-label"><span class="n">03</span> Test</p>
               <h3 id="h-test">Catch it before finance does</h3>
               <p class="chips"><span class="team-chip">Finance</span></p>
               <p>Reconciling the full-year P&amp;L line by line surfaced a currency-conversion defect in an upstream dbt transformation. It was fixed in the pipeline, not patched over in DAX.</p>
@@ -105,7 +105,7 @@
 
           <section class="step" id="step-reconcile" aria-labelledby="h-reconcile">
             <div class="step-text">
-              <p class="step-label">04 Reconcile</p>
+              <p class="step-label"><span class="n">04</span> Reconcile</p>
               <h3 id="h-reconcile">The totals tie out</h3>
               <p class="chips"><span class="team-chip">Finance</span><span class="team-chip">Operations</span></p>
               <p>Period-end AP accruals reconciled with 0 unexplained lines. Physical stock against system stock: 0.10% quantity variance, like for like.</p>
@@ -114,7 +114,7 @@
 
           <section class="step" id="step-serve" aria-labelledby="h-serve">
             <div class="step-text">
-              <p class="step-label">05 Serve</p>
+              <p class="step-label"><span class="n">05</span> Serve</p>
               <h3 id="h-serve">Models people actually use</h3>
               <p class="chips"><span class="team-chip">Procurement</span><span class="team-chip">Farm labour</span></p>
               <p>Direct Lake semantic models with reusable calculation-group time intelligence and role-playing dimensions, so every report on top shows the same numbers. An audit of a legacy model found ~100 of its 806 measures in use, flagged non-additive metrics, and caught a date rule that would have broken at the start of the next financial year. Also: a weekly sales forecast that leaves out bank-holiday weeks.</p>

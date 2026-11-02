@@ -20,7 +20,10 @@ export function initPipeline(root, { reducedMotion }) {
     const p = progressFor(pipe.getBoundingClientRect().top, pipe.offsetHeight, innerHeight);
     anim.render(p, now);
     const on = activeStep(p);
-    steps.forEach((el, i) => el.classList.toggle('on', i === on));
+    steps.forEach((el, i) => {
+      el.classList.toggle('on', i === on);
+      el.classList.toggle('done', i < on);
+    });
     bar.style.width = `${(p / 5) * 100}%`;
     frame = visible ? requestAnimationFrame(tick) : 0;
   };

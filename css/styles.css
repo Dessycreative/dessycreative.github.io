@@ -117,8 +117,22 @@ h3{font-family:var(--disp);font-weight:700;font-size:20px;line-height:1.2}
 .pipe-note{position:absolute;top:10px;right:12px;font:10px var(--mono);color:var(--soft)}
 .pipe-bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent)}
 @media (max-width:760px){
-  #work.is-scrolly .pipe-sticky{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:10px;padding-top:12px;padding-bottom:12px}
-  #work.is-scrolly .step:not(.on){display:none}
+  #work.is-scrolly .pipe-sticky{height:calc(100svh - 58px);grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:10px;padding-top:12px;padding-bottom:12px}
+  /* phones: the five steps become a progress strip on row 1, the current step's text below it */
+  #work.is-scrolly .pipe-steps{grid-template-columns:repeat(5,minmax(0,1fr));column-gap:4px;row-gap:0}
+  #work.is-scrolly .step,#work.is-scrolly .step-text{display:contents}
+  #work.is-scrolly .step .step-label{grid-row:1;margin:0 0 10px;padding-top:7px;border-top:3px solid var(--line2);font-size:10px;letter-spacing:0;color:var(--soft);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s,border-color .3s}
+  #work.is-scrolly .step-label .n{display:block;font-size:9px;opacity:.75}
+  #work.is-scrolly .step.done .step-label{border-top-color:color-mix(in srgb,var(--accent) 45%,var(--line2));color:var(--muted)}
+  #work.is-scrolly .step.on .step-label{border-top-color:var(--accent);color:var(--accent);font-weight:700}
+  #work.is-scrolly .step:nth-child(1) .step-label{grid-column:1}
+  #work.is-scrolly .step:nth-child(2) .step-label{grid-column:2}
+  #work.is-scrolly .step:nth-child(3) .step-label{grid-column:3}
+  #work.is-scrolly .step:nth-child(4) .step-label{grid-column:4}
+  #work.is-scrolly .step:nth-child(5) .step-label{grid-column:5}
+  #work.is-scrolly .step:not(.on) .step-text>:not(.step-label){display:none}
+  #work.is-scrolly .step.on .step-text>:not(.step-label){grid-column:1/-1}
+  #work.is-scrolly .step.on h3{font-size:19px;margin:0 0 .3rem}
   #work.is-scrolly .step-text>p:last-child{font-size:14px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
   .pipe-canvas{height:100%}
 }
