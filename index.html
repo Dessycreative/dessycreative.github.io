@@ -70,73 +70,64 @@
     <div class="wrap">
       <p class="eyebrow">How I work</p>
       <h2>Source → Model → Test → Reconcile → Serve</h2>
-      <p>Five steps I follow on every build, each proved by a different team at a multi-business-unit fresh produce group. Company details are removed; walkthroughs available on request.</p>
+      <p>Five steps I follow on every build, each proved by a different team at a multi-business-unit fresh produce group. Happy to walk through any of them.</p>
+    </div>
 
-      <section class="step" id="step-source" aria-labelledby="h-source">
-        <div class="step-text">
-          <p class="step-label">01 Source</p>
-          <h3 id="h-source">Messy systems in</h3>
-          <p class="chips"><span class="team-chip">Operations</span></p>
-          <p>ERP transactions and physical stock counts land every morning at 07:00, a day ahead, ready to model. Before that, site managers rebuilt the same picking, traceability and workforce reports in Excel every week. A Power BI app replaced them.</p>
-        </div>
-        <div class="stage stage-source" aria-hidden="true">
-          <div class="src-row"><span>ERP</span><span>Stock counts</span><span>Picking</span></div>
-          <div class="landing"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <p class="stage-cap">landing</p>
-        </div>
-      </section>
+    <div class="pipe">
+      <div class="pipe-sticky wrap">
+        <div class="pipe-steps">
+          <section class="step" id="step-source" aria-labelledby="h-source">
+            <div class="step-text">
+              <p class="step-label">01 Source</p>
+              <h3 id="h-source">Messy systems in</h3>
+              <p class="chips"><span class="team-chip">Operations</span></p>
+              <p>ERP transactions and physical stock counts land every morning at 07:00, a day ahead, ready to model. Before that, site managers rebuilt the same picking, traceability and workforce reports in Excel every week. A Power BI app replaced them.</p>
+            </div>
+          </section>
 
-      <section class="step" id="step-model" aria-labelledby="h-model">
-        <div class="step-text">
-          <p class="step-label">02 Model</p>
-          <h3 id="h-model">One star schema per business unit</h3>
-          <p class="chips"><span class="team-chip">Finance</span></p>
-          <p>dbt in a Microsoft Fabric Warehouse takes SQL Server sources through <code>stg_</code> staging into conformed <code>dim_</code>/<code>fact_</code> marts per business unit, then a thin <code>sem_</code> layer built for Direct Lake. For finance that became an 11-table P&amp;L star schema. Every change goes through branches and pull requests.</p>
-        </div>
-        <div class="stage stage-model" aria-hidden="true">
-          <span class="layer">stg_</span><span class="arrow">→</span><span class="layer">dim_ / fact_</span><span class="arrow">→</span><span class="layer">sem_</span>
-        </div>
-      </section>
+          <section class="step" id="step-model" aria-labelledby="h-model">
+            <div class="step-text">
+              <p class="step-label">02 Model</p>
+              <h3 id="h-model">One star schema per business unit</h3>
+              <p class="chips"><span class="team-chip">Finance</span></p>
+              <p>dbt in a Microsoft Fabric Warehouse takes SQL Server sources through <code>stg_</code> staging into conformed <code>dim_</code>/<code>fact_</code> marts per business unit, then a thin <code>sem_</code> layer built for Direct Lake. For finance that became an 11-table P&amp;L star schema. Every change goes through branches and pull requests.</p>
+            </div>
+          </section>
 
-      <section class="step" id="step-test" aria-labelledby="h-test">
-        <div class="step-text">
-          <p class="step-label">03 Test</p>
-          <h3 id="h-test">Catch it before finance does</h3>
-          <p class="chips"><span class="team-chip">Finance</span></p>
-          <p>Reconciling the full-year P&amp;L line by line surfaced a currency-conversion defect in an upstream dbt transformation. It was fixed in the pipeline, not patched over in DAX.</p>
-        </div>
-        <div class="stage stage-test" aria-hidden="true">
-          <p class="t-row pass">✓ not_null(account_key)</p>
-          <p class="t-row pass">✓ relationships(fact → dim_account)</p>
-          <p class="t-row flip"><span class="fail-mark">✗</span><span class="pass-mark">✓</span> fx_rate_applied_once</p>
-        </div>
-      </section>
+          <section class="step" id="step-test" aria-labelledby="h-test">
+            <div class="step-text">
+              <p class="step-label">03 Test</p>
+              <h3 id="h-test">Catch it before finance does</h3>
+              <p class="chips"><span class="team-chip">Finance</span></p>
+              <p>Reconciling the full-year P&amp;L line by line surfaced a currency-conversion defect in an upstream dbt transformation. It was fixed in the pipeline, not patched over in DAX.</p>
+            </div>
+          </section>
 
-      <section class="step" id="step-reconcile" aria-labelledby="h-reconcile">
-        <div class="step-text">
-          <p class="step-label">04 Reconcile</p>
-          <h3 id="h-reconcile">The totals tie out</h3>
-          <p class="chips"><span class="team-chip">Finance</span><span class="team-chip">Operations</span></p>
-          <p>Period-end AP accruals reconciled with 0 unexplained lines. Physical stock against system stock: 0.10% quantity variance, like for like.</p>
-        </div>
-        <div class="stage stage-reconcile" aria-hidden="true">
-          <div class="totals"><p>Ledger<b>1,000.00</b></p><p>Report<b class="count" data-total="1000">1,000.00</b></p></div>
-          <p class="match">✓ variance 0.00</p>
-          <p class="stage-cap">demo animation, not real figures</p>
-        </div>
-      </section>
+          <section class="step" id="step-reconcile" aria-labelledby="h-reconcile">
+            <div class="step-text">
+              <p class="step-label">04 Reconcile</p>
+              <h3 id="h-reconcile">The totals tie out</h3>
+              <p class="chips"><span class="team-chip">Finance</span><span class="team-chip">Operations</span></p>
+              <p>Period-end AP accruals reconciled with 0 unexplained lines. Physical stock against system stock: 0.10% quantity variance, like for like.</p>
+            </div>
+          </section>
 
-      <section class="step" id="step-serve" aria-labelledby="h-serve">
-        <div class="step-text">
-          <p class="step-label">05 Serve</p>
-          <h3 id="h-serve">Models people actually use</h3>
-          <p class="chips"><span class="team-chip">Procurement</span><span class="team-chip">Farm labour</span></p>
-          <p>Direct Lake semantic models with reusable calculation-group time intelligence and role-playing dimensions, so every report on top shows the same numbers. An audit of a legacy model found ~100 of its 806 measures in use, flagged non-additive metrics, and caught a date rule that would have broken at the start of the next financial year. Also: a weekly sales forecast that leaves out bank-holiday weeks.</p>
+          <section class="step" id="step-serve" aria-labelledby="h-serve">
+            <div class="step-text">
+              <p class="step-label">05 Serve</p>
+              <h3 id="h-serve">Models people actually use</h3>
+              <p class="chips"><span class="team-chip">Procurement</span><span class="team-chip">Farm labour</span></p>
+              <p>Direct Lake semantic models with reusable calculation-group time intelligence and role-playing dimensions, so every report on top shows the same numbers. An audit of a legacy model found ~100 of its 806 measures in use, flagged non-additive metrics, and caught a date rule that would have broken at the start of the next financial year. Also: a weekly sales forecast that leaves out bank-holiday weeks.</p>
+            </div>
+          </section>
         </div>
-        <div class="stage stage-serve" aria-hidden="true">
-          <div class="bars"><i style="--h:42%"></i><i style="--h:68%"></i><i style="--h:55%"></i><i style="--h:88%"></i><i style="--h:74%"></i><i style="--h:96%"></i></div>
+
+        <div class="pipe-canvas" aria-hidden="true" hidden>
+          <canvas></canvas>
+          <p class="pipe-note">demo animation, not real figures</p>
+          <div class="pipe-bar"></div>
         </div>
-      </section>
+      </div>
     </div>
   </section>
 

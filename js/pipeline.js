@@ -1,29 +1,54 @@
-function countUp(el, durationMs) {
-  const target = Number(el.dataset.total);
-  const fmt = (v) => v.toLocaleString('en-IE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const t0 = performance.now();
-  const frame = (now) => {
-    const p = Math.min(1, (now - t0) / durationMs);
-    el.textContent = fmt(target * (1 - (1 - p) ** 3));
-    if (p < 1) requestAnimationFrame(frame);
-  };
-  requestAnimationFrame(frame);
-}
+import { createPipelineAnimation } from './pipeline-canvas.js';
+import { progressFor, activeStep, scrollYForStep } from './pipeline-scroll.js';
 
-// Marks each .step as done (its end state) once it scrolls into view.
+// Turns the plain list of five steps into a pinned, scroll-driven animation.
+// Without JS or under reduced motion the plain list stays as it is.
 export function initPipeline(root, { reducedMotion }) {
+  const pipe = root.querySelector('.pipe');
+  const holder = root.querySelector('.pipe-canvas');
+  if (reducedMotion || !pipe || !holder) return;
+
+  root.classList.add('is-scrolly');
+  holder.hidden = false;
   const steps = [...root.querySelectorAll('.step')];
-  if (reducedMotion || !('IntersectionObserver' in window)) {
-    steps.forEach((s) => s.classList.add('is-done'));
-    return;
-  }
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      e.target.classList.add('is-done');
-      e.target.querySelectorAll('.count').forEach((el) => countUp(el, 1200));
-      io.unobserve(e.target);
+  const bar = holder.querySelector('.pipe-bar');
+  const anim = createPipelineAnimation(holder.querySelector('canvas'));
+
+  let visible = false;
+  let frame = 0;
+  const tick = (now) => {
+    const p = progressFor(pipe.getBoundingClientRect().top, pipe.offsetHeight, innerHeight);
+    anim.render(p, now);
+    const on = activeStep(p);
+    steps.forEach((el, i) => el.classList.toggle('on', i === on));
+    bar.style.width = `${(p / 5) * 100}%`;
+    frame = visible ? requestAnimationFrame(tick) : 0;
+  };
+  // only animate while the section is on screen
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && !frame) frame = requestAnimationFrame(tick);
+  }).observe(pipe);
+  tick(performance.now());
+
+  addEventListener('resize', () => anim.build());
+  new MutationObserver(() => anim.build()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => anim.build());
+
+  // #step-… links scroll to the point in the animation where that step is showing
+  const goTo = (id, behavior) => {
+    const i = steps.findIndex((el) => el.id === id);
+    if (i < 0) return false;
+    const top = pipe.getBoundingClientRect().top + scrollY;
+    scrollTo({ top: scrollYForStep(top, pipe.offsetHeight, innerHeight, i), behavior });
+    return true;
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#step-"]');
+    if (a && goTo(a.getAttribute('href').slice(1), 'smooth')) {
+      e.preventDefault();
+      history.replaceState(null, '', a.getAttribute('href'));
     }
-  }, { threshold: 0.4 });
-  steps.forEach((s) => io.observe(s));
+  });
+  if (location.hash.startsWith('#step-')) goTo(location.hash.slice(1), 'instant');
 }
