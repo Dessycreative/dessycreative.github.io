@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Desmond Oodo — Analytics Engineer</title>
-<meta name="description" content="Desmond Oodo, analytics engineer in Dublin. One version of the truth, for every team: dbt, Microsoft Fabric and Power BI semantic models that finance, procurement and operations trust.">
-<meta property="og:title" content="Desmond Oodo — Analytics Engineer · One version of the truth, for every team">
-<meta property="og:description" content="dbt, Microsoft Fabric and Power BI semantic models, reconciled until the totals tie out. Try the live SQL terminal.">
+<title>Desmond Oodo — Data Analyst &amp; Analytics Engineer</title>
+<meta name="description" content="Desmond Oodo, data analyst and analytics engineer in Dublin. Power BI reporting and analysis that finance, commercial and operations teams use, built on dbt and Microsoft Fabric models that reconcile.">
+<meta property="og:title" content="Desmond Oodo — Data Analyst &amp; Analytics Engineer · One version of the truth, for every team">
+<meta property="og:description" content="Power BI reports and analysis people use, on dbt and Microsoft Fabric models reconciled until the totals tie out. Try the live SQL terminal.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dessycreative.github.io/">
 <meta property="og:image" content="https://dessycreative.github.io/og-image.png">
@@ -28,6 +28,7 @@
   <div class="wrap">
     <a class="brand" href="#hero">desmond<span>.</span>oodo</a>
     <nav aria-label="Sections">
+      <a href="#reporting">Reporting</a>
       <a href="#work">Work</a>
       <a href="#building">Building</a>
       <a href="#play">Play</a>
@@ -42,9 +43,9 @@
 <main>
   <section id="hero" class="hero">
     <div class="wrap">
-      <p class="eyebrow">Analytics Engineer · Dublin</p>
+      <p class="eyebrow">Data Analyst &amp; Analytics Engineer · Dublin</p>
       <h1>One version of the truth, for every team.</h1>
-      <p class="lede">I build dbt models, Microsoft Fabric warehouses and Power BI semantic models that finance, procurement and operations all trust.</p>
+      <p class="lede">I help every team decide what's worth measuring, then build it end to end: pipelines, models and Power BI, checked back to the source.</p>
 
       <div id="terminal" class="term" tabindex="0" aria-label="SQL terminal. Activate to type your own query.">
         <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -53,10 +54,10 @@
           <table id="hero-table">
             <thead><tr><th scope="col">team</th><th scope="col">what_i_built</th></tr></thead>
             <tbody>
-              <tr><td><a href="#step-test">Finance</a></td><td>P&amp;L star schema, reconciled to the ledger</td></tr>
-              <tr><td><a href="#step-serve">Procurement</a></td><td>Direct Lake model with time intelligence</td></tr>
-              <tr><td><a href="#step-reconcile">Operations</a></td><td>Physical vs system stock, 0.10% variance</td></tr>
-              <tr><td><a href="#step-serve">Farm labour</a></td><td>806-measure audit → ~100 in use</td></tr>
+              <tr><td><a href="#step-test">Finance</a></td><td>P&amp;L reporting, reconciled to the ledger</td></tr>
+              <tr><td><a href="#step-serve">Commercial</a></td><td>Live trading screen vs same day last week</td></tr>
+              <tr><td><a href="#step-source">Operations</a></td><td>Weekly Excel reports replaced by a Power BI app</td></tr>
+              <tr><td><a href="#step-reconcile">Stock</a></td><td>Physical vs system stock, 0.10% variance</td></tr>
             </tbody>
           </table>
         </div>
@@ -66,11 +67,41 @@
     </div>
   </section>
 
+  <section id="reporting" class="section">
+    <div class="wrap">
+      <p class="eyebrow">Reporting &amp; analysis</p>
+      <h2>Reports people open every day</h2>
+      <p>Most of my week is spent with the people who read the numbers: finding out what they need to decide, then building the report or analysis that answers it.</p>
+      <div class="cards cards-2">
+        <article class="card">
+          <p class="card-tag">Power BI app</p>
+          <h3>Spreadsheets retired</h3>
+          <p>Managers used to rebuild the same operational reports in Excel every week. One Power BI app now serves them all, refreshed before the working day starts.</p>
+        </article>
+        <article class="card">
+          <p class="card-tag">Report design</p>
+          <h3>One look across every report</h3>
+          <p>Finance, procurement and commercial reports built on a shared design system: KPI cards, slicer bands, consistent layouts, and colours that pass accessibility contrast.</p>
+        </article>
+        <article class="card">
+          <p class="card-tag">Live screen</p>
+          <h3>Today vs same day last week</h3>
+          <p>A big-screen trading dashboard comparing today with the same weekday last week, so teams can act during the day, not after it.</p>
+        </article>
+        <article class="card">
+          <p class="card-tag">Analysis</p>
+          <h3>Forecasts and weekly insight</h3>
+          <p>A weekly sales forecast that leaves out bank-holiday weeks, and weekly performance packs with KPIs, trends, cost analysis and recommendations.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="work" class="section">
     <div class="wrap">
       <p class="eyebrow">How I work</p>
       <h2>Source → Model → Test → Reconcile → Serve</h2>
-      <p>Five steps I follow on every build, each proved by a different team at a multi-business-unit fresh produce group. Happy to walk through any of them.</p>
+      <p>Five steps I follow on every build, each proved by a different team. Happy to walk through any of them.</p>
     </div>
 
     <div class="pipe">
@@ -81,16 +112,16 @@
               <p class="step-label"><span class="n">01</span> Source</p>
               <h3 id="h-source">Messy systems in</h3>
               <p class="chips"><span class="team-chip">Operations</span></p>
-              <p>ERP transactions and physical stock counts land every morning at 07:00, a day ahead, ready to model. Before that, site managers rebuilt the same picking, traceability and workforce reports in Excel every week. A Power BI app replaced them.</p>
+              <p>ERP transactions and physical stock counts land every morning, ready to model. Before that, managers rebuilt the same operational reports in Excel every week. A Power BI app replaced them.</p>
             </div>
           </section>
 
           <section class="step" id="step-model" aria-labelledby="h-model">
             <div class="step-text">
               <p class="step-label"><span class="n">02</span> Model</p>
-              <h3 id="h-model">One star schema per business unit</h3>
+              <h3 id="h-model">One star schema per subject area</h3>
               <p class="chips"><span class="team-chip">Finance</span></p>
-              <p>dbt in a Microsoft Fabric Warehouse takes SQL Server sources through <code>stg_</code> staging into conformed <code>dim_</code>/<code>fact_</code> marts per business unit, then a thin <code>sem_</code> layer built for Direct Lake. For finance that became an 11-table P&amp;L star schema. Every change goes through branches and pull requests.</p>
+              <p>dbt in a Microsoft Fabric Warehouse takes SQL Server sources through staging into conformed <code>dim_</code>/<code>fact_</code> marts, then a thin semantic layer built for Direct Lake. For finance that became a P&amp;L star schema. Every change goes through branches and pull requests.</p>
             </div>
           </section>
 
@@ -116,8 +147,8 @@
             <div class="step-text">
               <p class="step-label"><span class="n">05</span> Serve</p>
               <h3 id="h-serve">Models people actually use</h3>
-              <p class="chips"><span class="team-chip">Procurement</span><span class="team-chip">Farm labour</span></p>
-              <p>Direct Lake semantic models with reusable calculation-group time intelligence and role-playing dimensions, so every report on top shows the same numbers. An audit of a legacy model found ~100 of its 806 measures in use, flagged non-additive metrics, and caught a date rule that would have broken at the start of the next financial year. Also: a weekly sales forecast that leaves out bank-holiday weeks.</p>
+              <p class="chips"><span class="team-chip">Procurement</span><span class="team-chip">Commercial</span></p>
+              <p>Direct Lake semantic models with reusable calculation-group time intelligence and role-playing dimensions, so every report on top shows the same numbers. An audit of a legacy model found most of its measures unused, flagged non-additive metrics, and caught a date rule that would have broken at the start of the next financial year. Also: a weekly sales forecast that leaves out bank-holiday weeks.</p>
             </div>
           </section>
         </div>
@@ -191,8 +222,8 @@
           <ul class="bucket"><li class="bubble">DAX</li><li class="bubble">Power Query</li></ul></div>
         <div class="bucket-box"><h3 class="bucket-name">Orchestration</h3>
           <ul class="bucket"><li class="bubble">Git</li><li class="bubble">Azure DevOps PRs</li></ul></div>
-        <div class="bucket-box"><h3 class="bucket-name">Viz</h3>
-          <ul class="bucket"><li class="bubble">Power BI</li></ul></div>
+        <div class="bucket-box"><h3 class="bucket-name">Reporting</h3>
+          <ul class="bucket"><li class="bubble">Power BI</li><li class="bubble">Excel</li><li class="bubble">report design</li></ul></div>
         <div class="bucket-box"><h3 class="bucket-name">AI tooling</h3>
           <ul class="bucket"><li class="bubble">Claude</li><li class="bubble">MCP</li><li class="bubble">Claude Skills</li><li class="bubble">Python</li></ul></div>
       </div>
@@ -208,8 +239,8 @@
         <li>
           <!-- [TODO] role dates for current role -->
           <p class="tl-when">Current</p>
-          <h3>Analytics engineer</h3>
-          <p>Multi-business-unit fresh produce group. Finance, procurement, commercial and operations analytics on Microsoft Fabric, dbt and Power BI.</p>
+          <h3>Data analyst &amp; analytics engineer</h3>
+          <p>Reporting, analysis and data modelling for finance, procurement, commercial and operations teams, on Microsoft Fabric, dbt and Power BI.</p>
         </li>
         <li>
           <p class="tl-when">2025</p>
@@ -256,7 +287,7 @@
     <div class="wrap">
       <p class="eyebrow">Contact</p>
       <h2>Let's talk</h2>
-      <p>Open to analytics engineering roles in Ireland. The fastest way to reach me is email.</p>
+      <p>Open to data analyst, BI and analytics engineering roles in Ireland. The fastest way to reach me is email.</p>
       <ul class="contact-links">
         <li><a class="btn btn-accent" href="mailto:connectdesmondoodo@gmail.com">connectdesmondoodo@gmail.com</a></li>
         <li><a href="https://www.linkedin.com/in/desmond-oodo-1a2056182">LinkedIn ↗</a></li>

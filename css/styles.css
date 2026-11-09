@@ -139,6 +139,7 @@ h3{font-family:var(--disp);font-weight:700;font-size:20px;line-height:1.2}
 
 /* cards, flow, timeline, contact */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:28px}
+.cards-2{grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
 .card{background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:.5rem}
 .card p:not(.card-tag){color:var(--muted);font-size:15px;flex:1}
 .card-tag{font:11px var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.06em}

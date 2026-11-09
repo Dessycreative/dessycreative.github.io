@@ -5,7 +5,7 @@
 import { stepEase } from './pipeline-scroll.js';
 
 const DIMS = ['dim_date', 'dim_product', 'dim_site', 'dim_customer'];
-const SOURCE_NAMES = ['ERP', 'Stock counts', 'Picking'];
+const SOURCE_NAMES = ['ERP', 'Stock counts', 'Sales'];
 
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
